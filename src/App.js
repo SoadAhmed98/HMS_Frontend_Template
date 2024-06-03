@@ -4,6 +4,9 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import Home from './Pages/home.js';
 import About from "./Pages/about";
 import Doctors from "./Pages/doctors";
+import Services from "./Pages/services";
+import Faq from "./Pages/faq";
+import Contact from "./Pages/contact";
 import OurTeam from "./Pages/ourTeam";
 import NotFound from './Pages/notFound.js';
 import Footer from"./Components/footer.js"
@@ -22,6 +25,9 @@ function App() {
           <Route component={About} path="/about" exact />
           <Route component={Doctors} path="/doctors" exact />
           <Route component={OurTeam} path="/ourTeam" exact />
+          <Route component={Services} path="/sevices" exact />
+          <Route component={Faq} path="/faq" exact />
+          <Route component={Contact} path="/contact" exact />
           <Route component={NotFound} path="*" exact />
           
           {/* <Route component={NotFound} path="*" /> */}
