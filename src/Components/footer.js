@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer class="main-footer style-two">
+    <footer class="main-footer style-two mt-5">
       <div class="auto-container">
         <div class="widgets-section">
           <div class="row clearfix">
