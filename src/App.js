@@ -14,6 +14,7 @@ import NotFound from './Pages/notFound.js';
 import Footer from"./Components/footer.js"
 import ButtomUp from"./Components/buttomUp.js"
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Blog from './Pages/blog.js';
 function App() {
   return (
     <div className="wow animate__animated animate__fadeIn">
@@ -31,6 +32,7 @@ function App() {
           <Route component={Faq} path="/faq" exact />
           <Route component={Contact} path="/contact" exact />
           <Route component={DoctorDetail} path="/doctors-detail" exact /> 
+          <Route component={Blog} path="/Blog" exact />
 
           <Route component={NotFound} path="*" exact />
           
