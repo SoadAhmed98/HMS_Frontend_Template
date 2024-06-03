@@ -1,9 +1,11 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import Home from './Pages/home.js';
 import About from "./Pages/about";
 import Doctors from "./Pages/doctors";
 import OurTeam from "./Pages/ourTeam";
+import NotFound from './Pages/notFound.js';
 import Footer from"./Components/footer.js"
 import ButtomUp from"./Components/buttomUp.js"
 import { BrowserRouter, Route, Switch } from "react-router-dom";
@@ -16,9 +18,11 @@ function App() {
         <main className="flex-grow-1">
         <Switch>
           {/* <Route component={Home} path="/" exact /> */}
+          <Route component={Home} path="/" exact/>
           <Route component={About} path="/about" exact />
           <Route component={Doctors} path="/doctors" exact />
           <Route component={OurTeam} path="/ourTeam" exact />
+          <Route component={NotFound} path="*" exact />
           
           {/* <Route component={NotFound} path="*" /> */}
         </Switch>
