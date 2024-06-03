@@ -8,6 +8,8 @@ import Services from "./Pages/services";
 import Faq from "./Pages/faq";
 import Contact from "./Pages/contact";
 import OurTeam from "./Pages/ourTeam";
+
+import DoctorDetail from "./Pages/doctorDetail";
 import NotFound from './Pages/notFound.js';
 import Footer from"./Components/footer.js"
 import ButtomUp from"./Components/buttomUp.js"
@@ -28,6 +30,8 @@ function App() {
           <Route component={Services} path="/sevices" exact />
           <Route component={Faq} path="/faq" exact />
           <Route component={Contact} path="/contact" exact />
+          <Route component={DoctorDetail} path="/doctors-detail" exact /> 
+
           <Route component={NotFound} path="*" exact />
           
           {/* <Route component={NotFound} path="*" /> */}
