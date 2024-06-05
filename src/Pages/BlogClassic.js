@@ -62,13 +62,13 @@ const BlogClassic = () => {
                 ))}
                 <div className="styled-pagination text-center">
                   <ul className="inner-container clearfix">
-                    <li className="prev"><a href="#" className="active"><i className="flaticon-left-arrow"></i> Prev</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li className="active"><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li className="next"><a href="#" className="active">Next <i className="flaticon-right-arrow-1"></i></a></li>
+                    <li className="prev"><a href="#" className="active no-decoration"><i className="flaticon-left-arrow"></i> Prev</a></li>
+                    <li><a className="no-decoration"href="#">1</a></li>
+                    <li><a className="no-decoration"href="#">2</a></li>
+                    <li className="active"><a className="no-decoration"href="#">3</a></li>
+                    <li><a className="no-decoration" href="#">4</a></li>
+                    <li><a className="no-decoration"href="#">5</a></li>
+                    <li className="next"><a href="#" className="active no-decoration">Next <i className="flaticon-right-arrow-1"></i></a></li>
                   </ul>
                 </div>
               </div>
