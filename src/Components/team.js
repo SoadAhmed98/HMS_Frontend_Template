@@ -60,7 +60,7 @@ const TeamSection = () => {
     return (
         <section className="team-section py-5">
             <div className="container">
-                <div className="sec-title text-center mb-5">
+                <div className="sec-title centered">
                     <h2>The Medical Specialists</h2>
                     <div className="separator"></div>
                 </div>

@@ -4,7 +4,7 @@ const AskYourQuestion = () => {
   return (
     <>
       {/* Faq Form Section */}
-      <section className="faq-form-section">
+      <section className="faq-form-section mb-5">
         <div className="auto-container">
           <div className="sec-title centered">
             <h2>Ask Your Question</h2>

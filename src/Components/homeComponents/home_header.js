@@ -1,303 +1,274 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Home_Header = () => {
   return (
-    <div   >
-        <header class="main-header header-style-three" >
-            
-            {/* <!-- Header Upper --> */}
-            <div class="header-upper">
-                <div class="inner-container clearfix d-flex">
-                    
-                    {/* <!--Info--> */}
-                    <div class="logo-outer">
-                        <div class="logo"><a href="index.html"><img src="images/logo-3.png" alt="" title=""/></a></div>
-                    </div>
+    <div>
+      <header className="main-header header-style-three">
+        {/* <!-- Header Upper --> */}
+        <div className="header-upper">
+          <div className="inner-container clearfix d-flex">
+            {/* <!-- Info --> */}
+            <div className="logo-outer">
+              <div className="logo">
+                <Link to="/"><img src="images/logo-3.png" alt="" title="" /></Link>
+              </div>
+            </div>
 
-                    {/* <!--Nav Box--> */}
-                    <div class="nav-outer clearfix ">
-                        {/* <!--Mobile Navigation Toggler For Mobile--> */}
-                        {/* <div class="mobile-nav-toggler"><span class="icon flaticon-menu"></span></div> */}
-                        <nav class="main-menu navbar-expand-md navbar-light">
-                            <div class="navbar-header">
-                                {/* <!-- Togg le Button -->       */}
-                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                                    <span class="icon flaticon-menu"></span>
-                                </button>
-                            </div>
-                            
-                            <div class="collapse navbar-collapse clearfix" id="navbarSupportedContent">
-                                <ul class="navigation clearfix">
-                                    <li class="current dropdown"><a href="#">Home</a>
-                                        <ul>
-                                            <li><a href="index.html">Home page 01</a></li>
-                                            <li><a href="index-2.html">Home page 02</a></li>
-                                            <li><a href="index-3.html">Home page 03</a></li>
-                                            <li><a href="index-4.html">Home page 04</a></li>
-                                            <li class="dropdown"><a href="#">Header Styles</a>
-                                                <ul>
-                                                    <li><a href="index.html">Header Style One</a></li>
-                                                    <li><a href="index-2.html">Header Style Two</a></li>
-                                                    <li><a href="index-3.html">Header Style Three</a></li>
-                                                    <li><a href="index-4.html">Header Style Four</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown"><a href="#">About us</a>
-                                            <ul>
-                                                <li><a href="about.html">About Us</a></li>
-                                                <li><a href="team.html">Our Team</a></li>
-                                                <li><a href="faq.html">Faq</a></li>
-                                                <li><a href="services.html">Services</a></li>
-                                                <li><a href="gallery.html">Gallery</a></li>
-                                                <li><a href="comming-soon.html">Comming Soon</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="dropdown has-mega-menu"><a href="#">Pages</a>
-                                            <div class="mega-menu">
-                                                <div class="mega-menu-bar row clearfix">
-                                                    <div class="column col-md-3 col-xs-12">
-                                                        <h3>About Us</h3>
-                                                        <ul>
-                                                            <li><a href="about.html">About Us</a></li>
-                                                            <li><a href="team.html">Our Team</a></li>
-                                                            <li><a href="faq.html">Faq</a></li>
-                                                            <li><a href="services.html">Services</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="column col-md-3 col-xs-12">
-                                                        <h3>Doctors</h3>
-                                                        <ul>
-                                                            <li><a href="doctors.html">Doctors</a></li>
-                                                            <li><a href="doctors-detail.html">Doctors Detail</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="column col-md-3 col-xs-12">
-                                                        <h3>Blog</h3>
-                                                        <ul>
-                                                            <li><a href="blog.html">Our Blog</a></li>
-                                                            <li><a href="blog-classic.html">Blog Classic</a></li>
-                                                            <li><a href="blog-detail.html">Blog Detail</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="column col-md-3 col-xs-12">
-                                                        <h3>Shops</h3>
-                                                        <ul>
-                                                            <li><a href="shop.html">Shop</a></li>
-                                                            <li><a href="shop-single.html">Shop Details</a></li>
-                                                            <li><a href="shoping-cart.html">Cart Page</a></li>
-                                                            <li><a href="checkout.html">Checkout Page</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    <li class="dropdown"><a href="#">Doctors</a>
-                                        <ul>
-                                            <li><a href="doctors.html">Doctors</a></li>
-                                            <li><a href="doctors-detail.html">Doctors Detail</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown"><a href="#">Department</a>
-                                        <ul>
-                                            <li><a href="department.html">Department</a></li>
-                                            <li><a href="department-detail.html">Department Detail</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown"><a href="#">Blog</a>
-                                        <ul>
-                                            <li><a href="blog.html">Our Blog</a></li>
-                                            <li><a href="blog-classic.html">Blog Classic</a></li>
-                                            <li><a href="blog-detail.html">Blog Detail</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown"><a href="#">Shop</a>
-                                            <ul>
-                                                <li><a href="shop.html">Shop</a></li>
-                                                <li><a href="shop-single.html">Shop Details</a></li>
-                                                <li><a href="shoping-cart.html">Cart Page</a></li>
-                                                <li><a href="checkout.html">Checkout Page</a></li>
-                                            </ul>
-                                        </li>
+            {/* <!-- Nav Box --> */}
+            <div className="nav-outer clearfix">
+              {/* <!-- Mobile Navigation Toggler For Mobile --> */}
+              {/* <div className="mobile-nav-toggler"><span className="icon flaticon-menu"></span></div> */}
+              <nav className="main-menu navbar-expand-md navbar-light">
+                <div className="navbar-header">
+                  {/* <!-- Toggle Button --> */}
+                  <button
+                    className="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                  >
+                    <span className="icon flaticon-menu"></span>
+                  </button>
+                </div>
 
-                                    <li><a href="contact.html">Contact</a></li>
-                                </ul>
-                            </div>
-                        </nav>
-                        {/* <!-- Main Menu End--> */}
-
-                        {/* <!-- Main Menu End--> */}
-                        <div class="outer-box clearfix">
-                            {/* <!-- Main Menu End--> */}
-                            <div class="nav-box">
-                                <div class="nav-btn nav-toggler navSidebar-button"><span class="icon flaticon-menu-1"></span></div>
-                            </div>
-                            
-                            {/* <!-- Social Box --> */}
-                            <ul class="social-box clearfix">
-                                <li><a href="#"><span class="fab fa-facebook-f"></span></a></li>
-                                <li><a href="#"><span class="fab fa-google"></span></a></li>
-                                <li><a href="#"><span class="fab fa-twitter"></span></a></li>
-                                {/* <li><a href="#"><span class="fab fa-skype"></span></a></li> */}
-                                <li><a href="#"><span class="fab fa-linkedin-in"></span></a></li>
+                <div className="collapse navbar-collapse clearfix" id="navbarSupportedContent">
+                  <ul className="navigation clearfix">
+                    <li className="current"><Link to="/">Home</Link></li>
+                    <li className="dropdown">
+                      <Link to="#">About us</Link>
+                      <ul>
+                        <li><Link to="/about">About Us</Link></li>
+                        <li><Link to="/ourTeam">Our Team</Link></li>
+                        <li><Link to="/faq">Faq</Link></li>
+                        <li><Link to="/services">Services</Link></li>
+                        {/* <li><Link to="/gallery">Gallery</Link></li>
+                        <li><Link to="/coming-soon">Coming Soon</Link></li> */}
+                      </ul>
+                    </li>
+                    <li className="dropdown has-mega-menu"><Link to="#">Pages</Link>
+                      <div className="mega-menu">
+                        <div className="mega-menu-bar row clearfix">
+                          <div className="column col-md-3 col-xs-12">
+                            <h3>About Us</h3>
+                            <ul>
+                              <li><Link to="/about">About Us</Link></li>
+                              <li><Link to="/ourTeam">Our Team</Link></li>
+                              <li><Link to="/faq">Faq</Link></li>
+                              <li><Link to="/services">Services</Link></li>
                             </ul>
-                            
-                            {/* <!-- Search Btn --> */}
-                            <div class="search-box-btn"><span class="icon flaticon-search"></span></div>
-                            
+                          </div>
+                          <div className="column col-md-3 col-xs-12">
+                            <h3>Doctors</h3>
+                            <ul>
+                              <li><Link to="/doctors">Doctors</Link></li>
+                              <li><Link to="/doctors-detail">Doctors Detail</Link></li>
+                            </ul>
+                          </div>
+                          <div className="column col-md-3 col-xs-12">
+                            <h3>Blog</h3>
+                            <ul>
+                              <li><Link to="/blog">Our Blog</Link></li>
+                              <li><Link to="/blog-classic">Blog Classic</Link></li>
+                              <li><Link to="/blog-detail">Blog Detail</Link></li>
+                            </ul>
+                          </div>
+                          {/* <div className="column col-md-3 col-xs-12">
+                            <h3>Shops</h3>
+                            <ul>
+                              <li><Link to="/shop">Shop</Link></li>
+                              <li><Link to="/shop-single">Shop Details</Link></li>
+                              <li><Link to="/shopping-cart">Cart Page</Link></li>
+                              <li><Link to="/checkout">Checkout Page</Link></li>
+                            </ul>
+                          </div> */}
                         </div>
-                    </div>
-                    
+                      </div>
+                    </li>
+                    <li className="dropdown"><Link to="#">Doctors</Link>
+                      <ul>
+                        <li><Link to="/doctors">Doctors</Link></li>
+                        <li><Link to="/doctors-detail">Doctors Detail</Link></li>
+                      </ul>
+                    </li>
+                    <li className="dropdown"><Link to="#">Department</Link>
+                      <ul>
+                        <li><Link to="/department">Department</Link></li>
+                        <li><Link to="/department-detail">Department Detail</Link></li>
+                      </ul>
+                    </li>
+                    <li className="dropdown"><Link to="#">Blog</Link>
+                      <ul>
+                        <li><Link to="/blog">Our Blog</Link></li>
+                        <li><Link to="/blog-classic">Blog Classic</Link></li>
+                        <li><Link to="/blog-detail">Blog Detail</Link></li>
+                      </ul>
+                    </li>
+                    <li className="dropdown"><Link to="#">Shop</Link>
+                      <ul>
+                        <li><Link to="/shop">Shop</Link></li>
+                        <li><Link to="/shop-single">Shop Details</Link></li>
+                        <li><Link to="/shopping-cart">Cart Page</Link></li>
+                        <li><Link to="/checkout">Checkout Page</Link></li>
+                      </ul>
+                    </li>
+
+                    <li><Link to="/contact">Contact</Link></li>
+                  </ul>
                 </div>
-            </div>
-            {/* <!--End Header Upper--> */}
+              </nav>
+              {/* <!-- Main Menu End--> */}
 
-            {/* <!--Sticky Header--> */}
-            <div class="sticky-header">
-                <div class="auto-container clearfix">
-                    {/* <!--Logo--> */}
-                    <div class="logo pull-left">
-                        <a href="index.html" class="img-responsive"><img src="images/logo-small.png" alt="" title=""/></a>
-                    </div>
-                    
-                    {/* <!--Right Col--> */}
-                    <div class="right-col pull-right">
-                        {/* <!-- Main Menu --> */}
-                        <nav class="main-menu navbar-expand-md">
-                            <div class="navbar-collapse collapse clearfix" id="navbarSupportedContent1">
-                                <ul class="navigation clearfix"></ul>
-                            </div>
-                        </nav>
-                        
-                    </div>
-                    
+              {/* <!-- Main Menu End--> */}
+              <div className="outer-box clearfix">
+                {/* <!-- Main Menu End--> */}
+                <div className="nav-box">
+                  <div className="nav-btn nav-toggler navSidebar-button"><span className="icon flaticon-menu-1"></span></div>
                 </div>
+
+                {/* <!-- Social Box --> */}
+                <ul className="social-box clearfix">
+                  <li><Link to="#"><span className="fab fa-facebook-f"></span></Link></li>
+                  <li><Link to="#"><span className="fab fa-google"></span></Link></li>
+                  <li><Link to="#"><span className="fab fa-twitter"></span></Link></li>
+                  {/* <li><Link to="#"><span className="fab fa-skype"></span></Link></li> */}
+                  <li><Link to="#"><span className="fab fa-linkedin-in"></span></Link></li>
+                </ul>
+
+                {/* <!-- Search Btn --> */}
+                <div className="search-box-btn"><span className="icon flaticon-search"></span></div>
+              </div>
             </div>
-            
+          </div>
+        </div>
+        {/* <!--End Header Upper--> */}
 
-            <div class="mobile-menu">
-                <div class="menu-backdrop"></div>
-                <div class="close-btn"><span class="icon far fa-window-close"></span></div>
-                
-                
-                <nav class="menu-box">
-                    <div class="nav-logo"><a href="index.html"><img src="images/nav-logo.png" alt="" title=""/></a></div>
-                    
-                    <ul class="navigation clearfix"></ul>
-                </nav>
+        {/* <!--Sticky Header--> */}
+        <div className="sticky-header">
+          <div className="auto-container clearfix">
+            {/* <!--Logo--> */}
+            <div className="logo pull-left">
+              <Link to="/" className="img-responsive"><img src="images/logo-small.png" alt="" title="" /></Link>
             </div>
 
-        </header>
+            {/* <!--Right Col--> */}
+            <div className="right-col pull-right">
+              {/* <!-- Main Menu --> */}
+              <nav className="main-menu navbar-expand-md">
+                <div className="navbar-collapse collapse clearfix" id="navbarSupportedContent1">
+                  <ul className="navigation clearfix"></ul>
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div>
 
+        <div className="mobile-menu">
+          <div className="menu-backdrop"></div>
+          <div className="close-btn"><span className="icon far fa-window-close"></span></div>
 
-        <section class="main-slider-three">
-		<div class="banner-carousel">
-			{/* <!-- Swiper --> */}
-			<div class="swiper-wrapper">
+          <nav className="menu-box">
+            <div className="nav-logo"><Link to="/"><img src="images/nav-logo.png" alt="" title="" /></Link></div>
 
-				<div class="swiper-slide slide">
-					<div class="auto-container">
-						<div class="row clearfix">
-							
-							{/* <!-- Content Column --> */}
-							<div class="content-column col-lg-6 col-md-12 col-sm-12">
-								<div class="inner-column">
-									<h2>Your Most Trusted Health Partner For Life.</h2>
-									<div class="text">We offer free consulting and the best project management for your ideas, 100% delivery guaranteed.</div>
-									<div class="btn-box">
-										<a href="contact.html" class="theme-btn appointment-btn"><span class="txt">Appointment</span></a>
-										<a href="services.html" class="theme-btn services-btn">Services</a>
-									</div>
-								</div>
-							</div>
-							
-							{/* <!-- Image Column --> */}
-							<div class="image-column col-lg-6 col-md-12 col-sm-12">
-								<div class="inner-column">
-									<div class="image">
-										<img src="images/main-slider/3.jpg" alt="" />
-									</div>
-								</div>
-							</div>
-							
-						</div>
-						
-					</div>
-				</div>
-				
-				
-				<div class="swiper-slide slide">
-					<div class="auto-container">
-						<div class="row clearfix">
-							
-							{/* <!-- Content Column --> */}
-							<div class="content-column col-lg-6 col-md-12 col-sm-12">
-								<div class="inner-column">
-									<h2>Your Most Trusted Health Partner For Life.</h2>
-									<div class="text">We offer free consulting and the best project management for your ideas, 100% delivery guaranteed.</div>
-									<div class="btn-box">
-										<a href="contact.html" class="theme-btn appointment-btn"><span class="txt">Appointment</span></a>
-										<a href="services.html" class="theme-btn services-btn">Services</a>
-									</div>
-								</div>
-							</div>
-							
-							{/* <!-- Image Column --> */}
-							<div class="image-column col-lg-6 col-md-12 col-sm-12">
-								<div class="inner-column">
-									<div class="image">
-										<img src="images/main-slider/3.jpg" alt="" />
-									</div>
-								</div>
-							</div>
-							
-						</div>
-						
-					</div>
-				</div>
-				
-				
-				<div class="swiper-slide slide">
-					<div class="auto-container">
-						<div class="row clearfix">
-							
-							{/* <!-- Content Column --> */}
-							<div class="content-column col-lg-6 col-md-12 col-sm-12">
-								<div class="inner-column">
-									<h2>Your Most Trusted Health Partner For Life.</h2>
-									<div class="text">We offer free consulting and the best project management for your ideas, 100% delivery guaranteed.</div>
-									<div class="btn-box">
-										<a href="contact.html" class="theme-btn appointment-btn"><span class="txt">Appointment</span></a>
-										<a href="services.html" class="theme-btn services-btn">Services</a>
-									</div>
-								</div>
-							</div>
-							
-							{/* <!-- Image Column --> */}
-							<div class="image-column col-lg-6 col-md-12 col-sm-12">
-								<div class="inner-column">
-									<div class="image">
-										<img src="images/main-slider/3.jpg" alt="" />
-									</div>
-								</div>
-							</div>
-							
-						</div>
-						
-					</div>
-				</div>
-				
-			</div>
-			{/* <!-- Add Arrows --> */}
-			<div class="swiper-button-next"></div>
-			<div class="swiper-button-prev"></div>
-		</div>
-	</section>
+            <ul className="navigation clearfix"></ul>
+          </nav>
+        </div>
+      </header>
 
-        
+      <section className="main-slider-three">
+        <div className="banner-carousel">
+          {/* <!-- Swiper --> */}
+          <div className="swiper-wrapper">
+            <div className="swiper-slide slide">
+              <div className="auto-container">
+                <div className="row clearfix">
+                  {/* <!-- Content Column --> */}
+                  <div className="content-column col-lg-6 col-md-12 col-sm-12">
+                    <div className="inner-column">
+                      <h2>Your Most Trusted Health Partner For Life.</h2>
+                      <div className="text">We offer free consulting and the best project management for your ideas, 100% delivery guaranteed.</div>
+                      <div className="btn-box">
+                        <Link to="/contact" className="theme-btn appointment-btn"><span className="txt">Appointment</span></Link>
+                        <Link to="/services" className="theme-btn services-btn">Services</Link>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* <!-- Image Column --> */}
+                  <div className="image-column col-lg-6 col-md-12 col-sm-12">
+                    <div className="inner-column">
+                      <div className="image">
+                        <img src="images/main-slider/3.jpg" alt="" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="swiper-slide slide">
+              <div className="auto-container">
+                <div className="row clearfix">
+                  {/* <!-- Content Column --> */}
+                  <div className="content-column col-lg-6 col-md-12 col-sm-12">
+                    <div className="inner-column">
+                      <h2>Your Most Trusted Health Partner For Life.</h2>
+                      <div className="text">We offer free consulting and the best project management for your ideas, 100% delivery guaranteed.</div>
+                      <div className="btn-box">
+                        <Link to="/contact" className="theme-btn appointment-btn"><span className="txt">Appointment</span></Link>
+                        <Link to="/services" className="theme-btn services-btn">Services</Link>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* <!-- Image Column --> */}
+                  <div className="image-column col-lg-6 col-md-12 col-sm-12">
+                    <div className="inner-column">
+                      <div className="image">
+                        <img src="images/main-slider/3.jpg" alt="" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="swiper-slide slide">
+              <div className="auto-container">
+                <div className="row clearfix">
+                  {/* <!-- Content Column --> */}
+                  <div className="content-column col-lg-6 col-md-12 col-sm-12">
+                    <div className="inner-column">
+                      <h2>Your Most Trusted Health Partner For Life.</h2>
+                      <div className="text">We offer free consulting and the best project management for your ideas, 100% delivery guaranteed.</div>
+                      <div className="btn-box">
+                        <Link to="/contact" className="theme-btn appointment-btn"><span className="txt">Appointment</span></Link>
+                        <Link to="/services" className="theme-btn services-btn">Services</Link>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* <!-- Image Column --> */}
+                  <div className="image-column col-lg-6 col-md-12 col-sm-12">
+                    <div className="inner-column">
+                      <div className="image">
+                        <img src="images/main-slider/3.jpg" alt="" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* <!-- Add Arrows --> */}
+          <div className="swiper-button-next"></div>
+          <div className="swiper-button-prev"></div>
+        </div>
+      </section>
     </div>
-    
   );
 };
 
