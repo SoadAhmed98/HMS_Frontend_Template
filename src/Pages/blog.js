@@ -73,6 +73,7 @@ const Blog = () => {
         <div className="auto-container">
           <div className="row clearfix">
             {blogPosts.map((post, index) => (
+              <div className="news-block-two col-lg-6 col-md-12 col-sm-12">
               <BlogCard
                 key={index}
                 image={post.image}
@@ -84,6 +85,7 @@ const Blog = () => {
                 title={post.title}
                 description={post.description}
               />
+              </div>
             ))}
           </div>
           <div className="styled-pagination text-center">
