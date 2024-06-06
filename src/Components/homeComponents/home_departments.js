@@ -178,7 +178,6 @@ const HomeDepartment = () => {
             </div>
           </div>
         </div>
-
       </div>
     </section>
   );
