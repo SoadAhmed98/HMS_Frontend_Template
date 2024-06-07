@@ -6,7 +6,7 @@ const TeamSection = () => {
         {
             name: 'Dr. Andria Jonea',
             designation: 'Cancer Specialist',
-            image: 'images/resource/team-1.jpg',
+            image: 'images/doc2.png',
             delay: '0ms',
             social: {
                 facebook: '#',
@@ -19,7 +19,7 @@ const TeamSection = () => {
         {
             name: 'Dr. Robet Samith',
             designation: 'Heart Surgeon',
-            image: 'images/resource/team-2.jpg',
+            image: 'images/doc3.png',
             delay: '250ms',
             social: {
                 facebook: '#',
@@ -32,7 +32,7 @@ const TeamSection = () => {
         {
             name: 'Dr. Sharon Laura',
             designation: 'Family Physician',
-            image: 'images/resource/team-3.jpg',
+            image: 'images/doc1.png',
             delay: '500ms',
             social: {
                 facebook: '#',
@@ -45,7 +45,7 @@ const TeamSection = () => {
         {
             name: 'Dr. Alex Furgosen',
             designation: 'Ortho Specialist',
-            image: 'images/resource/team-4.jpg',
+            image: 'images/doc4.png',
             delay: '750ms',
             social: {
                 facebook: '#',
@@ -69,7 +69,7 @@ const TeamSection = () => {
                         <div key={index} className="team-block col-lg-3 col-md-6 col-sm-12 mb-4">
                             <div className={`inner-box wow fadeInLeft`} data-wow-delay={member.delay} data-wow-duration="1500ms">
                                 <div className="image">
-                                    <img src={member.image} alt={member.name} className="img-fluid" />
+                                    <img src={member.image} alt={member.name} className="img-fluid" style={{height:"20rem",backgroundColor:"#E5E8E8"}}/>
                                     <div className="overlay-box">
                                         <ul className="social-icons list-inline">
                                             <li className="list-inline-item"><a href={member.social.facebook}><span className="fab fa-facebook-f"></span></a></li>

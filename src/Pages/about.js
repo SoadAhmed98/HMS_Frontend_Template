@@ -8,6 +8,7 @@ import TeamSection from "../Components/team.js";
 import VideoSection from "../Components/video.js";
 import AppointmentSection from "../Components/appointment.js";
 import TestimonialSection from "../Components/testimonial-section.js";
+import  Navbar  from "../Components/navbar.js";
 
 
 function About () {
@@ -15,6 +16,7 @@ function About () {
 
   return (
     <>
+      <Navbar/>
       <Header head="About MediTech" content="What We Actually Do?" place="About MediTech"/>
       <HealthSection/>
       <FeaturedSection/>

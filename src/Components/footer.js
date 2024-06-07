@@ -9,13 +9,13 @@ const Footer = () => {
             <div class="big-column col-lg-6 col-md-12 col-sm-12">
               <div class="row clearfix">
                 <div class="footer-column col-lg-7 col-md-6 col-sm-12">
-                  <div class="footer-widget logo-widget">
-                    <div class="logo">
+                  <div class="footer-widget logo-widget pb-2">
+                    <div class="logo align-left">
                       <a href="index.html">
-                        <img src="images/logo-3.png" alt="" />
+                        <img src="images/logo/2.png" alt="" style={{width:"18rem",height:""}} className=""/>
                       </a>
                     </div>
-                    <div class="text">
+                    <div class="text ">
                       Meditech is a library of health and medical templates with
                       predefined web elements which helps you to build your
                       medical templates best site Provide Comprehensive Quality

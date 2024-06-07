@@ -1,6 +1,6 @@
 import Header from "../Components/header.js";
 import PioneeringHealth from "../Components/pioneeringHealth.js";
-import HomeServices from "../Components/homeComponents/homw_services";
+import HomeServices from "../Components/homeComponents/home_services.js";
 function Services () {
     return (
       <>

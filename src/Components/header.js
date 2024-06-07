@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function Header (props){
     return (
         <>
-            <section className="page-title" style={{backgroundImage: "url(images/background/7.jpg)"}}>
+            <section className="page-title" style={{backgroundColor:"#004cd9"}}>
                 <div className="auto-container">
                     <h1>{props.head}</h1>
                     <div className="text">{props.content}</div>
