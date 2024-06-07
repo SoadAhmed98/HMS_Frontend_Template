@@ -13,7 +13,7 @@ const HomeDepartment = () => {
 
   return (
     <section className="department-section-three">
-      <div className="image-layer" style={{ backgroundImage: 'url(images/background/6.jpg)' }}></div>
+      <div className="image-layer " style={{ backgroundClor:"#004cd9" }}></div>
       <div className="auto-container">
         {/* Department Tabs */}
         <div className="department-tabs tabs-box">
