@@ -1,7 +1,41 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import Swiper from 'swiper';
+import 'swiper/swiper-bundle.css';
 
-const Home_Header = () => {
+
+const HomeHeader = () => {
+
+  useEffect(() => {
+    // Initialize Swiper
+    new Swiper('.banner-carousel', {
+      loop: true,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      navigation:true
+    });
+  }, []);
+
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const header = document.querySelector('.sticky-header');
+  //     if (window.scrollY > 100) {
+  //       header.classList.add('active');
+  //     } else {
+  //       header.classList.remove('active');
+  //     }
+  //   };
+
+  //   window.addEventListener('scroll', handleScroll);
+
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll);
+  //   };
+  // }, []);
+
+
   return (
     <div>
       <header className="main-header header-style-three">
@@ -9,22 +43,22 @@ const Home_Header = () => {
         <div className="header-upper">
           <div className="inner-container clearfix d-flex">
             {/* <!-- Info --> */}
-            <div className="logo-outer">
+            <div className="logo-outer ">
               <div className="logo">
-                <Link to="/"><img src="images/logo-3.png" alt="" title="" /></Link>
+                <Link to="/"><img src="images/logo/4.png" alt="" title="" style={{width:"18rem", height:"11rem"}} className="pb-3"/></Link>
               </div>
             </div>
 
             {/* <!-- Nav Box --> */}
             <div className="nav-outer clearfix">
               {/* <!-- Mobile Navigation Toggler For Mobile --> */}
-              {/* <div className="mobile-nav-toggler"><span className="icon flaticon-menu"></span></div> */}
+              <div className="mobile-nav-toggler"><span className="icon flaticon-menu"></span></div>
               <nav className="main-menu navbar-expand-md navbar-light">
                 <div className="navbar-header">
                   {/* <!-- Toggle Button --> */}
                   <button
                     className="navbar-toggler"
-                    type="button"
+                    type="button" 
                     data-toggle="collapse"
                     data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent"
@@ -76,15 +110,7 @@ const Home_Header = () => {
                               <li><Link to="/blog-detail">Blog Detail</Link></li>
                             </ul>
                           </div>
-                          {/* <div className="column col-md-3 col-xs-12">
-                            <h3>Shops</h3>
-                            <ul>
-                              <li><Link to="/shop">Shop</Link></li>
-                              <li><Link to="/shop-single">Shop Details</Link></li>
-                              <li><Link to="/shopping-cart">Cart Page</Link></li>
-                              <li><Link to="/checkout">Checkout Page</Link></li>
-                            </ul>
-                          </div> */}
+                          
                         </div>
                       </div>
                     </li>
@@ -133,7 +159,7 @@ const Home_Header = () => {
                 <ul className="social-box clearfix">
                   <li><Link to="#"><span className="fab fa-facebook-f"></span></Link></li>
                   <li><Link to="#"><span className="fab fa-google"></span></Link></li>
-                  <li><Link to="#"><span className="fab fa-twitter"></span></Link></li>
+                  {/* <li><Link to="#"><span className="fab fa-twitter"></span></Link></li> */}
                   {/* <li><Link to="#"><span className="fab fa-skype"></span></Link></li> */}
                   <li><Link to="#"><span className="fab fa-linkedin-in"></span></Link></li>
                 </ul>
@@ -159,7 +185,81 @@ const Home_Header = () => {
               {/* <!-- Main Menu --> */}
               <nav className="main-menu navbar-expand-md">
                 <div className="navbar-collapse collapse clearfix" id="navbarSupportedContent1">
-                  <ul className="navigation clearfix"></ul>
+                  {/* <ul className="navigation clearfix"></ul> */}
+                  <ul className="navigation clearfix">
+                    <li className="current"><Link to="/">Home</Link></li>
+                    <li className="dropdown">
+                      <Link to="#">About us</Link>
+                      <ul>
+                        <li><Link to="/about">About Us</Link></li>
+                        <li><Link to="/ourTeam">Our Team</Link></li>
+                        <li><Link to="/faq">Faq</Link></li>
+                        <li><Link to="/services">Services</Link></li>
+                        {/* <li><Link to="/gallery">Gallery</Link></li>
+                        <li><Link to="/coming-soon">Coming Soon</Link></li> */}
+                      </ul>
+                    </li>
+                    <li className="dropdown has-mega-menu"><Link to="#">Pages</Link>
+                      <div className="mega-menu">
+                        <div className="mega-menu-bar row clearfix">
+                          <div className="column col-md-3 col-xs-12">
+                            <h3>About Us</h3>
+                            <ul>
+                              <li><Link to="/about">About Us</Link></li>
+                              <li><Link to="/ourTeam">Our Team</Link></li>
+                              <li><Link to="/faq">Faq</Link></li>
+                              <li><Link to="/services">Services</Link></li>
+                            </ul>
+                          </div>
+                          <div className="column col-md-3 col-xs-12">
+                            <h3>Doctors</h3>
+                            <ul>
+                              <li><Link to="/doctors">Doctors</Link></li>
+                              <li><Link to="/doctors-detail">Doctors Detail</Link></li>
+                            </ul>
+                          </div>
+                          <div className="column col-md-3 col-xs-12">
+                            <h3>Blog</h3>
+                            <ul>
+                              <li><Link to="/blog">Our Blog</Link></li>
+                              <li><Link to="/blog-classic">Blog Classic</Link></li>
+                              <li><Link to="/blog-detail">Blog Detail</Link></li>
+                            </ul>
+                          </div>
+                          
+                        </div>
+                      </div>
+                    </li>
+                    <li className="dropdown"><Link to="#">Doctors</Link>
+                      <ul>
+                        <li><Link to="/doctors">Doctors</Link></li>
+                        <li><Link to="/doctors-detail">Doctors Detail</Link></li>
+                      </ul>
+                    </li>
+                    <li className="dropdown"><Link to="#">Department</Link>
+                      <ul>
+                        <li><Link to="/department">Department</Link></li>
+                        <li><Link to="/department-detail">Department Detail</Link></li>
+                      </ul>
+                    </li>
+                    <li className="dropdown"><Link to="#">Blog</Link>
+                      <ul>
+                        <li><Link to="/blog">Our Blog</Link></li>
+                        <li><Link to="/blog-classic">Blog Classic</Link></li>
+                        <li><Link to="/blog-detail">Blog Detail</Link></li>
+                      </ul>
+                    </li>
+                    <li className="dropdown"><Link to="#">Shop</Link>
+                      <ul>
+                        <li><Link to="/shop">Shop</Link></li>
+                        <li><Link to="/shop-single">Shop Details</Link></li>
+                        <li><Link to="/shopping-cart">Cart Page</Link></li>
+                        <li><Link to="/checkout">Checkout Page</Link></li>
+                      </ul>
+                    </li>
+
+                    <li><Link to="/contact">Contact</Link></li>
+                  </ul>
                 </div>
               </nav>
             </div>
@@ -178,98 +278,123 @@ const Home_Header = () => {
         </div>
       </header>
 
-      <section className="main-slider-three">
-        <div className="banner-carousel">
-          {/* <!-- Swiper --> */}
-          <div className="swiper-wrapper">
-            <div className="swiper-slide slide">
-              <div className="auto-container">
-                <div className="row clearfix">
-                  {/* <!-- Content Column --> */}
-                  <div className="content-column col-lg-6 col-md-12 col-sm-12">
-                    <div className="inner-column">
-                      <h2>Your Most Trusted Health Partner For Life.</h2>
-                      <div className="text">We offer free consulting and the best project management for your ideas, 100% delivery guaranteed.</div>
-                      <div className="btn-box">
-                        <Link to="/contact" className="theme-btn appointment-btn"><span className="txt">Appointment</span></Link>
-                        <Link to="/services" className="theme-btn services-btn">Services</Link>
-                      </div>
-                    </div>
-                  </div>
 
-                  {/* <!-- Image Column --> */}
-                  <div className="image-column col-lg-6 col-md-12 col-sm-12">
-                    <div className="inner-column">
-                      <div className="image">
-                        <img src="images/main-slider/3.jpg" alt="" />
-                      </div>
+      {/* <swiper-container style={
+        {
+        "--swiper-navigation-color": "#fff", 
+        "--swiper-pagination-color": "#fff"
+        }
+    } 
+    pagination-clickable="true" 
+    navigation="true" 
+    effect="cube"
+    grab-cursor="true"
+    cube-effect-shadow="true"
+    cube-effect-slide-shadows="true"
+    cube-effect-shadow-offset="20"
+    cube-effect-shadow-scale="0.94"
+    className="mySwiper">
+            <swiper-slide lazy="true">
+                <img src="https://source.unsplash.com/slightly-opened-silver-macbook-mP7aPSUm7aE" loading="lazy" alt="" />
+            </swiper-slide>
+                
+            <swiper-slide lazy="true">
+                <img loading="lazy" src="https://source.unsplash.com/macbook-y0_vFxOHayg" alt="" />
+            </swiper-slide>
+
+            <swiper-slide lazy="true">
+                <img loading="lazy" src="https://source.unsplash.com/black-macbook-near-black-iphone-7-plus-and-black-apple-watch-HY3l4IeOc3E" alt="" />
+            </swiper-slide>
+
+            <swiper-slide lazy="true">
+                <img loading="lazy" src="https://source.unsplash.com/apple-products-on-table-tdMu8W9NTnY" alt="" />
+            </swiper-slide>
+
+            <swiper-slide lazy="true">
+                    <img loading="lazy" src="https://source.unsplash.com/turned-on-ipad-Im8ylpB8SpI" alt="" />
+            </swiper-slide>
+        </swiper-container> */}
+
+      <section className="main-slider-three ">
+      <div className="banner-carousel swiper-container">
+        
+        <div className="swiper-wrapper">
+          <div className="swiper-slide slide">
+            <div className="auto-container">
+              <div className="row clearfix">
+                
+                <div className="content-column col-lg-6 col-md-12 col-sm-12">
+                  <div className="inner-column">
+                    <h2>Your Most Trusted Health Partner For Life.</h2>
+                    <div className="text">
+                      We offer free consulting and the best project management for your ideas, 100% delivery guaranteed.
+                    </div>
+                    <div className="btn-box">
+                      <Link to="/contact" className="theme-btn appointment-btn">
+                        <span className="txt">Appointment</span>
+                      </Link>
+                      <Link to="/services" className="theme-btn services-btn">
+                        Services
+                      </Link>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
 
-            <div className="swiper-slide slide">
-              <div className="auto-container">
-                <div className="row clearfix">
-                  {/* <!-- Content Column --> */}
-                  <div className="content-column col-lg-6 col-md-12 col-sm-12">
-                    <div className="inner-column">
-                      <h2>Your Most Trusted Health Partner For Life.</h2>
-                      <div className="text">We offer free consulting and the best project management for your ideas, 100% delivery guaranteed.</div>
-                      <div className="btn-box">
-                        <Link to="/contact" className="theme-btn appointment-btn"><span className="txt">Appointment</span></Link>
-                        <Link to="/services" className="theme-btn services-btn">Services</Link>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* <!-- Image Column --> */}
-                  <div className="image-column col-lg-6 col-md-12 col-sm-12">
-                    <div className="inner-column">
-                      <div className="image">
-                        <img src="images/main-slider/3.jpg" alt="" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="swiper-slide slide">
-              <div className="auto-container">
-                <div className="row clearfix">
-                  {/* <!-- Content Column --> */}
-                  <div className="content-column col-lg-6 col-md-12 col-sm-12">
-                    <div className="inner-column">
-                      <h2>Your Most Trusted Health Partner For Life.</h2>
-                      <div className="text">We offer free consulting and the best project management for your ideas, 100% delivery guaranteed.</div>
-                      <div className="btn-box">
-                        <Link to="/contact" className="theme-btn appointment-btn"><span className="txt">Appointment</span></Link>
-                        <Link to="/services" className="theme-btn services-btn">Services</Link>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* <!-- Image Column --> */}
-                  <div className="image-column col-lg-6 col-md-12 col-sm-12">
-                    <div className="inner-column">
-                      <div className="image">
-                        <img src="images/main-slider/3.jpg" alt="" />
-                      </div>
+                
+                <div className="image-column col-lg-6 col-md-12 col-sm-12">
+                  <div className="inner-column">
+                    <div className="image">
+                      <img src='images/doc1.png' alt="Main Slider" className="bg-body" />
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          {/* <!-- Add Arrows --> */}
-          <div className="swiper-button-next"></div>
-          <div className="swiper-button-prev"></div>
+          <div className="swiper-slide slide">
+            <div className="auto-container">
+              <div className="row clearfix">
+                
+                <div className="content-column col-lg-6 col-md-12 col-sm-12">
+                  <div className="inner-column">
+                    <h2>Your Most Trusted Health Partner For Life.</h2>
+                    <div className="text">
+                      We offer free consulting and the best project management for your ideas, 100% delivery guaranteed.
+                    </div>
+                    <div className="btn-box">
+                      <Link to="/contact" className="theme-btn appointment-btn">
+                        <span className="txt">Appointment</span>
+                      </Link>
+                      <Link to="/services" className="theme-btn services-btn">
+                        Services
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+
+                
+                <div className="image-column col-lg-6 col-md-12 col-sm-12">
+                  <div className="inner-column">
+                    <div className="image">
+                      <img src='images/main-slider/3.jpg' alt="Main Slider" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          
         </div>
-      </section>
+        
+         <div className="swiper-button-next"></div>
+        <div className="swiper-button-prev"></div> 
+      </div>
+    </section>
+
+      
     </div>
   );
 };
 
-export default Home_Header;
+export default HomeHeader;
