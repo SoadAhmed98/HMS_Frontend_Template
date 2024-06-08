@@ -44,7 +44,7 @@ const DepartmentSection = () => {
 
         <Slider {...settings} className="services-carousel owl-carousel owl-theme">
           {departments.map((dept, index) => (
-            <div key={index} className="department-block">
+            <div key={index} className="department-block wow fadeInLeft" data-wow-delay={dept.delay} data-wow-duration="1500ms">
               <div className="inner-box m-3">
                 <div className="upper-box">
                   <div className={`icon ${dept.iconClass}`}></div>

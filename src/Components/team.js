@@ -66,6 +66,7 @@ const TeamSection = () => {
                 </div>
                 <div className="row">
                     {teamMembers.map((member, index) => (
+                        
                         <div key={index} className="team-block col-lg-3 col-md-6 col-sm-12 mb-4">
                             <div className={`inner-box wow fadeInLeft`} data-wow-delay={member.delay} data-wow-duration="1500ms">
                                 <div className="image">

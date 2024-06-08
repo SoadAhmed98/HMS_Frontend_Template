@@ -4,7 +4,7 @@ const DepartmentDetail = () => {
   return (
     <div className="department-detail">
       <div className="image-box">
-        <figure><img src="images/resource/department-detail.jpg" alt="Department" /></figure>
+        <figure><img src="images/article1.jpg" alt="Department" style={{width:"50rem", height:"25rem"}}/></figure>
       </div> 
       <div className="lower-content">
         <h2>Departments Of Neurology</h2>
@@ -17,7 +17,7 @@ const DepartmentDetail = () => {
               <p>In the case of Parkinson's disease, it is not a cure, it just improves quality of life by reducing and even stopping tremors. Resofus may be used for treatment of movement disorders such as Neuropathic pain, Parkinson’s disease, and Essential Tremor. This precise local lesioning stops the improper transfer of electrical signals that induce the tremor, and it stops.</p>
             </div>
             <div className="image-column col-md-6 col-sm-6 col-xs-12">
-              <div className="image"><a href="images/resource/doctor-4.jpg" className="lightbox-image"><img src="images/resource/doctor-4.jpg" alt="Doctor" /></a></div>
+              <div className="image"><a href="images/resource/doctor-4.jpg" className="lightbox-image"><img src="images/article2.jpg" alt="Doctor" style={{width:"20rem"}}/></a></div>
             </div>
           </div>
         </div>

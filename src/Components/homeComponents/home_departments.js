@@ -19,7 +19,7 @@ const HomeDepartment = () => {
         <div className="department-tabs tabs-box">
           <div className="row clearfix">
             {/* Column */}
-            <div className="col-lg-4 col-md-12 col-sm-12">
+            <div className="col-lg-4 col-md-12 col-sm-12 wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
               {/* Sec Title */}
               <div className="sec-title light">
                 <h2>Health <br /> Department</h2>
@@ -38,8 +38,9 @@ const HomeDepartment = () => {
                 ))}
               </ul>
             </div>
+
             {/* Column */}
-            <div className="col-lg-8 col-md-12 col-sm-12">
+            <div className="col-lg-8 col-md-12 col-sm-12 wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
               {/* Tabs Container */}
               <div className="tabs-content">
                 {tabs.map((tab) => (
