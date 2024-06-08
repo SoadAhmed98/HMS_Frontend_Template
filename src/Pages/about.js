@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../Components/header.js";
 import HealthSection from "../Components/healthSection.js";
 import FeaturedSection from "../Components/Featured.js";
@@ -9,9 +9,12 @@ import VideoSection from "../Components/video.js";
 import AppointmentSection from "../Components/appointment.js";
 import TestimonialSection from "../Components/testimonial-section.js";
 import  Navbar  from "../Components/navbar.js";
-
+import WOW from 'wowjs';
 
 function About () {
+  useEffect(() => {
+		new WOW.WOW().init();
+	}, []);
   
 
   return (

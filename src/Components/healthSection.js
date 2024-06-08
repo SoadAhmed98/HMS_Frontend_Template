@@ -27,7 +27,7 @@ const HealthSection = () => {
                         <div className="image-column col-lg-5 col-md-12 col-sm-12">
                             <div className="inner-column wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
                                 <div className="image">
-                                    <img src="images/resource/image-3.jpg" alt="" />
+                                    <img src="images/article1.jpg" alt="" />
                                 </div>
                             </div>
                         </div>

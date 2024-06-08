@@ -5,7 +5,7 @@ const ContactMap = () => {
     <>
       {/* Contact Map Section */}
       <section className="contact-map-section mb-5">
-        <div className="outer-container">
+        <div className="outer-container wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
           <div className="auto-container clearfix">
             <div className="map-content">
               <div className="title">Wanna Touch?</div>

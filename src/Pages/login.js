@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { validEmail, validPassword } from "../Components/rejex.js";
 import {
   useHistory,
@@ -8,6 +8,9 @@ import {
 import { Link } from "react-router-dom";
 import { Card} from "react-bootstrap";
 import Header from "../Components/header.js";
+import WOW from 'wowjs';
+import  Navbar  from "../Components/navbar.js";
+
 
 function Login(props) {
   const location = useLocation(); 
@@ -62,13 +65,18 @@ function Login(props) {
       setErrors({ ...errors, loginError: "Invalid email or password" });
     }
   };
+  useEffect(() => {
+		new WOW.WOW().init();
+	}, []);
 
 
   return (
     <>
+    <Navbar/>
      <Header head="Login For MediTech" content="What We Actually Do?" place="Login"/>
      <div className="container mt-5 mb-5">
   <div className="row justify-content-center">
+    <h1 className="text-center fw-bold mb-5">Login</h1>
     <div className="col-md-6">
       <Card>
         <Card.Body className="mt-5">
@@ -116,14 +124,14 @@ function Login(props) {
               <button
                 disabled={errors.emailError || errors.passError}
                 type="submit"
-                className="theme-btn btn-style-two w-100 mb-2"
+                className="theme-btn btn-style-two w-25 mb-2"
               >
-                <span class="txt">LogIn</span>
+                <span class="txt">Login</span>
               </button>
             </div>
           </form>
 
-          <div className="text-center">
+          <div className="text-center mt-2">
             <h5 className="card-title text-dark">New User?</h5>
             <Link to="/register" className="card-text text-dark">Register now to create an account.</Link>
           </div>

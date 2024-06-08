@@ -75,7 +75,7 @@ const Question = () => {
           {/* Faq Info Tabs */}
           <div className="faq-info-tabs">
             {/* Faq Tabs */}
-            <div className="faq-tabs tabs-box">
+            <div className="faq-tabs tabs-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
               {/* Tab Buttons */}
               <ul className="tab-btns tab-buttons clearfix">
                 {faqs.map((faq, index) => (
@@ -102,12 +102,12 @@ const Question = () => {
                         {faq.questions.map((question, idx) => (
                           <div key={question.id} className="column col-lg-6 col-md-12 col-sm-12">
                             <ul className="accordion-box">
-                              <li className={`accordion block ${activeAccordion === question.id ? 'active-block' : ''}`}>
+                              <li className={`accordion block ${activeAccordion === question.id ? 'active-block ' : ''}`}>
                                 <div
                                   className={`acc-btn ${activeAccordion === question.id ? 'active' : ''}`}
                                   onClick={() => toggleAccordion(question.id)}
                                 >
-                                  <div className="icon-outer">
+                                  <div className="icon-outer ">
                                     <span className="icon icon-plus flaticon-add"></span>
                                     <span className="icon icon-minus fas fa-minus"></span>
                                   </div>

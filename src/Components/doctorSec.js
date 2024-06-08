@@ -7,7 +7,7 @@ const doctors = [
   {
     name: "Dr. Johan Doe",
     designation: "Neurosurgeon",
-    image: "images/resource/doctor-thumb-1.jpg",
+    image: "images/doc3.png",
     bio: "Duis sed odio sit amet nibh vulputate cursus sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris vitae erat consequat auctor eu Suspendisse potenti. Maecenas dapibus ac tellus sed pulvinar. Nam nec tellus a odio tincidunt auctor a ornare odio.",
     timing: "Monday - Friday (5:00pm - 8pm)",
     socialLinks: [
@@ -21,7 +21,7 @@ const doctors = [
   {
     name: "2Dr. Johan Doe",
     designation: "Neurosurgeon",
-    image: "images/resource/doctor-thumb-1.jpg",
+    image: "images/doc2.png",
     bio: "Duis sed odio sit amet nibh vulputate cursus sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris vitae erat consequat auctor eu Suspendisse potenti. Maecenas dapibus ac tellus sed pulvinar. Nam nec tellus a odio tincidunt auctor a ornare odio.",
     timing: "Monday - Friday (5:00pm - 8pm)",
     socialLinks: [
@@ -35,7 +35,7 @@ const doctors = [
   {
     name: "3Dr. Johan Doe",
     designation: "Neurosurgeon",
-    image: "images/resource/doctor-thumb-1.jpg",
+    image: "images/doc1.png",
     bio: "Duis sed odio sit amet nibh vulputate cursus sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris vitae erat consequat auctor eu Suspendisse potenti. Maecenas dapibus ac tellus sed pulvinar. Nam nec tellus a odio tincidunt auctor a ornare odio.",
     timing: "Monday - Friday (5:00pm - 8pm)",
     socialLinks: [

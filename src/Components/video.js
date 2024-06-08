@@ -2,7 +2,7 @@ import React from 'react';
 
 const VideoSection = () => {
     return (
-        <section className="video-section" style={{ backgroundImage: 'url(images/background/5.jpg)' }}>
+        <section className="video-section" style={{ backgroundColor: '#004cd9' }}>
             <div className="auto-container">
                 <div className="content">
                     <a 

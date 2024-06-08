@@ -5,7 +5,7 @@ const AskYourQuestion = () => {
     <>
       {/* Faq Form Section */}
       <section className="faq-form-section mb-5">
-        <div className="auto-container">
+        <div className="auto-container wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
           <div className="sec-title centered">
             <h2>Ask Your Question</h2>
             <div className="separator"></div>

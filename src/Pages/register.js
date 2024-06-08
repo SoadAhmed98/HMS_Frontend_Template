@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import {
   validEmail,
@@ -8,8 +8,15 @@ import {
 import { Link } from "react-router-dom";
 import { Card} from "react-bootstrap";
 import Header from "../Components/header.js";
+import WOW from 'wowjs';
+import  Navbar  from "../Components/navbar.js";
 
 function Register() {
+
+  useEffect(() => {
+    new WOW.WOW().init();
+  }, []);
+
   const history = useHistory();
 
   const [userData, setUserData] = useState({
@@ -80,6 +87,7 @@ function Register() {
 
   return (
     <>
+    <Navbar/>
      <Header head="Register For MediTech" content="What We Actually Do?" place="Register"/>
       <section className="container mt-5 mb-5 ">
         <div className="row justify-content-center">

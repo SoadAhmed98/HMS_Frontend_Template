@@ -19,6 +19,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Blog from "./Pages/blog.js";
 import BlogClassic from "./Pages/BlogClassic.js";
 function App() {
+  
   return (
     <div className="wow animate__animated animate__fadeIn">
       <BrowserRouter>
@@ -31,7 +32,7 @@ function App() {
               <Route component={About} path="/about" exact />
               <Route component={Doctors} path="/doctors" exact />
               <Route component={OurTeam} path="/ourTeam" exact />
-              <Route component={Services} path="/sevices" exact />
+              <Route component={Services} path="/services" exact />
               <Route component={Faq} path="/faq" exact />
               <Route component={Contact} path="/contact" exact />
               <Route component={DoctorDetail} path="/doctors-detail" exact />

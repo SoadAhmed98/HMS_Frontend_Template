@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from "../Components/header.js";
 import BlogCard from "../Components/blogCard.js";
+import  Navbar  from "../Components/navbar.js";
+import WOW from 'wowjs';
 
 const Blog = () => {
+
+  useEffect(() => {
+		new WOW.WOW().init();
+	}, []);
+  
   const blogPosts = [
     {
       link: 'blog-detail.html',
@@ -68,6 +75,7 @@ const Blog = () => {
   
   return (
     <>
+      <Navbar/>
       <Header head="Latest New By MediTech" content="What We Actually Do?" place="Blog" />
       <section className="blog-page-section">
         <div className="auto-container">

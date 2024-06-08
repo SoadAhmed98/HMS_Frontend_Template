@@ -12,7 +12,7 @@ const ContactForm = () => {
           </div>
 
           {/* Contact Form */}
-          <div className="contact-form">
+          <div className="contact-form wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
             {/*Contact Form*/}
             <form method="post" action="sendemail.php" id="contact-form">
               <div className="row clearfix">

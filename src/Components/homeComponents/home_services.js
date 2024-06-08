@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
-import WOW from 'wowjs';
+// import WOW from 'wowjs';
 
 function HomeServices () {
 
-	useEffect(() => {
-		new WOW.WOW().init();
-	}, []);
+	// useEffect(() => {
+	// 	new WOW.WOW().init();
+	// }, []);
     return (
         <section class="services-section">
 		<div class="auto-container">

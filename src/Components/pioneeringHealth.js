@@ -7,16 +7,16 @@ const PioneeringHealth = () => {
             <section className="fluid-section-one mb-5">
                 <div className="outer-section clearfix">
                     {/* Image Column */}
-                    <div className="image-column" style={{ backgroundImage: "url(images/resource/image-1.jpg)" }}>
-                        <div className="image">
-                            <img src="images/resource/image-1.jpg" alt="" />
+                    <div className="image-column" style={{ backgroundImage: "" }}>
+                        <div className="wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
+                            <img src="images/article1.jpg" alt="" style={{paddingLeft:"1rem",paddingTop:"3.2rem",width:"50rem"}}/>
                         </div>
                     </div>
                     {/* End Image Column */}
                     
                     {/* Content Column */}
                     <div className="content-column">
-                        <div className="content-box">
+                        <div className="content-box wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
                             <div className="sec-title">
                                 <h2>Pioneering in Health.</h2>
                                 <div className="separator style-two"></div>

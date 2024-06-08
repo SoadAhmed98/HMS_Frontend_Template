@@ -7,17 +7,8 @@ const AppointmentSection = () => {
                 <div className="inner-container">
                     <div className="row clearfix">
 
-                        {/* Image Column */}
-                        <div className="image-column col-lg-6 col-md-12 col-sm-12">
-                            <div className="inner-column wow slideInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
-                                <div className="image">
-                                    <img src="images/resource/doctor-2.png" alt="Doctor" />
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Form Column */}
-                        <div className="form-column col-lg-6 col-md-12 col-sm-12">
+                         {/* Form Column */}
+                         <div className="form-column col-lg-6 col-md-12 col-sm-12">
                             <div className="inner-column">
                                 {/* Sec Title */}
                                 <div className="sec-title">
@@ -74,6 +65,17 @@ const AppointmentSection = () => {
 
                             </div>
                         </div>
+
+                        {/* Image Column */}
+                        <div className="image-column col-lg-6 col-md-12 col-sm-12">
+                            <div className="inner-column wow slideInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
+                                <div className="image">
+                                    <img src="images/docs1.png" alt="Doctor" style={{paddingTop:"12rem"}}/>
+                                </div>
+                            </div>
+                        </div>
+
+                       
 
                     </div>
                 </div>

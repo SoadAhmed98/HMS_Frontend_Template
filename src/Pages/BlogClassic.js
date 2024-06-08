@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from '../Components/header';
 import BlogCard from '../Components/blogCard';
 import Sidebar from '../Components/BlogSidebar';
+import  Navbar  from "../Components/navbar.js";
+import WOW from 'wowjs';
 
 const BlogClassic = () => {
+
+  useEffect(() => {
+		new WOW.WOW().init();
+	}, []);
+
   const blogs = [
     {
       image: 'images/resource/news-10.jpg',
@@ -49,6 +56,7 @@ const BlogClassic = () => {
 
   return (
     <>
+    <Navbar/>
       <Header head="Latest New By MediTech" content="What We Actually Do?" place="Blog Classic" />
       <div className="sidebar-page-container">
         <div className="auto-container">

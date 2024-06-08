@@ -5,8 +5,14 @@ import HomeDepartment from "../Components/homeComponents/home_departments";
 import HomeServices from "../Components/homeComponents/home_services";
 import TeamSection from "../Components/team.js";
 import HomeNews from "../Components/homeComponents/home_news.js";
+import { useEffect } from "react";
+import WOW from 'wowjs';
 
 function Home () {
+  
+  useEffect(() => {
+		new WOW.WOW().init();
+	}, []);
     return (
       <>
       <HomeHeader/>

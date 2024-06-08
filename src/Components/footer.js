@@ -94,7 +94,7 @@ const Footer = () => {
                     <div class="news-widget-block">
                       <div class="widget-inner">
                         <div class="image">
-                          <img src="images/resource/news-image-1.jpg" alt="" />
+                          <img src="images/article2.jpg" alt="" style={{width:"10rem",height:"5.5rem"}}/>
                         </div>
                         <h3>
                           <a href="blog-detail.html">
@@ -108,7 +108,7 @@ const Footer = () => {
                     <div class="news-widget-block">
                       <div class="widget-inner">
                         <div class="image">
-                          <img src="images/resource/news-image-2.jpg" alt="" />
+                        <img src="images/article3.jpg" alt="" style={{width:"10rem",height:"5.5rem"}}/>
                         </div>
                         <h3>
                           <a href="blog-detail.html">

@@ -38,7 +38,7 @@ const DoctorDetails = () => {
             <div className="image-box col-lg-4 col-md-12 col-sm-12">
               <div className="image">
                 <a href="images/resource/doctor-3.jpg" className="lightbox-image">
-                  <img src="images/resource/doctor-3.jpg" alt="Doctor" />
+                  <img src="images/doc1.png" alt="Doctor" style={{height:"30rem"}} className='wow fadeInRight' data-wow-delay="0ms" data-wow-duration="1500ms"/>
                 </a>
               </div>
             </div>
