@@ -4,6 +4,8 @@ import 'animate.css/animate.min.css';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import Home from "./Pages/home.js";
 import About from "./Pages/about";
+
+import Department from "./Pages/department.js";
 import Doctors from "./Pages/doctors";
 import Services from "./Pages/services";
 import Faq from "./Pages/faq";
@@ -11,6 +13,8 @@ import Contact from "./Pages/contact";
 import OurTeam from "./Pages/ourTeam";
 import Login from "./Pages/login";
 import DoctorDetail from "./Pages/doctorDetail";
+
+import DepartmentDetails from "./Pages/department-detail.js";
 import NotFound from "./Pages/notFound.js";
 import Register from "./Pages/register.js";
 import Footer from "./Components/footer.js";
@@ -35,6 +39,8 @@ function App() {
               <Route component={Faq} path="/faq" exact />
               <Route component={Contact} path="/contact" exact />
               <Route component={DoctorDetail} path="/doctors-detail" exact />
+              <Route component={Department} path="/department" exact />
+              <Route component={DepartmentDetails} path="/department-detail" exact />
               <Route component={Blog} path="/blog" exact />
               <Route component={Login} path="/login" exact />
               <Route component={Register} path="/register" exact />
