@@ -1,23 +1,17 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import {
-  validEmail,
-  validPassword,
-  validUsername,
-} from "../Components/rejex.js";
 import { Link } from "react-router-dom";
-import { Card} from "react-bootstrap";
 import Header from "../Components/header.js";
 import WOW from 'wowjs';
-import  Navbar  from "../Components/navbar.js";
+import Navbar from "../Components/navbar.js";
+import { validEmail, validPassword, validUsername } from "../Components/rejex.js";
 
 function Register() {
+  const history = useHistory();
 
   useEffect(() => {
     new WOW.WOW().init();
   }, []);
-
-  const history = useHistory();
 
   const [userData, setUserData] = useState({
     name: "",
@@ -28,14 +22,14 @@ function Register() {
   });
 
   const [errors, setErrors] = useState({
-    nameError: "",
-    emailError: "",
-    userNameError: "",
-    passError: "",
-    confirmPassError: "",
+    name: "",
+    email: "",
+    userName: "",
+    pass: "",
+    confirmPass: "",
   });
 
-  function changeData(e) {
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
 
@@ -43,188 +37,147 @@ function Register() {
       case "email":
         setErrors({
           ...errors,
-          emailError: validEmail.test(value) ? "" : "Invalid email format",
+          email: validEmail.test(value) ? "" : "Invalid email format",
         });
         break;
       case "pass":
         setErrors({
           ...errors,
-          passError: validPassword.test(value) ? "" : "Invalid password format",
+          pass: validPassword.test(value) ? "" : "Invalid password format",
         });
         break;
       case "name":
         setErrors({
           ...errors,
-          nameError:
-            value.length < 3 ? "Name must be at least 3 characters long" : "",
+          name: value.length < 3 ? "Name must be at least 3 characters long" : "",
         });
         break;
       case "userName":
         setErrors({
           ...errors,
-          userNameError: validUsername.test(value)
-            ? ""
-            : "Invalid username format",
+          userName: validUsername.test(value) ? "" : "Invalid username format",
         });
         break;
       case "confirmPass":
         setErrors({
           ...errors,
-          confirmPassError:
-            value !== userData.pass ? "Passwords do not match" : "",
+          confirmPass: value !== userData.pass ? "Passwords do not match" : "",
         });
         break;
       default:
         break;
     }
-  }
+  };
 
-  const submitData = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    localStorage.setItem("userData", JSON.stringify(userData));
-    history.push("/login");
+
+    const formValid = Object.values(errors).every((error) => error === "");
+    if (formValid) {
+      localStorage.setItem("userData", JSON.stringify(userData));
+      history.push("/login");
+    }
   };
 
   return (
     <>
-    <Navbar/>
-     <Header head="Register For MediTech" content="What We Actually Do?" place="Register"/>
-      <section className="container mt-5 mb-5 ">
+      <Navbar />
+      <Header head="Register For MediTech" content="What We Actually Do?" place="Register" />
+      <div className="container mt-5 mb-5">
         <div className="row justify-content-center">
-          <div className="col-md-6">
-            <Card>
-              <Card.Body className="mt-5">
-                <form onSubmit={(e) => submitData(e)} className="w-75 mx-auto">
-                  <div className="mb-3">
-                    <label
-                      htmlFor="exampleInputName"
-                      className="form-label fw-bolder text-dark"
-                    >
-                      Name{" "}
-                    </label>
+          <div className="auto-container">
+            <div className="sec-title centered">
+              <h2>Register To Join Us Now</h2>
+              <div className="separator"></div>
+            </div>
+            <div className="contact-form wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
+              <form onSubmit={handleSubmit} className="w-75 mx-auto form-group">
+                <div className="row">
+                  <div className="col-lg-12 mb-3">
+                    {/* <label htmlFor="name" className="form-label fw-bolder text-dark">Name</label> */}
                     <input
-                      required
                       type="text"
-                      className={`form-control `}
+                      className={`form-control ${errors.name ? "is-invalid" : ""}`}
                       value={userData.name}
-                      onChange={(e) => changeData(e)}
+                      onChange={handleInputChange}
                       name="name"
+                      placeholder="Name"
                     />
-                    <p className="text-danger"> {errors.nameError} </p>
+                    <div className="invalid-feedback">{errors.name}</div>
                   </div>
 
-                  <div className="mb-3">
-                    <label
-                      htmlFor="exampleInputEmail1"
-                      className="form-label fw-bolder text-dark"
-                    >
-                      Email{" "}
-                    </label>
+                  <div className="col-lg-12 mb-3">
+                    {/* <label htmlFor="email" className="form-label fw-bolder text-dark">Email</label> */}
                     <input
-                      required
                       type="email"
-                      className={`form-control ${
-                        errors.emailError ? "border-danger" : "border-success"
-                      }`}
+                      className={`form-control ${errors.email ? "is-invalid" : ""}`}
                       value={userData.email}
-                      onChange={(e) => changeData(e)}
+                      onChange={handleInputChange}
                       name="email"
+                      placeholder="Email"
                     />
-                    <p className="text-danger"> {errors.emailError} </p>
+                    <div className="invalid-feedback">{errors.email}</div>
                   </div>
 
-                  <div className="mb-3">
-                    <label
-                      htmlFor="exampleInputUserName"
-                      className="form-label fw-bolder text-dark"
-                    >
-                      Username
-                    </label>
+                  <div className="col-lg-12 mb-3">
+                    {/* <label htmlFor="userName" className="form-label fw-bolder text-dark">Username</label> */}
                     <input
                       type="text"
-                      required
-                      className={`form-control ${
-                        errors.userNameError
-                          ? "border-danger"
-                          : "border-success"
-                      }`}
-                      onChange={(e) => changeData(e)}
+                      className={`form-control ${errors.userName ? "is-invalid" : ""}`}
                       value={userData.userName}
+                      onChange={handleInputChange}
                       name="userName"
+                      placeholder="Username"
                     />
-                    <p className="text-danger"> {errors.userNameError} </p>
+                    <div className="invalid-feedback">{errors.userName}</div>
                   </div>
 
-                  <div className="mb-3">
-                    <label
-                      htmlFor="exampleInputPassword1"
-                      className="form-label fw-bolder text-dark"
-                    >
-                      Password
-                    </label>
+                  <div className="col-lg-12 mb-3">
+                    {/* <label htmlFor="pass" className="form-label fw-bolder text-dark">Password</label> */}
                     <input
                       type="password"
-                      required
-                      className={`form-control ${
-                        errors.passError ? "border-danger" : "border-success"
-                      }`}
-                      onChange={(e) => changeData(e)}
+                      className={`form-control ${errors.pass ? "is-invalid" : ""}`}
                       value={userData.pass}
+                      onChange={handleInputChange}
                       name="pass"
+                      placeholder="Password"
                     />
-                    <p className="text-danger"> {errors.passError} </p>
+                    <div className="invalid-feedback">{errors.pass}</div>
                   </div>
 
-                  <div className="mb-3">
-                    <label
-                      htmlFor="exampleInputPassword2"
-                      className="form-label fw-bolder text-dark"
-                    >
-                      Confirm Password
-                    </label>
+                  <div className="col-lg-12 mb-3">
+                    {/* <label htmlFor="confirmPass" className="form-label fw-bolder text-dark">Confirm Password</label> */}
                     <input
                       type="password"
-                      required
-                      className={`form-control ${
-                        errors.confirmPassError
-                          ? "border-danger"
-                          : "border-success"
-                      }`}
-                      onChange={(e) => changeData(e)}
+                      className={`form-control ${errors.confirmPass ? "is-invalid" : ""}`}
                       value={userData.confirmPass}
+                      onChange={handleInputChange}
                       name="confirmPass"
+                      placeholder="Confirm Password"
                     />
-                    <p className="text-danger"> {errors.confirmPassError} </p>
+                    <div className="invalid-feedback">{errors.confirmPass}</div>
                   </div>
 
-                  <div className="d-flex justify-content-center">
+                  <div className="d-flex justify-content-center align-items-center">
                     <button
-                      disabled={
-                        errors.emailError ||
-                        errors.passError ||
-                        errors.nameError ||
-                        errors.confirmPassError ||
-                        errors.userNameError
-                      }
+                      disabled={!Object.values(errors).every((error) => error === "")}
                       type="submit"
                       className="theme-btn btn-style-two w-100 mb-2"
                     >
-                      <span class="txt">Register</span>
-              </button>
+                      <span className="txt">Register</span>
+                    </button>
                   </div>
-                </form>
-
-                <div className="text-center">
-                  <p className="mb-0">Already have an account?</p>
-                  <Link to="/login" className="text-dark">
-                    Login
-                  </Link>
                 </div>
-              </Card.Body>
-            </Card>
+              </form>
+
+              <div className="text-center">
+                <p className="mb-0">Already have an account?</p>
+                <Link to="/login">Login</Link>
+              </div>
+            </div>
           </div>
         </div>
-      </section>
+      </div>
     </>
   );
 }
