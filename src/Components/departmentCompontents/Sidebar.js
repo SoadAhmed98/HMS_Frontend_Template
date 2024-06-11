@@ -1,18 +1,51 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
-const Sidebar = () => {
+const Sidebar = (props) => {
+  const [departments, setDepartments] = useState([]);
+
+  const [activeTab, setActiveTab] = useState(props.id);
+
+
+  useEffect(()=>{
+    //call Api with axios method
+    
+    axios.get(`http://localhost/api/departments`)
+    .then(res =>{ 
+      console.log(res.data)
+      setDepartments(res.data)
+        
+    })
+    .catch(err => console.log(err))
+
+},[])
+
   return (
     <div className="sidebar-side col-lg-4 col-md-12 col-sm-12">
       <aside className="sidebar">
         <div className="sidebar-widget sidebar-blog-category">
           <ul className="blog-cat">
-            <li><a href="services.html">All Departments</a></li>
-            <li className="active"><a href="department-detail.html">Urology Department</a></li>
+          {departments.length === 0 ? (
+                  <h1>There are no departments in the database</h1>
+                ) : (
+                  departments.map((department) => (
+                    <li 
+                      key={department.id} 
+                      className={`${activeTab === department.id ? "active" : ""}`} 
+                      onClick={() => setActiveTab(department.id)}
+                    >
+                      <Link to={`/department-detail/${department.id}`}>{department.name}</Link>
+                    </li>
+                  ))
+                )}
+            {/* <li><a href="services.html">All Departments</a></li> */}
+            {/* <li className="active"><a href="department-detail.html">Urology Department</a></li>
             <li><a href="department-detail.html">Neurology Department</a></li>
             <li><a href="department-detail.html">Gastrology Department</a></li>
             <li><a href="department-detail.html">Cardiology Department</a></li>
-            <li><a href="department-detail.html">Eye Care Department</a></li>
-            <li><a href="department-detail.html">Dental Care Department</a></li>
+            <li><a href="department-detail.html">Eye Care Department</a></li> */}
+            {/* <li><a href="department-detail.html">Dental Care Department</a></li> */}
           </ul>
         </div>
         <div className="sidebar-widget need-help">

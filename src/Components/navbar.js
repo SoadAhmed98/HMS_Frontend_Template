@@ -89,7 +89,7 @@ const Navbar = () => {
                                 <li className="dropdown"><Link to="#">Department</Link>
                                 <ul>
                                     <li><Link to="/department">Department</Link></li>
-                                    <li><Link to="/department-detail">Department Detail</Link></li>
+                                    {/* <li><Link to="/department-detail">Department Detail</Link></li> */}
                                 </ul>
                                 </li>
                                 <li className="dropdown"><Link to="#">Blog</Link>

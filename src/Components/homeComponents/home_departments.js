@@ -1,15 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios"
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
+
 
 const HomeDepartment = () => {
-  const [activeTab, setActiveTab] = useState("#tab-department");
+  const [departments, setDepartments] = useState([]);
 
-  const tabs = [
-    { id: "#tab-urology", title: "Urology Department", content: "Department of Urology" },
-    { id: "#tab-department", title: "Neurology Department", content: "Department of Neurology" },
-    { id: "#tab-gastrology", title: "Gastrology Department", content: "Department of Gastrology" },
-    { id: "#tab-cardiology", title: "Cardiology Department", content: "Department of Cardiology" },
-    { id: "#tab-eye", title: "Eye Care Department", content: "Department of Eye" },
-  ];
+    const [activeTab, setActiveTab] = useState(1);
+
+  useEffect(()=>{
+    //call Api with axios method
+    
+    axios.get(`http://localhost/api/departments`)
+    .then(res =>{ 
+      console.log(res.data)
+      setDepartments(res.data)
+        
+    })
+    .catch(err => console.log(err))
+
+},[])
+
+  // const tabs = [
+  //   { id: "#tab-urology", title: "Urology Department", content: "Department of Urology" },
+  //   { id: "#tab-department", title: "Neurology Department", content: "Department of Neurology" },
+  //   { id: "#tab-gastrology", title: "Gastrology Department", content: "Department of Gastrology" },
+  //   { id: "#tab-cardiology", title: "Cardiology Department", content: "Department of Cardiology" },
+  //   { id: "#tab-eye", title: "Eye Care Department", content: "Department of Eye" },
+  // ];
 
   return (
     <section className="department-section-three">
@@ -26,43 +44,61 @@ const HomeDepartment = () => {
                 <div className="separator"></div>
               </div>
               {/* Tab Buttons */}
-              <ul className="tab-btns tab-buttons clearfix">
-                {tabs.map((tab) => (
+              {/* <ul className="tab-btns tab-buttons clearfix">
+                {departments ===null ? <><h1>There are no departments in database</h1></>:
+                {departments.map((department) => (
                   <li 
-                    key={tab.id} 
-                    className={`tab-btn ${activeTab === tab.id ? "active-btn" : ""}`} 
-                    onClick={() => setActiveTab(tab.id)}
+                    key={department.id} 
+                    className={`tab-btn ${activeTab === department.id ? "active-btn" : ""}`} 
+                    onClick={() => setActiveTab(department.id)}
                   >
-                    {tab.title}
+                    {department.name}
                   </li>
-                ))}
+                ))}}
+              </ul> */}
+              <ul className="tab-btns tab-buttons clearfix">
+                {departments.length === 0 ? (
+                  <h1>There are no departments in the database</h1>
+                ) : (
+                  departments.map((department) => (
+                    <li 
+                      key={department.id} 
+                      className={`tab-btn ${activeTab === department.id ? "active-btn" : ""}`} 
+                      onClick={() => setActiveTab(department.id)}
+                    >
+                      {department.name}
+                    </li>
+                  ))
+                )}
               </ul>
+
             </div>
 
             {/* Column */}
             <div className="col-lg-8 col-md-12 col-sm-12 wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
               {/* Tabs Container */}
               <div className="tabs-content">
-                {tabs.map((tab) => (
-                  <div key={tab.id} className={`tab ${activeTab === tab.id ? "active-tab" : ""}`} id={tab.id}>
+                {departments.map((department) => (
+                  <div key={department.id} className={`tab ${activeTab === department.id ? "active-tab" : ""}`} id={department.id}>
                     <div className="content">
-                      <h2>{tab.title}</h2>
-                      <div className="title">{tab.content}</div>
+                      <h2>{department.name} Department</h2>
+                      <div className="title">Department of {department.name}</div>
                       <div className="text">
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
-                        <p>Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
+                        <p>{department.description}</p>
+                        {/* <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
+                        <p>Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p> */}
                       </div>
                       <div className="two-column row clearfix">
                         <div className="column col-lg-6 col-md-6 col-sm-12">
-                          <h3>01 - Neurology Service</h3>
+                          <h3>01 - {department.name} Service</h3>
                           <div className="column-text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus</div>
                         </div>
                         <div className="column col-lg-6 col-md-6 col-sm-12">
-                          <h3>02 - Neurology Service</h3>
+                          <h3>02 - {department.name} Service</h3>
                           <div className="column-text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus</div>
                         </div>
                       </div>
-                      <a href="doctors-detail.html" className="theme-btn btn-style-two"><span className="txt">View More</span></a>
+                      <Link to={`/department-detail/${department.id}`} className="theme-btn btn-style-two"><span className="txt">View More</span></Link>
                     </div>
                   </div>
                 ))}
