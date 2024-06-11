@@ -41,7 +41,7 @@ function App() {
               <Route component={Contact} path="/contact" exact />
               <Route component={DoctorDetail} path="/doctors-detail" exact />
               <Route component={Department} path="/department" exact />
-              <Route component={DepartmentDetails} path="/department-detail" exact />
+              <Route component={DepartmentDetails} path="/department-detail/:id" exact />
               <Route component={Blog} path="/blog" exact />
               <Route component={Login} path="/login" exact />
               <Route component={Register} path="/register" exact />
