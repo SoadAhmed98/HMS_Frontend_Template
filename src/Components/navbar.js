@@ -18,7 +18,7 @@ const Navbar = () => {
                     <div className="logo-outer">
                         <div className="logo">
                             <Link to="/">
-                            <img src="images/logo/3.png" alt="Logo" title="Logo" style={{width:"16rem",height:"10.5rem"}} classNameName='pb-2'/>
+                            <img src="/images/logo/3.png" alt="Logo" title="Logo" style={{width:"16rem",height:"10.5rem"}} classNameName='pb-2'/>
 
                             </Link></div>
                     </div>
