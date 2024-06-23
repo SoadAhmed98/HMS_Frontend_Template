@@ -80,11 +80,11 @@ const Navbar = () => {
                                     </div>
                                 </div>
                                 </li>
-                                <li className="dropdown"><Link to="#">Doctors</Link>
-                                <ul>
+                                <li className="dropdown"><Link to="/packages">Packages</Link>
+                                {/* <ul>
                                     <li><Link to="/doctors">Doctors</Link></li>
                                     <li><Link to="/doctors-detail">Doctors Detail</Link></li>
-                                </ul>
+                                </ul> */}
                                 </li>
                                 <li className="dropdown"><Link to="#">Department</Link>
                                 <ul>

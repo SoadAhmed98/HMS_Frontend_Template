@@ -6,7 +6,7 @@ import Home from "./Pages/home.js";
 import About from "./Pages/about";
 
 import Department from "./Pages/department.js";
-import Doctors from "./Pages/doctors";
+import Packages from "./Pages/doctors";
 import Services from "./Pages/services";
 import Faq from "./Pages/faq";
 import Contact from "./Pages/contact";
@@ -22,6 +22,7 @@ import ButtomUp from "./Components/buttomUp.js";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Blog from "./Pages/blog.js";
 import BlogClassic from "./Pages/BlogClassic.js";
+import Profile from "./Pages/profile.js";
 function App() {
   
   return (
@@ -34,7 +35,7 @@ function App() {
               {/* <Route component={Home} path="/" exact /> */}
               <Route component={Home} path="/" exact />
               <Route component={About} path="/about" exact />
-              <Route component={Doctors} path="/doctors" exact />
+              <Route component={Packages} path="/packages" exact />
               <Route component={OurTeam} path="/ourTeam" exact />
               <Route component={Services} path="/services" exact />
               <Route component={Faq} path="/faq" exact />
@@ -46,6 +47,7 @@ function App() {
               <Route component={Login} path="/login" exact />
               <Route component={Register} path="/register" exact />
               <Route component={BlogClassic} path="/blog-classic" exact />
+              <Route component={Profile} path="/profile" exact />
               <Route component={NotFound} path="*" exact />
             </Switch>
           </main>
