@@ -647,8 +647,8 @@
 		padding: 0px;
 		text-align: center;
 		border-radius: 0px;
-		background: #4d273f;
-		border: 1px solid #4d273f;
+		background: #ffffff;
+		border: 1px solid #000000;
 	}
 	
 	.main-menu .navbar-header .navbar-toggler .icon-bar{
@@ -763,10 +763,10 @@
 	.main-menu .navbar-collapse > .navigation > li > ul > li > ul > li > a{
 		padding:12px 20px !important;
 		line-height:22px;
-		color:#ffffff;
+		color:#222222;
 		font-weight:500;
 		font-size:15px;
-		background:#4d273f;
+		background:#ffffff;
 		text-align:left;
 	}
 	
@@ -781,7 +781,7 @@
 	.main-menu .navbar-collapse > .navigation > li > ul > li > ul > li:hover > a,
 	.main-menu .navbar-collapse > .navigation > li.current > a,
 	.main-menu .navbar-collapse > .navigation > li.current-menu-item > a{
-		background:#4d273f;
+		background:#007bff;
 		color:#ffffff !important;
 	}
 	
