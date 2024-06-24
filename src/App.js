@@ -1,5 +1,6 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
 import 'animate.css/animate.min.css';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import Home from "./Pages/home.js";
