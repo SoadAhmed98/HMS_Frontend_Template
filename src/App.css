@@ -1,3 +1,9 @@
+a{
+  text-decoration: none !important;
+}
+.nav-link.active {
+  color: #004cda !important; /* Active link color */
+}
 .App {
   text-align: center;
 }
