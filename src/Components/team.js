@@ -1,61 +1,21 @@
-import React from 'react';
-
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 const TeamSection = () => {
-    const teamMembers = [
-        {
-            name: 'Dr. Andria Jonea',
-            designation: 'Cancer Specialist',
-            image: 'images/doc2.png',
-            delay: '0ms',
-            social: {
-                facebook: '#',
-                google: '#',
-                twitter: '#',
-                skype: '#',
-                linkedin: '#'
-            }
-        },
-        {
-            name: 'Dr. Robet Samith',
-            designation: 'Heart Surgeon',
-            image: 'images/doc3.png',
-            delay: '250ms',
-            social: {
-                facebook: '#',
-                google: '#',
-                twitter: '#',
-                skype: '#',
-                linkedin: '#'
-            }
-        },
-        {
-            name: 'Dr. Sharon Laura',
-            designation: 'Family Physician',
-            image: 'images/doc1.png',
-            delay: '500ms',
-            social: {
-                facebook: '#',
-                google: '#',
-                twitter: '#',
-                skype: '#',
-                linkedin: '#'
-            }
-        },
-        {
-            name: 'Dr. Alex Furgosen',
-            designation: 'Ortho Specialist',
-            image: 'images/doc4.png',
-            delay: '750ms',
-            social: {
-                facebook: '#',
-                google: '#',
-                twitter: '#',
-                skype: '#',
-                linkedin: '#'
-            }
-        }
-    ];
+    const [doctors, setDoctors] = useState([]);
+    const [activeDoctor, setActiveDoctor] = useState(0);
+  
+    useEffect(() => {
+      axios.get("https://b43c1a73-82c8-4103-8569-c1e7e6a160cd.mock.pstmn.io/doctors")
+        .then(res => {
+          console.log("API Response:", res.data);
+          setDoctors(res.data);
+        })
+        .catch(err => {
+          console.error("Error fetching data:", err);
+        });
+    }, []);
 
     return (
         <section className="team-section py-5">
@@ -65,26 +25,26 @@ const TeamSection = () => {
                     <div className="separator"></div>
                 </div>
                 <div className="row">
-                    {teamMembers.map((member, index) => (
+                    {doctors.map((doctor, index) => (
                         
                         <div key={index} className="team-block col-lg-3 col-md-6 col-sm-12 mb-4">
-                            <div className={`inner-box wow fadeInLeft`} data-wow-delay={member.delay} data-wow-duration="1500ms">
+                            <div className={`inner-box wow fadeInLeft`} data-wow-delay="1ms" data-wow-duration="1500ms">
                                 <div className="image">
-                                    <img src={member.image} alt={member.name} className="img-fluid" style={{height:"20rem",backgroundColor:"#E5E8E8"}}/>
+                                    <img src={doctor.image} alt={doctor.name} className="img-fluid" style={{height:"20rem",backgroundColor:"#E5E8E8"}}/>
                                     <div className="overlay-box">
                                         <ul className="social-icons list-inline">
-                                            <li className="list-inline-item"><a href={member.social.facebook}><span className="fab fa-facebook-f"></span></a></li>
-                                            <li className="list-inline-item"><a href={member.social.google}><span className="fab fa-google"></span></a></li>
-                                            <li className="list-inline-item"><a href={member.social.twitter}><span className="fab fa-twitter"></span></a></li>
-                                            <li className="list-inline-item"><a href={member.social.skype}><span className="fab fa-skype"></span></a></li>
-                                            <li className="list-inline-item"><a href={member.social.linkedin}><span className="fab fa-linkedin-in"></span></a></li>
+                                            {/* <li className="list-inline-item"><a href={doctor.social.facebook}><span className="fab fa-facebook-f"></span></a></li>
+                                            <li className="list-inline-item"><a href={doctor.social.google}><span className="fab fa-google"></span></a></li>
+                                            <li className="list-inline-item"><a href={doctor.social.twitter}><span className="fab fa-twitter"></span></a></li>
+                                            <li className="list-inline-item"><a href={doctor.social.skype}><span className="fab fa-skype"></span></a></li>
+                                            <li className="list-inline-item"><a href={doctor.social.linkedin}><span className="fab fa-linkedin-in"></span></a></li> */}
                                         </ul>
                                         <a href="#" className="appointment btn btn-primary">Make Appointment</a>
                                     </div>
                                 </div>
                                 <div className="lower-content text-center mt-3">
-                                    <h3><a href="#">{member.name}</a></h3>
-                                    <div className="designation">{member.designation}</div>
+                                    <h3><Link to={`/doctors-detail/${doctor.id}`}>{doctor.name}</Link></h3>
+                                    <div className="designation">{doctor.expertise}</div>
                                 </div>
                             </div>
                         </div>
