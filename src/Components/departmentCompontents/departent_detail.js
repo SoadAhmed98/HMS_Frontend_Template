@@ -8,9 +8,11 @@ const DepartmentDetail = (props) => {
   useEffect(()=>{
     //call Api with axios method
     
-    axios.get(`http://localhost/api/departments/${props.id}`)
+    // axios.get(`http://localhost/api/departments/${props.id}`)
+    axios.get(`https://b43c1a73-82c8-4103-8569-c1e7e6a160cd.mock.pstmn.io/departments/${props.id}`)
+
     .then(res =>{ 
-      // console.log(res.data)
+      console.log(res)
       setDepartmentDetails(res.data)
         
     })

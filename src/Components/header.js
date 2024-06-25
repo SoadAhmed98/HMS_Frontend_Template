@@ -11,9 +11,12 @@ function Header (props){
                     <div className="text">{props.content}</div>
                     </div>
 
-                    <ul className="bread-crumb clearfix wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
+                    <ul className="bread-crumb clearfix wow fadeInRight mt-2" data-wow-delay="0ms" data-wow-duration="1500ms">
+                        <div className='mt-5'>
                         <li><Link to="/"><span className="fas fa-home"></span> Home </Link></li>
                         <li>{props.place}</li>
+                        </div>
+                        
                     </ul>
                 </div>
             </section>
