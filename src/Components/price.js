@@ -1,94 +1,62 @@
-const Price =()=>{
-    return(
-<>
-<section class="price-section">
-		<div class="auto-container">
-			<div class="sec-title centered">
-				<h2>MediTech Health Plan</h2>
-				<div class="separator"></div>
-			</div>
-			<div class="row clearfix">
-				<div class="price-block col-lg-4 col-md-6 col-sm-12">
-					<div class="inner-box clearfix wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
-						<div class="upper-box">
-							<div class="icon flaticon-doctor-stethoscope"></div>
-							<div class="title">Daily Check Up</div>
-							<div class="price"><sub>$</sub>35.00</div>
-						</div>
-						<div class="plan-outer clearfix">
-							<div class="plan">Basic Plan</div>
-						</div>
-						<div class="middle-content">
-							<ul>
-								<li>Review of Safety Program</li>
-								<li>Annual Sexual Harassment Training</li>
-								<li>Monthly Newsletter</li>
-								<li>Safety Training Topics</li>
-								<li>Monthly health check-ups</li>
-								<li>Early illness diagnoses</li>
-							</ul>
-						</div>
-						<a href="#" class="appointment">get appointment</a>						
-					</div>
-				</div>
-				
-				<div class="price-block col-lg-4 col-md-6 col-sm-12">
-					<div class="inner-box wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
-						<div class="upper-box">
-							<div class="icon flaticon-pharmacy"></div>
-							<div class="title">Monthly Check Up</div>
-							<div class="price"><sub>$</sub>150.00</div>
-						</div>
-						<div class="plan-outer clearfix">
-							<div class="plan">Advance Plan</div>
-						</div>
-						<div class="middle-content">
-							<ul>
-								<li>Review of Safety Program</li>
-								<li>Annual Sexual Harassment Training</li>
-								<li>Monthly Newsletter</li>
-								<li>Safety Training Topics</li>
-								<li>Monthly health check-ups</li>
-								<li>Early illness diagnoses</li>
-                                </ul>
-						</div>
-						<a href="#" class="appointment">get appointment</a>						
-					</div>
-				</div>
-				
-				<div class="price-block col-lg-4 col-md-6 col-sm-12">
-					<div class="inner-box wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
-						<div class="upper-box">
-							<div class="icon flaticon-operating-room"></div>
-							<div class="title">Yearly Check Up</div>
-							<div class="price"><sub>$</sub>305.00</div>
-						</div>
-						<div class="plan-outer clearfix">
-							<div class="plan">Team Plan</div>
-						</div>
-						<div class="middle-content">
-							<ul>
-								<li>Review of Safety Program</li>
-								<li>Annual Sexual Harassment Training</li>
-								<li>Monthly Newsletter</li>
-								<li>Safety Training Topics</li>
-								<li>Monthly health check-ups</li>
-								<li>Early illness diagnoses</li>
-                                </ul>
-						</div>
-						<a href="#" class="appointment">get appointment</a>
-						
-					</div>
-				</div>
-				
-			</div>
-			
-		</div>
-	</section>
-	
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-</>
+const Price = () => {
+    const [plans, setPlans] = useState([]);
 
-    )
-}
+    useEffect(() => {
+        axios.get('https://b43c1a73-82c8-4103-8569-c1e7e6a160cd.mock.pstmn.io/groupservices')
+            .then(response => {
+                setPlans(response.data);
+            })
+            .catch(error => {
+                console.error("There was an error fetching the plans!", error);
+            });
+    }, []);
+
+    return (
+        <>
+            <section className="price-section">
+                <div className="auto-container">
+                    <div className="sec-title centered">
+                        <h2>MediTech Health Plan</h2>
+                        <div className="separator"></div>
+                    </div>
+                    <div className="row clearfix">
+                        {plans.map((plan, index) => (
+                            <div key={plan.id} className={`price-block col-lg-4 col-md-6 col-sm-12 wow ${index === 0 ? 'fadeInLeft' : index === 1 ? 'fadeInUp' : 'fadeInRight'}`} data-wow-delay="0ms" data-wow-duration="1500ms">
+                                <div className="inner-box">
+                                    <div className="upper-box">
+                                        <div className={`icon ${plan.id === 1 ? 'flaticon-doctor-stethoscope' : plan.id === 2 ? 'flaticon-pharmacy' : 'flaticon-operating-room'}`}></div>
+                                        <div className="title">{plan.name}</div>
+                                        <div className="price"><sub>$</sub>{parseFloat(plan.Total_with_tax).toFixed(2)}</div>
+                                        <span className="price-before"><strong>${parseFloat(plan.Total_before_discount).toFixed(2)}</strong></span>
+
+                                    </div>
+                                    <div className="plan-outer clearfix">
+                                        <div className="plan">{plan.name}</div>
+                                    </div>
+                                    <div className="middle-content">
+                                        <ul >
+                                            {plan.service_group.map(service => (
+                                                <li key={service.id}>
+                                                    <strong>{service.name} &nbsp; &nbsp; ${parseFloat(service.price).toFixed(2)}</strong><br />
+                                                     {service.description}<br />
+                                                    <strong> Quantity: </strong>{service.pivot.quantity}<br />
+                                                     
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                    <a href="#" className="appointment">get appointment</a>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+        </>
+    );
+};
+
 export default Price;

@@ -33,7 +33,11 @@ a{
 .App-link {
   color: #61dafb;
 }
-
+.price-before {
+  text-decoration: line-through;
+  color: #888; 
+  font-size: 25px;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
