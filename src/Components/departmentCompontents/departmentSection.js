@@ -2,25 +2,33 @@ import React from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+
 
 const departments = [
   {
     title: 'Urology',
     description: 'Morbi a metus. Phasellus enim erat, vestibulum vel, aliquam a, posuere eu, velit. Nullam sapien sem, ornare ac, nonummy non, lobortis a, enim.',
     iconClass: 'flaticon-kidneys',
-    link: '#',
+    id: 1,
   },
   {
     title: 'Neurology',
     description: 'Morbi a metus. Phasellus enim erat, vestibulum vel, aliquam a, posuere eu, velit. Nullam sapien sem, ornare ac, nonummy non, lobortis a, enim.',
     iconClass: 'flaticon-brain',
-    link: '#',
+    id: 2,
   },
   {
     title: 'Gastrology',
     description: 'Morbi a metus. Phasellus enim erat, vestibulum vel, aliquam a, posuere eu, velit. Nullam sapien sem, ornare ac, nonummy non, lobortis a, enim.',
     iconClass: 'flaticon-kidneys',
-    link: '#',
+    id: 3,
+  },
+  {
+    title: 'Gastrology',
+    description: 'Morbi a metus. Phasellus enim erat, vestibulum vel, aliquam a, posuere eu, velit. Nullam sapien sem, ornare ac, nonummy non, lobortis a, enim.',
+    iconClass: 'flaticon-kidneys',
+    id: 3,
   },
   // Add more department objects as needed
 ];
@@ -52,9 +60,9 @@ const DepartmentSection = () => {
                 </div>
                 <div className="text">{dept.description}</div>
                 <div className="read-outer">
-                  <a href={dept.link} className="read-more">
+                <Link to={`/department-detail/${dept.id}`}  className="read-more">
                     Read More <span className="icon fas fa-angle-double-right"></span>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
