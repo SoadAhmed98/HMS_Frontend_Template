@@ -10,6 +10,8 @@ const DepartmentDetail = (props) => {
     
     // axios.get(`http://localhost/api/departments/${props.id}`)
     axios.get(`https://b43c1a73-82c8-4103-8569-c1e7e6a160cd.mock.pstmn.io/departments/${props.id}`)
+    // axios.get(`departments/${props.id}`)
+
 
     .then(res =>{ 
       console.log(res)

@@ -13,6 +13,8 @@ const HomeDepartment = () => {
     
     // axios.get(`http://localhost/api/departments`)
     axios.get(`https://b43c1a73-82c8-4103-8569-c1e7e6a160cd.mock.pstmn.io/departments`)
+    // axios.get(`departments`)
+
     .then(res =>{ 
       console.log(res.data)
       setDepartments(res.data)
@@ -60,7 +62,7 @@ const HomeDepartment = () => {
               </ul> */}
               <ul className="tab-btns tab-buttons clearfix">
                 {departments.length === 0 ? (
-                  <h1>There are no departments in the database</h1>
+                  <h1></h1>
                 ) : (
                   departments.map((department) => (
                     <li 
