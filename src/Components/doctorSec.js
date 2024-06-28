@@ -1,66 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
-
-const doctors = [
-  {
-    name: "Dr. Johan Doe",
-    designation: "Neurosurgeon",
-    image: "/images/doc3.png",
-    bio: "Duis sed odio sit amet nibh vulputate cursus sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris vitae erat consequat auctor eu Suspendisse potenti. Maecenas dapibus ac tellus sed pulvinar. Nam nec tellus a odio tincidunt auctor a ornare odio.",
-    timing: "Monday - Friday (5:00pm - 8pm)",
-    socialLinks: [
-      { icon: "fab fa-pinterest-p" },
-      { icon: "fab fa-google-plus-g" },
-      { icon: "fab fa-twitter" },
-      { icon: "fab fa-facebook-f" },
-      { icon: "fab fa-dribbble" },
-    ],
-  },
-  {
-    name: "2Dr. Johan Doe",
-    designation: "Neurosurgeon",
-    image: "/images/doc2.png",
-    bio: "Duis sed odio sit amet nibh vulputate cursus sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris vitae erat consequat auctor eu Suspendisse potenti. Maecenas dapibus ac tellus sed pulvinar. Nam nec tellus a odio tincidunt auctor a ornare odio.",
-    timing: "Monday - Friday (5:00pm - 8pm)",
-    socialLinks: [
-      { icon: "fab fa-pinterest-p" },
-      { icon: "fab fa-google-plus-g" },
-      { icon: "fab fa-twitter" },
-      { icon: "fab fa-facebook-f" },
-      { icon: "fab fa-dribbble" },
-    ],
-  },
-  {
-    name: "3Dr. Johan Doe",
-    designation: "Neurosurgeon",
-    image: "/images/doc1.png",
-    bio: "Duis sed odio sit amet nibh vulputate cursus sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris vitae erat consequat auctor eu Suspendisse potenti. Maecenas dapibus ac tellus sed pulvinar. Nam nec tellus a odio tincidunt auctor a ornare odio.",
-    timing: "Monday - Friday (5:00pm - 8pm)",
-    socialLinks: [
-      { icon: "fab fa-pinterest-p" },
-      { icon: "fab fa-google-plus-g" },
-      { icon: "fab fa-twitter" },
-      { icon: "fab fa-facebook-f" },
-      { icon: "fab fa-dribbble" },
-    ],
-  },
-  
-];
+import { Link } from "react-router-dom";
 
 const DoctorSec = () => {
+  const [doctors, setDoctors] = useState([]);
   const [activeDoctor, setActiveDoctor] = useState(0);
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-  };
+  useEffect(() => {
+    axios.get("https://b43c1a73-82c8-4103-8569-c1e7e6a160cd.mock.pstmn.io/doctors")
+      .then(res => {
+        console.log("API Response:", res.data);
+        setDoctors(res.data);
+      })
+      .catch(err => {
+        console.error("Error fetching data:", err);
+      });
+  }, []);
 
   const handleDoctorClick = (index) => {
     setActiveDoctor(index);
@@ -76,7 +33,7 @@ const DoctorSec = () => {
               <ul className="doctors-thumb tab-buttons clearfix">
                 {doctors.map((doctor, index) => (
                   <li 
-                    key={index}
+                    key={doctor.id}
                     className={`tab-btn ${index === activeDoctor ? 'active-btn' : ''}`}
                     data-tab={`#doctor-tab-${index + 1}`}
                     onClick={() => handleDoctorClick(index)}
@@ -92,7 +49,7 @@ const DoctorSec = () => {
               <div className="tabs-content">
                 {doctors.map((doctor, index) => (
                   <div 
-                    key={index}
+                    key={doctor.id}
                     className={`doctor-info tab ${index === activeDoctor ? 'active-tab' : ''}`} 
                     id={`doctor-tab-${index + 1}`}
                   >
@@ -111,22 +68,21 @@ const DoctorSec = () => {
                       {/* Content-column */}
                       <div className="content-column col-lg-5 col-md-12 col-sm-12">
                         <div className="inner-column">
-                          <h3 className="name"><a href="doctors.html">{doctor.name}</a></h3>
-                          <span className="designation">{doctor.designation}</span>
-                          <p>{doctor.bio}</p>
-                          <span className="timing"><i className="flaticon-alarm-clock"></i> {doctor.timing}</span>
+                          <h3 className="name"><Link to={`/doctors-detail/${doctor.id}`}>{doctor.name}</Link></h3>
+                          <span className="designation">{doctor.profession}</span>
+                          <span className="timing">
+                            <i className="flaticon-alarm-clock"></i> 
+                            {doctor.works_day.map((workDay, index) => (
+                              <div key={index}>
+                                <strong>{workDay.day}:</strong> {workDay.slots.join(", ")}
+                              </div>
+                            ))}
+                          </span>
                           <div className="clearfix">
-                            <div className="social-links">
-                              <h4>Follow Me:</h4>
-                              <ul className="clearfix">
-                                {doctor.socialLinks.map((link, index) => (
-                                  <li key={index}><a href="#"><i className={link.icon}></i></a></li>
-                                ))}
-                              </ul>
-                            </div>
-                            
                             <div className="call-btn">
-                              <a href="doctors.html" className="theme-btn btn-style-two"><span className="txt">Book Appointment</span></a>
+                              <a href="doctors.html" className="theme-btn btn-style-two">
+                                <span className="txt">Book Appointment</span>
+                              </a>
                             </div>
                           </div>
                         </div>

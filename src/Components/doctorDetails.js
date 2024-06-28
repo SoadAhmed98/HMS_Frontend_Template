@@ -1,45 +1,66 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-const DoctorDetails = () => {
+const DoctorDetails = (props) => {
+  const [doctorDetails, setDoctorDetails] = useState({});
+
+  useEffect(() => {
+    const fetchDoctor = async () => {
+      try {
+        const response = await axios.get(`https://b43c1a73-82c8-4103-8569-c1e7e6a160cd.mock.pstmn.io/doctors/${props.id}`);
+        setDoctorDetails(response.data);
+      } catch (error) {
+        console.error('Error fetching doctor details:', error);
+      }
+    };
+
+    fetchDoctor();
+  }, [props.id]);
+
   return (
     <section className="doctor-detail">
       <div className="auto-container">
-
         <div className="upper-box">
           <div className="row clearfix">
             <div className="detail-column col-lg-8 col-md-12 col-sm-12">
               <div className="inner-box">
                 <div className="info-header">
                   <p>Provide Comprehensive Quality Care</p>
-                  <h3>I'm Dr. Johan Doe</h3>
-                  <span className="designation">Neurosurgeon</span>
+                  <h3>I'm Dr. {doctorDetails.name}</h3>
+                  <span className="designation">{doctorDetails.department}</span>
                 </div>
                 <ul className="info-list">
                   <li>
                     <strong>Expertise</strong>
-                    <p>Cardiology</p>
-                    <p>Heart Specialist</p>
+                    <p>{doctorDetails.expertise}</p>
                   </li>
                   <li>
                     <strong>Education</strong>
-                    <p>Doctor of Medicine, University of Texas, USA (1990) Medical Orientation Program, St. Louis University (St. Louis, Missouri 1996)</p>
+                    <p>{doctorDetails.education}</p>
                   </li>
                   <li>
                     <strong>Experience</strong>
-                    <p>15 years of Experience in Medicine</p>
+                    <p>{doctorDetails.experience}</p>
                   </li>
                   <li>
                     <strong>Profession</strong>
-                    <p>MD Dean and Executive Vice President for Medical Affairs School of Medicine and Graduate School of Biomedical Sciences University of Texas Health Science Center at San Antonio</p>
+                    <p>{doctorDetails.profession}</p>
                   </li>
+                  <li><strong>Email</strong><p> {doctorDetails.email}</p></li>
+                  <li><strong>Fees</strong> <p>{doctorDetails.fees}</p></li> 
                 </ul>
               </div>
             </div>
             <div className="image-box col-lg-4 col-md-12 col-sm-12">
               <div className="image">
-                <a href="images/resource/doctor-3.jpg" className="lightbox-image">
-                  <img src="images/doc1.png" alt="Doctor" style={{height:"30rem"}} className='wow fadeInRight' data-wow-delay="0ms" data-wow-duration="1500ms"/>
-                </a>
+                <img
+                  src={doctorDetails.image}
+                  alt="Doctor"
+                  style={{ height: "30rem" }}
+                  className="wow fadeInRight"
+                  data-wow-delay="0ms"
+                  data-wow-duration="1500ms"
+                />
               </div>
             </div>
           </div>
@@ -105,34 +126,14 @@ const DoctorDetails = () => {
             {/* Info Column */}
             <div className="info-column col-lg-4 col-md-12 col-sm-12">
               <div className="inner-box">
-                <ul className="contact-list">
-                  <li><span>E-mail:</span> example@company.com</li>
-                  <li><span>Phone: </span> +000 000 0000</li>
-                  <li><span>Timming:</span> 9:00am -5:00pm</li>
-                  <li className="clearfix">
-                    <a href="#" className="clearfix theme-btn btn-style-two">
-                      <span className="txt btn-txt">On Vacation</span>
-                    </a>
-                    <span className="pull-right time">12:00pm -3:00pm</span>
-                  </li>
-                </ul>
-                <ul className="social-icon-one">
-                  <li><a href="#"><i className="fab fa-facebook-f"></i></a></li>
-                  <li><a href="#"><i className="fab fa-twitter"></i></a></li>
-                  <li><a href="#"><i className="fab fa-google-plus-g"></i></a></li>
-                  <li><a href="#"><i className="fab fa-pinterest"></i></a></li>
-                </ul>
                 <div className="timetable">
-                  <h3><small>Check Our</small> Weekly Timetable</h3>
+                <h3><small>Check Our</small> Weekly Timetable</h3>
                   <p>Suspendisse potenti. Maecenas dapibus ac tellus sed pulvinar. Vestibulum bib volutpat accumsan non laoreet nulla luctus...</p>
-                  <ul>
-                    <li>Monday - Friday <span>8.00 - 18.00</span></li>
-                    <li>Saturday <span>9.00 - 16.00</span></li>
-                    <li>Sunday <span>9.00 - 16.00</span></li>
-                  </ul>
-                  <a href="#" className="theme-btn doctor-btn">
-                    <i className="fa fa-user-md"></i> See Doctors Time Table
-                  </a>
+                <ul>
+                      {doctorDetails.works_day && doctorDetails.works_day.map(day => (
+                        <li key={day.day}>{day.day}<span> {day.slots.join(', ')}</span></li>
+                      ))}
+                    </ul>
                 </div>
               </div>
             </div>

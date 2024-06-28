@@ -43,7 +43,7 @@ function App() {
               <Route component={Services} path="/services" exact />
               <Route component={Faq} path="/faq" exact />
               <Route component={Contact} path="/contact" exact />
-              <Route component={DoctorDetail} path="/doctors-detail" exact />
+              <Route component={DoctorDetail} path="/doctors-detail/:id" exact />
               <Route component={Department} path="/department" exact />
               <Route component={DepartmentDetails} path="/department-detail/:id" exact />
               <Route component={Blog} path="/blog" exact />

@@ -15,7 +15,7 @@ function Doctor () {
       <Navbar/>
        <Header head="Pricetable For MediTech" content="What We Actually Do?" place="Pricetable"/>
       <Price/>
-      <AppointmentSection/>
+      {/* <AppointmentSection/> */}
       
       </>
     );
