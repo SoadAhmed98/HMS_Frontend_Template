@@ -24,6 +24,8 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Blog from "./Pages/blog.js";
 import BlogClassic from "./Pages/BlogClassic.js";
 import Profile from "./Pages/profile.js";
+import PredictDisease from "./Pages/predictDisease.js";
+
 function App() {
   
   return (
@@ -49,6 +51,8 @@ function App() {
               <Route component={Register} path="/register" exact />
               <Route component={BlogClassic} path="/blog-classic" exact />
               <Route component={Profile} path="/profile" exact />
+              <Route component={PredictDisease} path="/predict" exact />
+
               <Route component={NotFound} path="*" exact />
             </Switch>
           </main>
