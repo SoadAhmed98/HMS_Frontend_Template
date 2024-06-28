@@ -29,7 +29,7 @@ const Price = () => {
                                     <div className="upper-box">
                                         <div className={`icon ${plan.id === 1 ? 'flaticon-doctor-stethoscope' : plan.id === 2 ? 'flaticon-pharmacy' : 'flaticon-operating-room'}`}></div>
                                         <div className="title">{plan.name}</div>
-                                        <div className="price"><sub>$</sub>{parseFloat(plan.Total_with_tax).toFixed(2)}</div>
+                                        <div className="price"><sub>$</sub>{parseFloat(plan.Total_after_discount).toFixed(2)}</div>
                                         <span className="price-before"><strong>${parseFloat(plan.Total_before_discount).toFixed(2)}</strong></span>
 
                                     </div>
