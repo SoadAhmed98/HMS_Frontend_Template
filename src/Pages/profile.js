@@ -1,14 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "../Profile.css";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Navbar from "../Components/navbar.js";
 
 const Profile = () => {
-    const [activeTab, setActiveTab] = useState("home");
+    const [activeTab, setActiveTab] = useState("profile");
+    const [profileData, setProfileData] = useState(null);
     const [profileImage, setProfileImage] = useState(
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
     );
+
+    useEffect(() => {
+        axios.get("https://b43c1a73-82c8-4103-8569-c1e7e6a160cd.mock.pstmn.io/patients/1")
+            .then(response => setProfileData(response.data))
+            .catch(error => console.error('Error fetching profile data:', error));
+    }, []);
 
     const handleTabSwitch = (tab) => {
         setActiveTab(tab);
@@ -23,6 +31,10 @@ const Profile = () => {
             reader.readAsDataURL(e.target.files[0]);
         }
     };
+
+    if (!profileData) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <>
@@ -39,7 +51,7 @@ const Profile = () => {
                                 </div>
                             </div>
                             <div className="profile-head mt-4">
-                                <h4>Noor Ali</h4>
+                                <h4>{profileData.name}</h4>
                             </div>
                             <input
                                 type="submit"
@@ -51,73 +63,70 @@ const Profile = () => {
 
                         <div className="col-md-8">
                             <Tabs
-                                defaultActiveKey="profile"
+                                activeKey={activeTab}
+                                onSelect={handleTabSwitch}
                                 id="profile-tabs"
                                 className="mb-3"
                                 fill
                             >
-                                  <Tab eventKey="profile" title="Profile">
-                                  <div className="row">
-                                                    <div className="col-md-9">
-                                                        <label>Patient Id</label>
-                                                    </div>
-                                                    <div className="col-md-3">
-                                                        <p>1</p>
-                                                    </div>
-                                                </div>
+                                <Tab eventKey="profile"  title="Profile">
+                                    <div className="row ">
+                                        <div className="col-md-9">
+                                            <label>Patient Id</label>
+                                        </div>
+                                        <div className="col-md-3 ">
+                                            <p>{profileData.id}</p>
+                                        </div>
+                                    </div>
                                     <div className="row">
-                                                    <div className="col-md-9">
-                                                        <label>Patient Name</label>
-                                                    </div>
-                                                    <div className="col-md-3">
-                                                        <p>Noor Ali</p>
-                                                    </div>
-                                                </div>
-                                               
-                                                <div className="row">
-                                                    <div className="col-md-9">
-                                                        <label>Phone Number</label>
-                                                    </div>
-                                                    <div className="col-md-3">
-                                                        <p>123 456 7890</p>
-                                                    </div>
-                                                </div>
-                                                <div className="row">
-                                                    <div className="col-9">
-                                                        <label>Email</label>
-                                                    </div>
-                                                    <div className="col">
-                                                        <p>noorali@gmail.com</p>
-                                                    </div>
-                                                </div>
-                                                <div className="row">
-                                                    <div className="col-md-9">
-                                                        <label>Date Of Birth</label>
-                                                    </div>
-                                                    <div className="col-md-3">
-                                                        <p>1990-2-2</p>
-                                                    </div>
-                                                </div>
-                                                <div className="row">
-                                                    <div className="col-md-9">
-                                                        <label>Gender</label>
-                                                    </div>
-                                                    <div className="col-md-3">
-                                                        <p>
-                                                    Female
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div className="row">
-                                                    <div className="col-md-9">
-                                                        <label>Blood Group</label>
-                                                    </div>
-                                                    <div className="col-md-3">
-                                                        <p>A+</p>
-                                                    </div>
-                                                </div>
-                                        
+                                        <div className="col-md-9">
+                                            <label>Patient Name</label>
+                                        </div>
+                                        <div className="col-md-3">
+                                            <p>{profileData.name}</p>
+                                        </div>
+                                    </div>
 
+                                    <div className="row">
+                                        <div className="col-md-9">
+                                            <label>Phone Number</label>
+                                        </div>
+                                        <div className="col-md-3">
+                                            <p>{profileData.phone}</p>
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-8">
+                                            <label>Email</label>
+                                        </div>
+                                        <div className="col-4 ">
+                                            <p>{profileData.email}</p>
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-md-9">
+                                            <label>Date Of Birth</label>
+                                        </div>
+                                        <div className="col-md-3">
+                                            <p>{profileData.birth_date}</p>
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-md-9">
+                                            <label>Gender</label>
+                                        </div>
+                                        <div className="col-md-3">
+                                            <p>{profileData.gender}</p>
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-md-9">
+                                            <label>Blood Group</label>
+                                        </div>
+                                        <div className="col-md-3">
+                                            <p>{profileData.blood_group}</p>
+                                        </div>
+                                    </div>
                                 </Tab>
                                 <Tab eventKey="invoices" title="Invoices">
                                     <div className="table-responsive">
@@ -133,11 +142,9 @@ const Profile = () => {
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>Service A</td>
-                                                    <td>2024-01-01</td>
-                                                    <td>$100.00</td>
-                                                    <td>Type A</td>
+                                                    <th scope="row" >1</th>
+                                                    <td colSpan={3} className="text-center">Total</td>
+                                                    <td>0.0</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -157,11 +164,9 @@ const Profile = () => {
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>Service B</td>
-                                                    <td>2024-01-01</td>
-                                                    <td>$200.00</td>
-                                                    <td>Type B</td>
+                                                    <th scope="row" >1</th>
+                                                    <td colSpan={3} className="text-center">Total</td>
+                                                    <td>0.0</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -183,32 +188,15 @@ const Profile = () => {
                                             <tbody>
                                                 <tr>
                                                     <th scope="row">1</th>
-                                                    <td>2024-01-01</td>
-                                                    <td>Description</td>
-                                                    <td>$0.00</td>
-                                                    <td>$0.00</td>
-                                                    <td>$0.00</td>
+                                                    <td colSpan={2} className="text-center">Total</td>
+                                                    <td>0.00</td>
+                                                    <td>0.00</td>
+                                                    <td>0 Credit</td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
-                                </Tab>
-                                <Tab eventKey="radiology" title="Radiology">
-                                    <div className="text-wrapper">
-                                        <p>
-                                            Lorem ipsum odor amet, consectetuer adipiscing elit. Ac purus in massa egestas mollis varius;
-                                            dignissim elementum. Mollis tincidunt mattis hendrerit dolor eros enim, nisi ligula ornare.
-                                            Hendrerit parturient habitant pharetra rutrum gravida porttitor eros feugiat. Mollis elit
-                                            sodales taciti duis praesent id. Consequat urna vitae morbi nunc congue.
-                                        </p>
-                                        <p>
-                                            Non etiam tempor id arcu magna ante eget. Nec per posuere cubilia cras porttitor condimentum
-                                            orci suscipit. Leo maecenas in tristique, himenaeos elementum placerat. Taciti rutrum nostra,
-                                            eget cursus velit ultricies. Quam molestie tellus himenaeos cubilia congue vivamus ultricies.
-                                            Interdum praesent ut penatibus fames eros ad consectetur sed.
-                                        </p>
-                                    </div>
-                                </Tab>
+                                </Tab> 
                                 <Tab eventKey="laboratory" title="Laboratory">
                                     <div className="text-wrapper">
                                         <p>
