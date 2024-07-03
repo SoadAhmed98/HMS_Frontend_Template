@@ -38,6 +38,15 @@ a{
   color: #888; 
   font-size: 25px;
 }
+.input-code {
+  border: 2px solid #004cda;
+  width: 50px;
+  height: 50px;
+  margin-right: 8px;
+}
+.input-code:last-child {
+  margin-right: 0;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
