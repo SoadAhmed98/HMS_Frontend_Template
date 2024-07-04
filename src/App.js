@@ -25,6 +25,8 @@ import Blog from "./Pages/blog.js";
 import BlogClassic from "./Pages/BlogClassic.js";
 import Profile from "./Pages/profile.js";
 import PredictDisease from "./Pages/predictDisease.js";
+import ServiceInvoice from "./Pages/serviceInvoice.js";
+import PackageInvoice from "./Pages/packageInvoice.js";
 
 function App() {
   
@@ -52,6 +54,8 @@ function App() {
               <Route component={BlogClassic} path="/blog-classic" exact />
               <Route component={Profile} path="/profile" exact />
               <Route component={PredictDisease} path="/predict" exact />
+              <Route component={ServiceInvoice} path="/service-invoice" exact />
+              <Route component={PackageInvoice} path="/package-invoice" exact />
 
               <Route component={NotFound} path="*" exact />
             </Switch>
