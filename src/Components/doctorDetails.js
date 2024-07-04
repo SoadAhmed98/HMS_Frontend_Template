@@ -82,59 +82,56 @@ const DoctorDetails = (props) => {
       });
     };
 
-    function getAllCookies() {
-      return document.cookie.split('; ').reduce((acc, cookie) => {
-          const [name, ...rest] = cookie.split('=');
-          acc[name] = rest.join('=');
-          return acc;
-      }, {});
-  }
+  //   function getAllCookies() {
+  //     return document.cookie.split('; ').reduce((acc, cookie) => {
+  //         const [name, ...rest] = cookie.split('=');
+  //         acc[name] = rest.join('=');
+  //         return acc;
+  //     }, {});
+  // }
   
-  function cookiesToHeaderString(cookies) {
-      return Object.entries(cookies).map(([key, value]) => `${key}=${value}`).join('; ');
-  }
+  // function cookiesToHeaderString(cookies) {
+  //     return Object.entries(cookies).map(([key, value]) => `${key}=${value}`).join('; ');
+  // }
     
 
     const handleSubmit = async (e) => {
         
       e.preventDefault();
-    //   const cookies = getAllCookies();
+      const cookies = Cookies.get('hospitalmanagementsystem_session');
     // const cookieHeader = cookiesToHeaderString(cookies);
     // console.log(cookieHeader)
-    // console.log(cookies)
+    console.log(cookies)
 
       // setPredictions(null)
       // setError404(null)
       // const symptomList = symptoms.filter(symptom => symptom.value !== '');
       console.log(formData)
       try {
-        const response = await axios.post('http://127.0.0.1:80/api/appointments',
-         
-        formData,
-        
+        await axios.get('http://127.0.0.1:80/sanctum/csrf-cookie',
+          {
+            withCredentials:true,
+          }
+        );
+
+
+        // const response = await axios.post('http://127.0.0.1:80/api/appointments',
+        await axios.post('http://127.0.0.1:80/api/appointments',formData,
         {
-          // withXSRFToken:true,
-          withCredentials:true,
           headers: {
           'Content-Type': 'application/json',
           'Accept':'application/json',
+          // 'hospitalmanagementsystem_session':cookies
           // 'Cookie' : cookieHeader
           // 'X-XSRF-TOKEN':Cookies.get('XSRF-TOKEN')
         },
+          withXSRFToken:true,
+          withCredentials:true,
         
         // credentials : 'same-origin'
       }
-        
-
-        // { doctor_id: doctorDetails.id ,
-        //   department_id:1,
-        //   name: " yomna",
-        //   email: "yomnakhaled2424@gmail.com",
-        //   phone: "01018486331",
-        //   notes: "This is a fourth test appointment."
-        // }
       );
-      console.log(response)
+      
         
         // setPredictions(response.data);
       

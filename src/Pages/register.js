@@ -26,6 +26,11 @@ const Register = () => {
         e.preventDefault();
 
         try {
+            await axios.get('http://127.0.0.1:80/sanctum/csrf-cookie',
+            {
+                withCredentials:true,
+            }
+            );
             const response = await fetch('http://127.0.0.1:80/api/patient/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
