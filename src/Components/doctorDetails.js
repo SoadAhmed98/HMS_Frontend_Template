@@ -107,43 +107,59 @@ const DoctorDetails = (props) => {
       // setError404(null)
       // const symptomList = symptoms.filter(symptom => symptom.value !== '');
       console.log(formData)
-      try {
-        await axios.get('http://127.0.0.1:80/sanctum/csrf-cookie',
-          {
-            withCredentials:true,
-          }
-        );
+      // try {
+      //   await axios.get('http://127.0.0.1:80/sanctum/csrf-cookie',
+      //     {
+      //       withCredentials:true,
+      //     }
+      //   );
 
-
-        // const response = await axios.post('http://127.0.0.1:80/api/appointments',
-        await axios.post('http://127.0.0.1:80/api/appointments',formData,
-        {
-          headers: {
-          'Content-Type': 'application/json',
-          'Accept':'application/json',
-          // 'hospitalmanagementsystem_session':cookies
-          // 'Cookie' : cookieHeader
-          // 'X-XSRF-TOKEN':Cookies.get('XSRF-TOKEN')
-        },
-          withXSRFToken:true,
-          withCredentials:true,
+      //   // const response = await axios.post('http://127.0.0.1:80/api/appointments',
+      //   await axios.post('http://127.0.0.1:80/api/appointments',formData,
+      //   {
+      //     withCredentials:true,
+      //     headers: {
+      //     // 'Content-Type': 'application/json',
+      //     Accept:'application/json',
+      //     // 'hospitalmanagementsystem_session':cookies
+      //     // 'Cookie' : cookieHeader
+      //     'X-XSRF-TOKEN':Cookies.get('XSRF-TOKEN')
+      //   },
+      //     // withXSRFToken:true,
         
-        // credentials : 'same-origin'
-      }
-      );
+      //   // credentials : 'same-origin'
+      // }
+      // );
+       // } catch (Errorrr) {
+        
+      //   console.error('There was an error making the request:', Errorrr);
+       
+      //   // setError404(Errorrr.response.data.error)
+        
+      // }
       
-        
+      try {
+        await axios.get('http://127.0.0.1:80/sanctum/csrf-cookie', {
+          withCredentials: true,
+        });
+      
+       await axios.post('http://127.0.0.1:80/api/appointments', formData, {
+         
+          headers: {
+            'Accept': 'application/json',
+            'X-XSRF-TOKEN': Cookies.get('XSRF-TOKEN'),
+          },
+          withCredentials: true
+        });
+      } catch (error) {
+        console.error('Error:', error);
+      }
+      
         // setPredictions(response.data);
       
   
   
-      } catch (Errorrr) {
-        
-        console.error('There was an error making the request:', Errorrr);
-       
-        // setError404(Errorrr.response.data.error)
-        
-      }
+     
     };
 
     // const handleSubmit = async (e) => {
