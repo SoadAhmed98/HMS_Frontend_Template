@@ -119,13 +119,11 @@ const DoctorDetails = (props) => {
         await axios.post('http://127.0.0.1:80/api/appointments',formData,
         {
           headers: {
-          'Content-Type': 'application/json',
+          
           'Accept':'application/json',
-          // 'hospitalmanagementsystem_session':cookies
-          // 'Cookie' : cookieHeader
-          // 'X-XSRF-TOKEN':Cookies.get('XSRF-TOKEN')
+          'X-XSRF-TOKEN':Cookies.get('XSRF-TOKEN')
         },
-          withXSRFToken:true,
+          
           withCredentials:true,
         
         // credentials : 'same-origin'
