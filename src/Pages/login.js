@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Header from "../Components/header.js";
 import Navbar from "../Components/navbar.js";
-import WOW from 'wowjs';
+import WOW from "wowjs";
 import { validEmail, validPassword } from "../Components/rejex.js";
 
 function Login(props) {
@@ -36,9 +36,7 @@ function Login(props) {
       case "password":
         setErrors({
           ...errors,
-          password: validPassword.test(value)
-            ? ""
-            : "Invalid password format",
+          password: validPassword.test(value) ? "" : "Invalid password format",
         });
         break;
       default:
@@ -68,7 +66,11 @@ function Login(props) {
   return (
     <>
       <Navbar />
-      <Header head="Login For MediTech" content="What We Actually Do?" place="Login" />
+      <Header
+        head="Login For MediTech"
+        content="What We Actually Do?"
+        place="Login"
+      />
       <div className="container mt-5 mb-5">
         <div className="row justify-content-center">
           <div className="auto-container">
@@ -76,7 +78,11 @@ function Login(props) {
               <h2>Login </h2>
               <div className="separator"></div>
             </div>
-            <div className="contact-form wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
+            <div
+              className="contact-form wow fadeInLeft"
+              data-wow-delay="0ms"
+              data-wow-duration="1500ms"
+            >
               <form onSubmit={handleSubmit}>
                 <div className="row clearfix">
                   <div className="col-lg-12 form-group">
@@ -97,7 +103,7 @@ function Login(props) {
                     <p className="text-danger"> {errors.email} </p>
                   </div>
 
-                  <div className="col-lg-12 col-md-6 form-group"> 
+                  <div className="col-lg-12 col-md-6 form-group">
                     {/* <label htmlFor="password" className="form-label fw-bolder text-dark">Password</label> */}
                     <input
                       type={showPassword ? "text" : "password"}
@@ -112,14 +118,16 @@ function Login(props) {
                     <p className="text-danger"> {errors.password} </p>
                   </div>
 
-                  <div className="col-lg-12 col-md-6 form-group"> 
+                  <div className="col-lg-12 col-md-6 form-group">
                     <input
                       id="showPassword"
                       type="checkbox"
                       checked={showPassword}
                       onChange={() => setShowPassword(!showPassword)}
                     />
-                    <label htmlFor="showPassword" className="text-dark mx-1">Show Password</label>
+                    <label htmlFor="showPassword" className="text-dark mx-1">
+                      Show Password
+                    </label>
                   </div>
 
                   <div className="col-lg-12 form-group text-center">
@@ -130,13 +138,16 @@ function Login(props) {
                     >
                       <span className="txt">Login</span>
                     </button>
+                    <div className="text-center mt-4">
+                      <h5 className="text-dark">New User?</h5>
+                      <Link to="/register">
+                        Register now to create an account
+                      </Link>
+                    </div>
                   </div>
+                    
                 </div>
               </form>
-            </div>
-            <div className="text-center mt-2">
-              <h5 className="card-title text-dark">New User?</h5>
-              <Link to="/register" className="card-text ">Register now to create an account.</Link>
             </div>
           </div>
         </div>
