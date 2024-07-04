@@ -90,7 +90,7 @@ function PredictDisease () {
               <div className="separator"></div>
             </div>
        <div className=" row d-flex justify-content-between">
-        <div className="p-2 col-md-6 col-sm-8">
+        <div className="p-2 col-md-6 col-sm-8 wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
 
             <form onSubmit={handleSubmit} >
         <h2 className=" mb-3">Enter your Symptoms: </h2>
@@ -180,7 +180,7 @@ function PredictDisease () {
 
         </div>
 
-        <div className=" col-md-6 col-sm-8">
+        <div className=" col-md-6 col-sm-8 wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
             <img src="/images/docs1.png" alt="Description" />
         </div>
         </div>
