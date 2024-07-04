@@ -16,17 +16,16 @@ function Register() {
   const [userData, setUserData] = useState({
     name: "",
     email: "",
-    userName: "",
-    pass: "",
-    confirmPass: "",
+    password: "",
+    password_confirmation: "",
+   
   });
 
   const [errors, setErrors] = useState({
     name: "",
     email: "",
-    userName: "",
-    pass: "",
-    confirmPass: "",
+    password: "",
+    password_confirmation: "",
   });
 
   const handleInputChange = (e) => {
@@ -40,10 +39,10 @@ function Register() {
           email: validEmail.test(value) ? "" : "Invalid email format",
         });
         break;
-      case "pass":
+      case "password":
         setErrors({
           ...errors,
-          pass: validPassword.test(value) ? "" : "Invalid password format",
+          password: validPassword.test(value) ? "" : "Invalid password format",
         });
         break;
       case "name":
@@ -52,16 +51,10 @@ function Register() {
           name: value.length < 3 ? "Name must be at least 3 characters long" : "",
         });
         break;
-      case "userName":
+      case "password_confirmation":
         setErrors({
           ...errors,
-          userName: validUsername.test(value) ? "" : "Invalid username format",
-        });
-        break;
-      case "confirmPass":
-        setErrors({
-          ...errors,
-          confirmPass: value !== userData.pass ? "Passwords do not match" : "",
+          password_confirmation: value !== userData.pass ? "Passwords do not match" : "",
         });
         break;
       default:
@@ -120,42 +113,29 @@ function Register() {
                   </div>
 
                   <div className="col-lg-12 mb-3">
-                    {/* <label htmlFor="userName" className="form-label fw-bolder text-dark">Username</label> */}
-                    <input
-                      type="text"
-                      className={`form-control ${errors.userName ? "is-invalid" : ""}`}
-                      value={userData.userName}
-                      onChange={handleInputChange}
-                      name="userName"
-                      placeholder="Username"
-                    />
-                    <div className="invalid-feedback">{errors.userName}</div>
-                  </div>
-
-                  <div className="col-lg-12 mb-3">
                     {/* <label htmlFor="pass" className="form-label fw-bolder text-dark">Password</label> */}
                     <input
                       type="password"
-                      className={`form-control ${errors.pass ? "is-invalid" : ""}`}
-                      value={userData.pass}
+                      className={`form-control ${errors.password ? "is-invalid" : ""}`}
+                      value={userData.password}
                       onChange={handleInputChange}
-                      name="pass"
+                      name="password"
                       placeholder="Password"
                     />
-                    <div className="invalid-feedback">{errors.pass}</div>
+                    <div className="invalid-feedback">{errors.password}</div>
                   </div>
 
                   <div className="col-lg-12 mb-3">
                     {/* <label htmlFor="confirmPass" className="form-label fw-bolder text-dark">Confirm Password</label> */}
                     <input
                       type="password"
-                      className={`form-control ${errors.confirmPass ? "is-invalid" : ""}`}
-                      value={userData.confirmPass}
+                      className={`form-control ${errors.password_confirmation ? "is-invalid" : ""}`}
+                      value={userData.password_confirmation}
                       onChange={handleInputChange}
-                      name="confirmPass"
+                      name="password_confirmation"
                       placeholder="Confirm Password"
                     />
-                    <div className="invalid-feedback">{errors.confirmPass}</div>
+                    <div className="invalid-feedback">{errors.password_confirmation}</div>
                   </div>
 
                   <div className="d-flex justify-content-center align-items-center">
@@ -168,12 +148,13 @@ function Register() {
                     </button>
                   </div>
                 </div>
-              </form>
-
-              <div className="text-center">
+                <div className="text-center">
                 <p className="mb-0">Already have an account?</p>
                 <Link to="/login">Login</Link>
               </div>
+              </form>
+
+              
             </div>
           </div>
         </div>
