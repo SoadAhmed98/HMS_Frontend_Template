@@ -32,7 +32,7 @@ const ConfirmCode = () => {
       await axios.post("http://127.0.0.1:80/api/patient/send_code", null, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
-          "Content-Type": "application/json",
+          "Accept": "application/json",
         },
       });
       setCountdown({ minutes: 1, seconds: 0 });
@@ -58,7 +58,7 @@ const ConfirmCode = () => {
       }, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
-          "Content-Type": "application/json",
+          "Accept": "application/json",
         },
       });
       if (response.data.success) {
