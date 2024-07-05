@@ -65,7 +65,7 @@ const Register = () => {
                 await axios.post("http://127.0.0.1:80/api/patient/send_code", null, {
                     headers: {
                         Authorization: `Bearer ${data.token}`,
-                        "Content-Type": "application/json",
+                        "Accept": "application/json",
                     },
                 });
 
