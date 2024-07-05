@@ -264,7 +264,7 @@ const Register = () => {
       });
 
       if (response.status === 200) {
-        localStorage.setItem("token", response.data.data.patient.token);
+        localStorage.setItem("token", response.data.data.patient);
 
         await axios.get("http://127.0.0.1:80/api/patient/send_code", {
           headers: {
