@@ -26,7 +26,7 @@ const Register = () => {
 
     const submit = async (e) => {
         e.preventDefault();
-        console.log(userData);
+        // console.log(userData);
         try {
             await axios.get('http://127.0.0.1:80/sanctum/csrf-cookie',
             {
@@ -58,13 +58,18 @@ const Register = () => {
             
           }
           );
+          console.log(response)
 
-            if (response.ok) {
-                const data = await response.json();
+            if (response.status==200) {
+                console.log(response)
+                // const data = await response.json();
+                localStorage.setItem("token", response.data.data.patient.token )
+                console.log(response.data.data.patient.token)
+                
 
-                await axios.post("http://127.0.0.1:80/api/patient/send_code", null, {
+                await axios.get("http://127.0.0.1:80/api/patient/send_code", {
                     headers: {
-                        Authorization: `Bearer ${data.token}`,
+                        Authorization: `${response.data.data.patient.token}`,
                         "Accept": "application/json",
                         'X-XSRF-TOKEN': Cookies.get('XSRF-TOKEN')
                     },
@@ -76,7 +81,7 @@ const Register = () => {
               setErrors("Registration failed. Please try again.");
             }
         } catch (error) {
-        console.error('Error response:', error.response.data);  
+        console.error('Error response:', error);  
           setErrors("Registration failed. Please try again.");
         }
     };
