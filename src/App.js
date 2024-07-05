@@ -27,6 +27,7 @@ import Profile from "./Pages/profile.js";
 import PredictDisease from "./Pages/predictDisease.js";
 import ServiceInvoice from "./Pages/serviceInvoice.js";
 import PackageInvoice from "./Pages/packageInvoice.js";
+import ConfirmCode from "./Pages/confirmCode.js";
 
 function App() {
   
@@ -56,6 +57,8 @@ function App() {
               <Route component={PredictDisease} path="/predict" exact />
               <Route component={ServiceInvoice} path="/service-invoice" exact />
               <Route component={PackageInvoice} path="/package-invoice" exact />
+              <Route component={ConfirmCode} path="/confirm-code" exact />
+
 
               <Route component={NotFound} path="*" exact />
             </Switch>
