@@ -26,7 +26,7 @@ const Register = () => {
 
     const submit = async (e) => {
         e.preventDefault();
-
+        console.log(userData);
         try {
             await axios.get('http://127.0.0.1:80/sanctum/csrf-cookie',
             {
@@ -74,6 +74,7 @@ const Register = () => {
               setErrors("Registration failed. Please try again.");
             }
         } catch (error) {
+        console.error('Error response:', error.response.data);  
           setErrors("Registration failed. Please try again.");
         }
     };
