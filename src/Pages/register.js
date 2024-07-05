@@ -66,7 +66,9 @@ const Register = () => {
                     headers: {
                         Authorization: `Bearer ${data.token}`,
                         "Accept": "application/json",
+                        'X-XSRF-TOKEN': Cookies.get('XSRF-TOKEN')
                     },
+                    withCredentials: true,
                 });
 
                 history.push("/confirm-code");
