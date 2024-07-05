@@ -47,6 +47,9 @@ a{
 .input-code:last-child {
   margin-right: 0;
 }
+.page-title .bread-crumb{
+  bottom: 0px !important;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
