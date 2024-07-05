@@ -5,6 +5,7 @@ import WOW from 'wowjs';
 import Navbar from "../Components/navbar";
 import axios from 'axios';
 import { validEmail, validPassword, validUsername } from "../Components/rejex";
+import Cookies from 'js-cookie';
 
 const Register = () => {
     const history = useHistory();
@@ -14,6 +15,7 @@ const Register = () => {
         password: '',
         password_confirmation: ''
     });
+
     const [redirect, setRedirect] = useState(false);
     const [errors, setErrors] = useState({
         name: "",
@@ -31,11 +33,31 @@ const Register = () => {
                 withCredentials:true,
             }
             );
-            const response = await fetch('http://127.0.0.1:80/api/patient/register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(userData)
-            });
+
+            // const response = await fetch('http://127.0.0.1:80/api/patient/register', {
+            //     method: 'POST',
+            //     headers: {
+            //     'Accept':'application/json',
+            //     'X-XSRF-TOKEN':Cookies.get('XSRF-TOKEN')
+            //     },
+          
+            //     withCredentials:true,
+            //     body: userData
+            // });
+
+            const response = await axios.post('http://127.0.0.1:80/api/patient/register',userData,
+            {
+              headers: {
+              
+              'Accept':'application/json',
+              'X-XSRF-TOKEN':Cookies.get('XSRF-TOKEN')
+            },
+              
+              withCredentials:true,
+            
+            
+          }
+          );
 
             if (response.ok) {
                 const data = await response.json();
