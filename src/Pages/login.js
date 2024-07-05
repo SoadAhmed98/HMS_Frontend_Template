@@ -22,7 +22,7 @@ const Login = (props) => {
     const response = await fetch('http://127.0.0.1:80/api/patient/login', {
       method: 'POST',
       // credentials: 'include',
-      headers: {'Content-Type': 'application/json'},
+      headers: {'Accept': 'application/json'},
       body: JSON.stringify({
         email,
         password
