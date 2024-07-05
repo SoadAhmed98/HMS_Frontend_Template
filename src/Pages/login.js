@@ -143,6 +143,8 @@ import { useEffect, useState } from "react";
 import { useHistory, Link, Redirect } from "react-router-dom";
 import Header from "../Components/header.js";
 import Navbar from "../Components/navbar.js";
+import axios from 'axios'; 
+import Cookies from 'js-cookie';
 import WOW from "wowjs";
 import { validEmail, validPassword } from "../Components/rejex.js";
 
