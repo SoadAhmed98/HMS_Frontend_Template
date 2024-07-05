@@ -144,6 +144,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const ConfirmCode = () => {
   const [countdown, setCountdown] = useState({ minutes: 1, seconds: 0 });
@@ -172,9 +173,9 @@ const ConfirmCode = () => {
 
   const resendCode = async () => {
     try {
-      await axios.post("http://127.0.0.1:80/api/patient/send_code", null, {
+      await axios.get("http://127.0.0.1:80/api/patient/send_code", {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `${localStorage.getItem("token")}`,
           "Accept": "application/json",
           'X-XSRF-TOKEN': Cookies.get('XSRF-TOKEN')
         },
@@ -197,12 +198,14 @@ const ConfirmCode = () => {
   };
 
   const handleSubmit = async () => {
+    console.log(localStorage.getItem("token"))
     try {
       const response = await axios.post("http://127.0.0.1:80/api/patient/check_code", {
         code: code.join("")
+        
       }, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `${localStorage.getItem("token")}`,
           "Accept": "application/json",
           'X-XSRF-TOKEN': Cookies.get('XSRF-TOKEN')
         },
@@ -217,6 +220,7 @@ const ConfirmCode = () => {
         setError("Invalid code, please try again.");
       }
     } catch (error) {
+      console.log(error)
       setSuccess(false);
       setError("An error occurred, please try again.");
     }
