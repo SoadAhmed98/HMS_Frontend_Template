@@ -207,75 +207,78 @@ const Login = (props) => {
   }
 
   return (
-    <>
-      <Navbar />
-      <Header head="Login For MediTech" content="What We Actually Do?" place="Login" />
+   <>
+      {/* <Navbar /> */}
       <div className="container mt-5 mb-5">
         <div className="row justify-content-center">
-          <div className="auto-container">
-            <div className="sec-title centered">
-              <h2>Login</h2>
-              <div className="separator"></div>
-            </div>
-            <div className="contact-form wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
-              <form onSubmit={submit}>
-                <div className="row clearfix">
-                  <div className="col-lg-12 form-group">
-                    <p className="text-danger">{errors.login}</p>
-                  </div>
-                  <div className="col-lg-12 form-group">
-                    <input
-                      required
-                      type="email"
-                      className={`form-control ${errors.email ? "border-danger" : "border-success"}`}
-                      value={email}
-                      onChange={handleInputChange}
-                      name="email"
-                      placeholder="Email"
-                    />
-                    <p className="text-danger">{errors.email}</p>
-                  </div>
-
-                  <div className="col-lg-12 col-md-6 form-group">
-                    <input
-                      type={showPassword ? "text" : "password"}
-                      required
-                      className={`form-control ${errors.password ? "border-danger" : "border-success"}`}
-                      value={password}
-                      onChange={handleInputChange}
-                      name="password"
-                      placeholder="Password"
-                    />
-                    <p className="text-danger">{errors.password}</p>
-                  </div>
-
-                  <div className="col-lg-12 col-md-6 form-group">
-                    <input
-                      id="showPassword"
-                      type="checkbox"
-                      checked={showPassword}
-                      onChange={() => setShowPassword(!showPassword)}
-                    />
-                    <label htmlFor="showPassword" className="text-dark mx-1">
-                      Show Password
-                    </label>
-                  </div>
-
-                  <div className="col-lg-12 form-group text-center">
-                    <button
-                      disabled={errors.email || errors.password}
-                      type="submit"
-                      className="theme-btn btn-style-two w-25 mb-2"
-                    >
-                      <span className="txt">Login</span>
-                    </button>
-                    <div className="text-center mt-4">
-                      <h5 className="text-dark">New User?</h5>
-                      <Link to="/register">Register now to create an account</Link>
-                    </div>
-                  </div>
+          <div className="col-md-8">
+            <div className="card shadow">
+              <div className="card-body">
+                <div className="sec-title centered">
+                  <h2>Login</h2>
+                  <div className="separator"></div>
                 </div>
-              </form>
+                <div className="contact-form wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
+                  <form onSubmit={submit}>
+                    <div className="row clearfix">
+                      <div className="col-lg-12 form-group">
+                        <p className="text-danger">{errors.login}</p>
+                      </div>
+                      <div className="col-lg-12 form-group">
+                        <input
+                          required
+                          type="email"
+                          className={`form-control ${errors.email ? "border-danger" : "border-success"}`}
+                          value={email}
+                          onChange={handleInputChange}
+                          name="email"
+                          placeholder="Email"
+                        />
+                        <p className="text-danger">{errors.email}</p>
+                      </div>
+
+                      <div className="col-lg-12 col-md-6 form-group">
+                        <input
+                          type={showPassword ? "text" : "password"}
+                          required
+                          className={`form-control ${errors.password ? "border-danger" : "border-success"}`}
+                          value={password}
+                          onChange={handleInputChange}
+                          name="password"
+                          placeholder="Password"
+                        />
+                        <p className="text-danger">{errors.password}</p>
+                      </div>
+
+                      <div className="col-lg-12 col-md-6 form-group">
+                        <input
+                          id="showPassword"
+                          type="checkbox"
+                          checked={showPassword}
+                          onChange={() => setShowPassword(!showPassword)}
+                        />
+                        <label htmlFor="showPassword" className="text-dark mx-1">
+                          Show Password
+                        </label>
+                      </div>
+
+                      <div className="col-lg-12 form-group text-center">
+                        <button
+                          disabled={errors.email || errors.password}
+                          type="submit"
+                          className="theme-btn btn-style-two w-25 mb-2"
+                        >
+                          <span className="txt">Login</span>
+                        </button>
+                        <div className="text-center mt-4">
+                          <h5 className="text-dark">New User?</h5>
+                          <Link to="/register">Register now to create an account</Link>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
             </div>
           </div>
         </div>
