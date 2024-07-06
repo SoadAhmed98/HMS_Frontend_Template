@@ -164,16 +164,22 @@ const HomeHeader = () => {
                   >
                     {isLoggedIn ? (
                       <NavLink exact
-                        className="nav-link dropdown-toggle"
-                        to="/profile"
-                        id="profileDropdown"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded={activeDropdown === 'profile' ? 'true' : 'false'}
-                      >
-                      Profile
-                      </NavLink>
+                      className="nav-link dropdown-toggle d-flex align-items-start"
+                      to="/profile"
+                      id="profileDropdown"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded={activeDropdown === 'profile' ? 'true' : 'false'}
+                    >
+                      <span>Profile</span>
+                      <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
+                        alt="Profile"
+                        className="img-fluid rounded-circle ms-2"
+                        style={{ width: "60px", height: "60px" }}
+                      />
+                    </NavLink>
                     ) : (
                       <NavLink
                       exact
@@ -224,23 +230,23 @@ const HomeHeader = () => {
                   </li>
                 </ul>
               </div>
-              {isLoggedIn && (
+              {/* {isLoggedIn && (
   
-  <div className="outer-box">
-  <ul className="social-box">
-    <li>
-        <div className="profile-icon">
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
-            alt="Profile"
-            className="img-fluid"
-          />
-        </div>
-    </li>
-  </ul>
-</div>
+//   <div className="outer-box">
+//   <ul className="social-box">
+//     <li>
+//         <div className="profile-icon">
+//           <img
+//             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
+//             alt="Profile"
+//             className="img-fluid"
+//           />
+//         </div>
+//     </li>
+//   </ul>
+// </div>
   
-)}
+)} */}
             </nav>
           </div>
         </div>
