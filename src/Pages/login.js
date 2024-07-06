@@ -295,6 +295,8 @@ import Cookies from 'js-cookie';
 import WOW from "wowjs";
 import { validEmail, validPassword } from "../Components/rejex.js";
 
+
+
 const Login = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -325,6 +327,7 @@ const Login = (props) => {
       if (response.status === 200) {
         const content = response.data;
         props.setName(content.name);
+        localStorage.setItem("login", true);
         setRedirectToHome(true);
       } else {
         setErrors({ ...errors, login: 'Login failed' });

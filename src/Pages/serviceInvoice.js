@@ -50,13 +50,14 @@ function ServiceInvoice() {
 
   // State management
   const [formData, setFormData] = useState({
-    patient_id: 60,
+    patient_id: 1,
     doctor_id: 1,
     Service_id: serviceId,
     discount_value:10.00,
     tax_rate:17, 
     type: 1,
-    updateMode:false
+    updateMode:false,
+    single_invoice:1
   });
 
   useEffect(() => {

@@ -13,8 +13,10 @@ function Home () {
   useEffect(() => {
 		new WOW.WOW().init();
 	}, []);
+  
     return (
       <>
+      
       <HomeHeader/>
       <HomeAbout/>
       <HomeCounter/>
