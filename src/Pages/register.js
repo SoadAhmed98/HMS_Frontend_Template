@@ -571,11 +571,9 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      
-      
       await axios.get('http://127.0.0.1:80/sanctum/csrf-cookie', { withCredentials: true });
       console.log(userData)
-      
+
       const response = await axios.post('http://127.0.0.1:80/api/patient/register', userData, {
         headers: {
           'Accept': 'application/json',
@@ -586,6 +584,8 @@ const Register = () => {
 
       if (response.status === 200) {
         localStorage.setItem("data", response.data.data.patient);
+
+        localStorage.setItem("token", response.data.data.patient.token);
 
         await axios.get("http://127.0.0.1:80/api/patient/send_code", {
           headers: {

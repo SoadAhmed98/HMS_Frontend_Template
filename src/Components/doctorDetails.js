@@ -98,10 +98,10 @@ const DoctorDetails = (props) => {
     const handleSubmit = async (e) => {
         
       e.preventDefault();
-      const cookies = Cookies.get('hospitalmanagementsystem_session');
+      // const cookies = Cookies.get('hospitalmanagementsystem_session');
     // const cookieHeader = cookiesToHeaderString(cookies);
     // console.log(cookieHeader)
-    console.log(cookies)
+    // console.log(cookies)
 
       // setPredictions(null)
       // setError404(null)
