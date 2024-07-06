@@ -86,7 +86,7 @@ const HomeHeader = () => {
               >
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                   <li className="nav-item">
-                    <NavLink exact className="nav-link" activeClassName="active" to="/" style={{ backgroundColor: 'white' }}>
+                    <NavLink exact className="nav-link home-nav-hover" activeClassName="active" to="/" style={{ backgroundColor: 'white' }}>
                       Home
                     </NavLink>
                   </li>
@@ -96,7 +96,7 @@ const HomeHeader = () => {
                   >
                     <NavLink
                       exact
-                      className="nav-link dropdown-toggle"
+                      className="nav-link dropdown-toggle home-nav-hover"
                       to="/about"
                       id="navbarDropdown"
                       role="button"
@@ -112,49 +112,49 @@ const HomeHeader = () => {
                       ref={navDropdownRef}
                     >
                       <li>
-                        <NavLink exact className="dropdown-item" to="/about">
+                        <NavLink exact className="dropdown-item home-nav-hover" to="/about">
                           About Us
                         </NavLink>
                       </li>
                       <li>
-                        <NavLink exact className="dropdown-item" to="chatbox">
+                        <NavLink exact className="dropdown-item home-nav-hover" to="chatbox">
                           Chat Box
                         </NavLink>
                       </li>
                       <li>
-                        <NavLink exact className="dropdown-item" to="/ourTeam">
+                        <NavLink exact className="dropdown-item home-nav-hover" to="/ourTeam">
                           Welcome
                         </NavLink>
                       </li>
                     </ul>
                   </li>
-                  <li className="nav-item">
-                    <NavLink exact className="nav-link" to="/ourTeam">
+                  <li className="nav-item ">
+                    <NavLink exact className="nav-link home-nav-hover" to="/ourTeam">
                       Doctors
                     </NavLink>
                   </li>
                   <li className="nav-item">
-                    <NavLink exact className="nav-link" to="/department">
+                    <NavLink exact className="nav-link home-nav-hover" to="/department">
                       Department
                     </NavLink>
                   </li>
                   <li className="nav-item">
-                    <NavLink exact className="nav-link" to="/packages">
+                    <NavLink exact className="nav-link home-nav-hover" to="/packages">
                       Packages
                     </NavLink>
                   </li>
                   <li className="nav-item">
-                    <NavLink exact className="nav-link" activeClassName="active" to="/faq">
+                    <NavLink exact className="nav-link home-nav-hover" activeClassName="active" to="/faq">
                       FAQ
                     </NavLink>
                   </li>
                   <li className="nav-item">
-                    <NavLink exact className="nav-link" activeClassName="active" to="/blog">
+                    <NavLink exact className="nav-link home-nav-hover" activeClassName="active" to="/blog">
                       Blog
                     </NavLink>
                   </li>
                   <li className="nav-item">
-                    <NavLink exact className="nav-link" activeClassName="active" to="/contact">
+                    <NavLink exact className="nav-link home-nav-hover" activeClassName="active" to="/contact">
                       Contact
                     </NavLink>
                   </li>
@@ -164,7 +164,7 @@ const HomeHeader = () => {
                   >
                     {isLoggedIn ? (
                       <NavLink exact
-                      className="nav-link dropdown-toggle d-flex align-items-start"
+                      className="nav-link dropdown-toggle d-flex align-items-start home-nav-hover"
                       to="/profile"
                       id="profileDropdown"
                       role="button"
@@ -183,7 +183,7 @@ const HomeHeader = () => {
                     ) : (
                       <NavLink
                       exact
-                        className="nav-link dropdown-toggle "
+                        className="nav-link dropdown-toggle home-nav-hover"
                         to="/login"
                         id="loginRegisterDropdown"
                         role="button"
@@ -202,12 +202,12 @@ const HomeHeader = () => {
                       {isLoggedIn ? (
                         <>
                           <li>
-                            <NavLink className="dropdown-item" to="/profile">
+                            <NavLink className="dropdown-item home-nav-hover" to="/profile">
                               Profile
                             </NavLink>
                           </li>
                           <li>
-                            <button className="dropdown-item" onClick={handleLogout}>
+                            <button className="dropdown-item home-nav-hover" onClick={handleLogout}>
                               Logout
                             </button>
                           </li>
@@ -215,12 +215,12 @@ const HomeHeader = () => {
                       ) : (
                         <>
                           <li>
-                            <NavLink className="dropdown-item" to="/login">
+                            <NavLink className="dropdown-item home-nav-hover" to="/login">
                               Login
                             </NavLink>
                           </li>
                           <li>
-                            <NavLink className="dropdown-item" to="/register">
+                            <NavLink className="dropdown-item home-nav-hover" to="/register">
                               Register
                             </NavLink>
                           </li>
@@ -268,11 +268,11 @@ const HomeHeader = () => {
                       <div className="btn-box">
                         <Link
                           to="/contact"
-                          className="theme-btn appointment-btn"
+                          className="theme-btn appointment-btn home-nav-hover"
                         >
                           <span className="txt">Appointment</span>
                         </Link>
-                        <Link to="/services" className="theme-btn services-btn">
+                        <Link to="/services" className="theme-btn services-btn home-nav-hover">
                           Services
                         </Link>
                       </div>
@@ -306,11 +306,11 @@ const HomeHeader = () => {
                       <div className="btn-box">
                         <Link
                           to="/contact"
-                          className="theme-btn appointment-btn"
+                          className="theme-btn appointment-btn home-nav-hover"
                         >
                           <span className="txt">Appointment</span>
                         </Link>
-                        <Link to="/services" className="theme-btn services-btn">
+                        <Link to="/services" className="theme-btn services-btn home-nav-hover">
                           Services
                         </Link>
                       </div>
