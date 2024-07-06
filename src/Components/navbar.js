@@ -92,14 +92,19 @@ const CustomNavbar = () => {
                     Packages
                   </NavLink>
                 </li>
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <NavLink exact  className="nav-link"  activeClassName="active" to="/faq">
                     FAQ
                   </NavLink>
-                </li>
-                <li className="nav-item">
+                </li> */}
+                {/* <li className="nav-item">
                   <NavLink exact  className="nav-link"  activeClassName="active" to="/blog">
                     Blog
+                  </NavLink>
+                </li> */}
+                <li className="nav-item">
+                  <NavLink exact  className="nav-link"  activeClassName="active" to="/predict">
+                    Predict
                   </NavLink>
                 </li>
                 <li className="nav-item">
