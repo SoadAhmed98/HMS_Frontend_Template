@@ -3,20 +3,89 @@ import axios from "axios";
 import "../Profile.css";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
+import PatientAccountTable from '../Components/accountSatatment.js'
 import Navbar from "../Components/navbar.js";
 
+
 const Profile = () => {
+    const [invoices, setInvoices] = useState([]);
+    const [totalWithTax, setTotalWithTax] = useState(0);
     const [activeTab, setActiveTab] = useState("profile");
     const [profileData, setProfileData] = useState(null);
     const [profileImage, setProfileImage] = useState(
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
     );
+    const [services, setServices] = useState({});
+    const [payments, setPayments] = useState([]);
+    const [laboratoryData, setLaboratoryData] = useState([]);
+    
+   
+
+    useEffect(() => {
+        const fetchPayments = async () => {
+            try {
+                const response = await axios.get('https://b43c1a73-82c8-4103-8569-c1e7e6a160cd.mock.pstmn.io/receipts');
+                setPayments(response.data);
+            } catch (error) {
+                console.error('Error fetching payments:', error);
+            }
+        };
+
+        fetchPayments();
+    }, []);
+
+    useEffect(() => {
+        const fetchInvoices = async () => {
+            try {
+                const response = await axios.get('https://b43c1a73-82c8-4103-8569-c1e7e6a160cd.mock.pstmn.io/patients/1/invoices');
+                const invoices = response.data;
+                setInvoices(invoices);
+                calculateTotal(invoices);
+                fetchServiceNames(invoices);
+            } catch (error) {
+                console.error("Error fetching invoices:", error);
+            }
+        };
+
+        fetchInvoices();
+    }, []);
 
     useEffect(() => {
         axios.get("https://b43c1a73-82c8-4103-8569-c1e7e6a160cd.mock.pstmn.io/patients/1")
             .then(response => setProfileData(response.data))
             .catch(error => console.error('Error fetching profile data:', error));
     }, []);
+
+    useEffect(() => {
+        const fetchLaboratoryData = async () => {
+            try {
+                const response = await axios.get(`https://b43c1a73-82c8-4103-8569-c1e7e6a160cd.mock.pstmn.io/patient-details/1`);
+                setLaboratoryData(response.data);
+            } catch (error) {
+                console.error("Error fetching laboratory data:", error);
+            }
+        };
+
+        fetchLaboratoryData();
+    }, []);
+
+    const fetchServiceNames = async (invoices) => {
+        const serviceNames = {};
+        await Promise.all(invoices.map(async (invoice) => {
+            try {
+                const response = await axios.get(`https://b43c1a73-82c8-4103-8569-c1e7e6a160cd.mock.pstmn.io/services/${invoice.Service_id}`);
+                serviceNames[invoice.Service_id] = response.data.name;
+            } catch (error) {
+                console.error(`Error fetching service name for Service_id ${invoice.Service_id}:`, error);
+            }
+        }));
+        setServices(serviceNames);
+    };
+
+    const calculateTotal = (invoices) => {
+        const total = invoices.reduce((acc, invoice) => acc + invoice.total_with_tax, 0);
+        setTotalWithTax(total);
+    };
 
     const handleTabSwitch = (tab) => {
         setActiveTab(tab);
@@ -35,6 +104,7 @@ const Profile = () => {
     if (!profileData) {
         return <div>Loading...</div>;
     }
+    const filteredPayments = payments.filter(payment => payment.patient_id === 4);
 
     return (
         <>
@@ -69,82 +139,90 @@ const Profile = () => {
                                 className="mb-3"
                                 fill
                             >
-                                <Tab eventKey="profile"  title="Profile">
+                                <Tab eventKey="profile" title="Profile">
                                     <div className="row ">
-                                        <div className="col-md-9">
-                                            <label>Patient Id</label>
+                                        <div className="col-md-6">
+                                            <label className="h6 ">Patient Id</label>
                                         </div>
-                                        <div className="col-md-3 ">
+                                        <div className="col-md-6 ">
                                             <p>{profileData.id}</p>
                                         </div>
                                     </div>
                                     <div className="row">
-                                        <div className="col-md-9">
-                                            <label>Patient Name</label>
+                                        <div className="col-md-6">
+                                            <label className="h6 ">Patient Name</label>
                                         </div>
-                                        <div className="col-md-3">
+                                        <div className="col-md-6">
                                             <p>{profileData.name}</p>
                                         </div>
                                     </div>
 
                                     <div className="row">
-                                        <div className="col-md-9">
-                                            <label>Phone Number</label>
+                                        <div className="col-md-6">
+                                            <label className="h6">Phone Number</label>
                                         </div>
-                                        <div className="col-md-3">
+                                        <div className="col-md-6">
                                             <p>{profileData.phone}</p>
                                         </div>
                                     </div>
                                     <div className="row">
-                                        <div className="col-8">
-                                            <label>Email</label>
+                                        <div className="col-md-6">
+                                            <label className="h6">Email</label>
                                         </div>
-                                        <div className="col-4 ">
+                                        <div className="col-md-6 ">
                                             <p>{profileData.email}</p>
                                         </div>
                                     </div>
                                     <div className="row">
-                                        <div className="col-md-9">
-                                            <label>Date Of Birth</label>
+                                        <div className="col-md-6">
+                                            <label className="h6">Date Of Birth</label>
                                         </div>
-                                        <div className="col-md-3">
+                                        <div className="col-md-6">
                                             <p>{profileData.birth_date}</p>
                                         </div>
                                     </div>
                                     <div className="row">
-                                        <div className="col-md-9">
-                                            <label>Gender</label>
+                                        <div className="col-md-6">
+                                            <label className="h6">Gender</label>
                                         </div>
-                                        <div className="col-md-3">
+                                        <div className="col-md-6">
                                             <p>{profileData.gender}</p>
                                         </div>
                                     </div>
                                     <div className="row">
-                                        <div className="col-md-9">
-                                            <label>Blood Group</label>
+                                        <div className="col-md-6">
+                                            <label className="h6">Blood Group</label>
                                         </div>
-                                        <div className="col-md-3">
+                                        <div className="col-md-6">
                                             <p>{profileData.blood_group}</p>
                                         </div>
                                     </div>
                                 </Tab>
-                                <Tab eventKey="invoices" title="Invoices">
+                                <Tab eventKey="invoices" title="Invoices" className="text-center">
                                     <div className="table-responsive">
-                                        <table className="table  w-100">
+                                        <table className="table w-100">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">#</th>
-                                                    <th scope="col">SERVICE NAME</th>
-                                                    <th scope="col">INVOICE DATE</th>
-                                                    <th scope="col">TOTAL WITH TAX</th>
-                                                    <th scope="col">INVOICE TYPE</th>
+                                                    <th scope="col">Service name</th>
+                                                    <th scope="col">Invoice date</th>
+                                                    <th scope="col">Total with tax</th>
+                                                    <th scope="col">Invoice type</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                {invoices.map((invoice, index) => (
+                                                    <tr key={invoice.id}>
+                                                        <th scope="row">{index + 1}</th>
+                                                        <td>{services[invoice.Service_id]}</td>
+                                                        <td>{invoice.invoice_date}</td>
+                                                        <td>{invoice.total_with_tax}</td>
+                                                        <td>{invoice.invoice_type === 1 ? 'Cash' : 'Credit'}</td>
+                                                    </tr>
+                                                ))}
                                                 <tr>
-                                                    <th scope="row" >1</th>
-                                                    <td colSpan={3} className="text-center">Total</td>
-                                                    <td>0.0</td>
+                                                    <td colSpan="4" className="table-info">Total</td>
+                                                    <td className="table-success">{totalWithTax}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -152,65 +230,46 @@ const Profile = () => {
                                 </Tab>
                                 <Tab eventKey="payments" title="Payments">
                                     <div className="table-responsive">
-                                        <table className="table  w-100">
+                                        <table className="table w-100">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">#</th>
-                                                    <th scope="col">SERVICE NAME</th>
-                                                    <th scope="col">INVOICE DATE</th>
-                                                    <th scope="col">TOTAL WITH TAX</th>
-                                                    <th scope="col">INVOICE TYPE</th>
+                                                    <th scope="col">Date Added</th>
+                                                    <th scope="col">Amount</th>
+                                                    <th scope="col">Description</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <th scope="row" >1</th>
-                                                    <td colSpan={3} className="text-center">Total</td>
-                                                    <td>0.0</td>
-                                                </tr>
+                                                {filteredPayments.map((payment) => (
+                                                    <tr key={payment.id}>
+                                                        <th scope="row">{payment.id}</th>
+                                                        <td>{payment.date}</td>
+                                                        <td>{payment.amount}</td>
+                                                        <td>{payment.description}</td>
+                                                    </tr>
+                                                ))}
                                             </tbody>
                                         </table>
                                     </div>
                                 </Tab>
-                                <Tab eventKey="accountStatement" title="Account Statement">
-                                    <div className="table-responsive">
-                                        <table className="table  w-100">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">DATE ADDED</th>
-                                                    <th scope="col">DESCRIPTION</th>
-                                                    <th scope="col">DEBIT</th>
-                                                    <th scope="col">CREDIT</th>
-                                                    <th scope="col">FINAL BALANCE</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td colSpan={2} className="text-center">Total</td>
-                                                    <td>0.00</td>
-                                                    <td>0.00</td>
-                                                    <td>0 Credit</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </Tab> 
+                        
+                               
+                               <Tab eventKey="accountStatment" title="Account Statment">
+                               <PatientAccountTable></PatientAccountTable>
+                                </Tab>
                                 <Tab eventKey="laboratory" title="Laboratory">
                                     <div className="text-wrapper">
-                                        <p>
-                                            Lorem ipsum odor amet, consectetuer adipiscing elit. Ac purus in massa egestas mollis varius;
-                                            dignissim elementum. Mollis tincidunt mattis hendrerit dolor eros enim, nisi ligula ornare.
-                                            Hendrerit parturient habitant pharetra rutrum gravida porttitor eros feugiat. Mollis elit
-                                            sodales taciti duis praesent id. Consequat urna vitae morbi nunc congue.
-                                        </p>
-                                        <p>
-                                            Non etiam tempor id arcu magna ante eget. Nec per posuere cubilia cras porttitor condimentum
-                                            orci suscipit. Leo maecenas in tristique, himenaeos elementum placerat. Taciti rutrum nostra,
-                                            eget cursus velit ultricies. Quam molestie tellus himenaeos cubilia congue vivamus ultricies.
-                                            Interdum praesent ut penatibus fames eros ad consectetur sed.
-                                        </p>
+                                        {laboratoryData.map((data, index) => (
+                                            <div key={index}>
+                                                <h5>Laboratory Record #{index + 1}</h5>
+                                                <p>{data.patient_laboratories[0].description_employee}</p>
+                                                <div className="images">
+                                                    {data.patient_laboratories[0].images.map((image, imgIndex) => (
+                                                        <img key={imgIndex} src={image.url} alt={image.filename} style={{ width: "100px", height: "100px" }} />
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        ))}
                                     </div>
                                 </Tab>
                             </Tabs>

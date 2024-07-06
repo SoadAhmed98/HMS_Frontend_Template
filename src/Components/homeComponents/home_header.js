@@ -42,76 +42,92 @@ const HomeHeader = () => {
 
   return (
     <>
-<header className="main-header header-style-three">
-      <div className="header-upper">
-        <div className="auto-container clearfix">
-          <nav className="navbar navbar-expand-md navbar-light main-menu">
-          <Link to="/">
-                  <img
-                    src="images/logo/4.png"
-                    alt=""
-                    title=""
-                    style={{ width: "18rem", height: "11rem" }}
-                    className="pb-3"
-                  />
-                </Link>
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded={activeDropdown ? "true" : "false"}
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon"></span>
-            </button>
+      <header className="main-header header-style-three">
+        <div className="header-upper">
+          <div className="auto-container clearfix">
+            <nav className="navbar navbar-expand-md navbar-light main-menu">
+              <Link to="/">
+                <img
+                  src="images/logo/4.png"
+                  alt=""
+                  title=""
+                  style={{ width: "18rem", height: "11rem" }}
+                  className="pb-3"
+                />
+              </Link>
+              <button
+                className="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded={activeDropdown ? "true" : "false"}
+                aria-label="Toggle navigation"
+              >
+                <span className="navbar-toggler-icon"></span>
+              </button>
 
-            <div className="collapse navbar-collapse navigation clearfix" id="navbarSupportedContent">
-              <ul className="me-auto mb-2 mb-lg-0 navigation clearfix">
-                <li className="nav-item current">
-                <NavLink exact className="nav-link" activeClassName="active" to="/">
-                    Home
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                <NavLink exact className="nav-link"  to="/about">
-                    About us
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink exact  className="nav-link" to="/ourTeam">
-                    Doctors
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink exact  className="nav-link" to="/department">
-                    Department
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink exact  className="nav-link" to="/packages">
-                    Packages
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink exact  className="nav-link"  activeClassName="active" to="/faq">
-                    FAQ
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink exact  className="nav-link"  activeClassName="active" to="/blog">
-                    Blog
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink exact className="nav-link" activeClassName="active" to="/contact">
-                    Contact
-                  </NavLink>
-                </li>
-              </ul>
-            </div>
-            <div className="outer-box clearfix">
+              <div className="collapse navbar-collapse navigation clearfix" id="navbarSupportedContent">
+                <ul className="me-auto mb-2 mb-lg-0 navigation clearfix">
+                  <li className="nav-item current">
+                    <NavLink exact className="nav-link" activeClassName="active" to="/">
+                      Home
+                    </NavLink>
+                  </li>
+                  <li className="dropdown"> <NavLink exact className="nav-link" to="/about">
+                          About Us
+                        </NavLink>
+                    <ul>
+                      <li className="nav-item" >
+                        <NavLink exact className="nav-link" to="/about">
+                          About Us
+                        </NavLink>
+                      </li>
+                      <li className="nav-item">
+                        <NavLink exact className="nav-link" to="chatbox">
+                          Chat Box
+                        </NavLink>
+                      </li>
+                      <li className="nav-item">
+                        <NavLink exact className="nav-link" to="/ourTeam">
+                          Welcome
+                        </NavLink>
+                      </li>
+                    </ul>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink exact className="nav-link" to="/ourTeam">
+                      Doctors
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink exact className="nav-link" to="/department">
+                      Department
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink exact className="nav-link" to="/packages">
+                      Packages
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink exact className="nav-link" activeClassName="active" to="/faq">
+                      FAQ
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink exact className="nav-link" activeClassName="active" to="/blog">
+                      Blog
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink exact className="nav-link" activeClassName="active" to="/contact">
+                      Contact
+                    </NavLink>
+                  </li>
+                </ul>
+              </div>
+              <div className="outer-box clearfix">
                 <ul className="social-box clearfix">
                   <li>
                     <Link to="#">
@@ -129,11 +145,11 @@ const HomeHeader = () => {
                     </Link>
                   </li>
                 </ul>
-              </div> 
-          </nav>
+              </div>
+            </nav>
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
 
       <section className="main-slider-three ">
         <div className="banner-carousel swiper-container">

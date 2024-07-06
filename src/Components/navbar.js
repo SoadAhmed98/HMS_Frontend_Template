@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import { Link  , NavLink} from "react-router-dom";
 
 const CustomNavbar = () => {
   const [activeDropdown, setActiveDropdown] = useState(null); 
@@ -57,11 +56,27 @@ const CustomNavbar = () => {
                     Home
                   </NavLink>
                 </li>
-                <li className="nav-item">
-                <NavLink exact className="nav-link" activeClassName="active" to="/about">
-                    About us
-                  </NavLink>
-                </li>
+                <li className="dropdown"><NavLink exact className="nav-link" to="/about">
+                          About US
+                        </NavLink>
+                    <ul>
+                      <li className="nav-item">
+                        <NavLink exact className="nav-link" to="/about">
+                          About US
+                        </NavLink>
+                      </li>
+                      <li className="nav-item">
+                        <NavLink exact className="nav-link" to="/chatbox">
+                          Chat Box
+                        </NavLink>
+                      </li>
+                      <li className="nav-item">
+                        <NavLink exact className="nav-link" to="/packages">
+                          Welcome
+                        </NavLink>
+                      </li>
+                    </ul>
+                  </li>
                 <li className="nav-item">
                   <NavLink exact  className="nav-link"  activeClassName="active" to="/ourTeam">
                     Doctors
