@@ -7,7 +7,9 @@ function HomeServices() {
 
     useEffect(() => {
         // Fetch data from API
-        axios.get(`https://b43c1a73-82c8-4103-8569-c1e7e6a160cd.mock.pstmn.io/services`)
+        // axios.get(`https://b43c1a73-82c8-4103-8569-c1e7e6a160cd.mock.pstmn.io/services`)
+        axios.get(`http://127.0.0.1:80/api/services`)
+
             .then(res => {
                 setServices(res.data);
             })
@@ -42,7 +44,14 @@ function HomeServices() {
                                         <div className="icon-box">
                                             <span className={`icon ${icons[index]}`}></span>
                                         </div>
-                                        <h3><Link to="#">{service.name}</Link></h3>
+                                        <h3><Link to={{
+                                            pathname: `service-invoice`,
+                                            state: { 
+                                              'serviceId': service.id, 
+                                              servicePrice: service.price, 
+                                              serviceName: service.name 
+                                            }
+                                        }}>{service.name}</Link></h3>
                                         <div className="text">{service.description}<br/> Now place take it.</div>
                                     </div>
                                 </div>
@@ -70,7 +79,15 @@ function HomeServices() {
                                         <div className="icon-box">
                                             <span className={`icon ${icons[index + 3]}`}></span>
                                         </div>
-                                        <h3><Link to="#">{service.name}</Link></h3>
+                                        <h3><Link to={{
+                                            pathname: `service-invoice`,
+                                            state: { 
+                                              'serviceId': service.id, 
+                                              servicePrice: service.price, 
+                                              serviceName: service.name 
+                                            }
+                                        }}>{service.name}</Link></h3>
+                                        
                                         <div className="text">{service.description}<br/> Now place take it.</div>
                                     </div>
                                 </div>
