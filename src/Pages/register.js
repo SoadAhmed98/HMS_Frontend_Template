@@ -542,9 +542,9 @@ const Register = () => {
     email: "",
     password: "",
     password_confirmation: "",
-    birthYear: "",
-    birthMonth: "",
-    birthDay: "",
+    // birthYear: "",
+    // birthMonth: "",
+    // birthDay: "",
     birth_date: "",
     blood_group: "",
     gender: "",
@@ -558,9 +558,9 @@ const Register = () => {
     email: "",
     password: "",
     password_confirmation: "",
-    birthYear: "",
-    birthMonth: "",
-    birthDay: "",
+    // birthYear: "",
+    // birthMonth: "",
+    // birthDay: "",
     blood_group: "",
     gender: "",
     address: "",
@@ -571,8 +571,11 @@ const Register = () => {
     e.preventDefault();
 
     try {
+      
+      
       await axios.get('http://127.0.0.1:80/sanctum/csrf-cookie', { withCredentials: true });
-
+      console.log(userData)
+      
       const response = await axios.post('http://127.0.0.1:80/api/patient/register', userData, {
         headers: {
           'Accept': 'application/json',
@@ -582,7 +585,7 @@ const Register = () => {
       });
 
       if (response.status === 200) {
-        localStorage.setItem("token", response.data.data.patient);
+        localStorage.setItem("data", response.data.data.patient);
 
         await axios.get("http://127.0.0.1:80/api/patient/send_code", {
           headers: {
@@ -607,10 +610,33 @@ const Register = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
-    setUserData(prevUserData => ({
-      ...prevUserData,
-      [name]: value
-    }));
+    if(name == 'birth_date')
+      {
+        const inputDate = value;
+        const date = new Date(inputDate);
+
+        const year = String(date.getFullYear()); 
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+        const day = String(date.getDate()).padStart(2, '0');
+
+        const formatted = `${year}-${month}-${day}`;
+
+        setUserData(prevUserData => ({
+          ...prevUserData,
+          [name]: formatted
+        }));
+
+      }
+      else
+      {
+        setUserData(prevUserData => ({
+          ...prevUserData,
+          [name]: value
+        }));
+
+      }
+
+    
     
 
     switch (name) {
@@ -626,25 +652,25 @@ const Register = () => {
       case "password_confirmation":
         setErrors({ ...errors, password_confirmation: value !== userData.password ? "Passwords do not match" : "" });
         break;
-      case "birthYear":
-      case "birthMonth":
-      case "birthDay":
-        const { birthYear, birthMonth, birthDay } = {
-          ...userData,
-          [name]: value
-        };
+      // case "birthYear":
+      // case "birthMonth":
+      // case "birthDay":
+      //   const { birthYear, birthMonth, birthDay } = {
+      //     ...userData,
+      //     [name]: value
+      //   };
 
-        if (birthYear && birthMonth && birthDay) {
-          const birth_date = `${birthYear}-${birthMonth}-${birthDay}`;
-          setUserData(prevUserData => ({
-            ...prevUserData,
-            birth_date
-          }));
-          setErrors({ ...errors, birth_date: "" });
-        } else {
-          setErrors({ ...errors, birth_date: "Please fill in all fields for birthdate" });
-        }
-        break;
+      //   if (birthYear && birthMonth && birthDay) {
+      //     const birth_date = `${birthYear}-${birthMonth}-${birthDay}`;
+      //     setUserData(prevUserData => ({
+      //       ...prevUserData,
+      //       birth_date
+      //     }));
+      //     setErrors({ ...errors, birth_date: "" });
+      //   } else {
+      //     setErrors({ ...errors, birth_date: "Please fill in all fields for birthdate" });
+      //   }
+      //   break;
       case "phone":
         setErrors({ ...errors, phone: value.length < 11 ? "Phone number must be at least 11 digits long" : "" });
         break;
@@ -727,7 +753,7 @@ const Register = () => {
                         <div className="invalid-feedback">{errors.password_confirmation}</div>
                       </div>
 
-                      <div className="col-lg-4 mb-3">
+                      {/* <div className="col-lg-4 mb-3">
                         <input
                           type="text"
                           className={`form-control ${errors.birthYear ? "is-invalid" : ""}`}
@@ -764,6 +790,20 @@ const Register = () => {
                           required
                         />
                         <div className="invalid-feedback">{errors.birthDay}</div>
+                      </div> */}
+
+                      <div className="col-lg-12 mb-3">
+                        <input
+                          type="date"
+                          className="form-control"
+                          // className={`form-control ${errors.birthDay ? "is-invalid" : ""}`}
+                          value={userData.birthDay}
+                          onChange={handleInputChange}
+                          name="birth_date"
+                          placeholder="Birth Date"
+                          required
+                        />
+                        {/* <div className="invalid-feedback">{errors.birthDay}</div> */}
                       </div>
 
                       <div className="col-lg-12 mb-3">
