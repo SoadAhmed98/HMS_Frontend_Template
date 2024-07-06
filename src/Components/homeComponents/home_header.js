@@ -85,8 +85,8 @@ const HomeHeader = () => {
                 id="navbarSupportedContent"
               >
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li className="nav-item"style={{ backgroundColor: 'white' }}>
-                    <NavLink exact className="nav-link" activeClassName="active" to="/">
+                  <li className="nav-item">
+                    <NavLink exact className="nav-link" activeClassName="active" to="/" style={{ backgroundColor: 'white' }}>
                       Home
                     </NavLink>
                   </li>
