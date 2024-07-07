@@ -28,6 +28,7 @@ import PredictDisease from "./Pages/predictDisease.js";
 import ServiceInvoice from "./Pages/serviceInvoice.js";
 import PackageInvoice from "./Pages/packageInvoice.js";
 import ConfirmCode from "./Pages/confirmCode.js";
+import CheckEmail from "./Pages/checkEmail.js";
 import ResetPassword from "./Pages/reset-password.js";
 
 function App() {
@@ -59,6 +60,7 @@ function App() {
               <Route component={ServiceInvoice} path="/service-invoice" exact />
               <Route component={PackageInvoice} path="/package-invoice" exact />
               <Route component={ConfirmCode} path="/confirm-code" exact />
+              <Route component={CheckEmail} path="/check-email" exact />
               <Route component={ResetPassword} path="/reset-password" exact />
 
 
