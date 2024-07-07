@@ -7,8 +7,10 @@ import PatientAccountTable from '../Components/accountSatatment.js'
 import Navbar from "../Components/navbar.js";
 import InvoiceReview from "../Components/review.js";
 
-
+import { useHistory } from 'react-router-dom';
 const Profile = () => {
+    const history = useHistory();
+
     const [invoices, setInvoices] = useState([]);
     const [totalWithTax, setTotalWithTax] = useState(0);
     const [activeTab, setActiveTab] = useState("profile");
@@ -20,7 +22,12 @@ const Profile = () => {
     const [payments, setPayments] = useState([]);
     const [laboratoryData, setLaboratoryData] = useState([]);
     
-   
+    useEffect(() => {
+        const isLoggedIn = localStorage.getItem('login');
+        if (isLoggedIn === "false") {
+            history.push('/'); 
+        }
+    }, [history]);
 
     useEffect(() => {
         const fetchPayments = async () => {

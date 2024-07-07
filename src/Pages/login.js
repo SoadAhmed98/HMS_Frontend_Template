@@ -473,9 +473,11 @@ import Cookies from 'js-cookie';
 import WOW from "wowjs";
 import { validEmail, validPassword } from "../Components/rejex.js";
 
-
+import { useHistory } from 'react-router-dom';
 
 const Login = (props) => {
+  const history = useHistory();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [redirectToHome, setRedirectToHome] = useState(false);
@@ -517,7 +519,12 @@ const Login = (props) => {
       setErrors({ ...errors, login: error.response?.data?.message || 'Login failed' });
     }
   };
-
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem('login');
+    if (isLoggedIn === "true") {
+        history.push('/'); 
+    }
+}, [history]);
   // const handleForgetPassword = async () => {
   //   try {
   //     const response = await axios.post("http://127.0.0.1:80/api/patient/check-email", {

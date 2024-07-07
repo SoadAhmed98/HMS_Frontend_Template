@@ -682,6 +682,12 @@ const Register = () => {
   useEffect(() => {
     new WOW.WOW().init();
   }, []);
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem('login');
+    if (isLoggedIn === "true") {
+        history.push('/'); 
+    }
+}, [history]);
 
   if (redirect) {
     return <Redirect to="/confirm-code" />;

@@ -4,8 +4,10 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import WOW from "wowjs";
 import { validEmail } from "../Components/rejex.js";
-
+import { useHistory } from 'react-router-dom';
 const CheckEmail = (props) => {
+  const history = useHistory();
+
   const [email, setEmail] = useState('');
   const [redirectToResetPassword, setRedirectToResetPassword] = useState(false);
   const [errors, setErrors] = useState({
@@ -37,6 +39,7 @@ const CheckEmail = (props) => {
     }
   };
 
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
@@ -45,6 +48,12 @@ const CheckEmail = (props) => {
       setErrors({ ...errors, email: validEmail.test(value) ? "" : "Invalid email format" });
     }
   };
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem('login');
+    if (isLoggedIn === "true") {
+        history.push('/'); 
+    }
+}, [history]);
 
   useEffect(() => {
     new WOW.WOW().init();
