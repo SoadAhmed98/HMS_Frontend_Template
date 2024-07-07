@@ -1,12 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Swiper from "swiper";
 import "swiper/swiper-bundle.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const HomeHeader = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
-  const navDropdownRef = useRef(null);
+  const aboutDropdownRef = useRef(null);
+  const profileDropdownRef = useRef(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -14,20 +16,14 @@ const HomeHeader = () => {
     const loginStatus = localStorage.getItem("login") === "true";
     setIsLoggedIn(loginStatus);
 
-    const handleOutsideClick = (event) => {
-      if (
-        navDropdownRef.current &&
-        !navDropdownRef.current.contains(event.target)
-      ) {
-        setActiveDropdown(null);
-      }
-    };
-
-    document.addEventListener("mousedown", handleOutsideClick);
-
-    return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
-    };
+    // Initialize Swiper
+    new Swiper(".banner-carousel", {
+      loop: true,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
   }, []);
 
   const handleDropdownClick = (dropdownName) => {
@@ -45,22 +41,11 @@ const HomeHeader = () => {
     window.location.href = "/";
   };
 
-  useEffect(() => {
-    // Initialize Swiper
-    new Swiper(".banner-carousel", {
-      loop: true,
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-    });
-  }, []);
-
   return (
     <>
       <header className="main-header header-style-three">
         <div className="header-upper">
-          <div className="container  clearfix">
+          <div className="container clearfix">
             <nav className="navbar navbar-expand-md navbar-dark main-menu">
               <Link to="/" className="navbar-brand">
                 <img
@@ -89,118 +74,111 @@ const HomeHeader = () => {
               >
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                   <li className="nav-item">
-                    <NavLink exact className="nav-link home-nav-hover" activeClassName="active" to="/" style={{ backgroundColor: 'white' }}>
+                    <NavLink
+                      exact={true}
+                      style={{ backgroundColor: "white" }}
+                      className="nav-link home-nav-hover"
+                      activeClassName="active"
+                      to="/"
+                    >
                       Home
                     </NavLink>
                   </li>
-                  <li
-                    className={`nav-item dropdown ${activeDropdown === 'about' ? 'show' : ''}`}
-                    onClick={() => handleDropdownClick('about')}
-                  >
-                    <NavLink
-                      exact
-                      className="nav-link dropdown-toggle home-nav-hover"
-                      to="/about"
-                      id="navbarDropdown"
+                  <li className={`nav-item dropdown ${activeDropdown === "about" ? "show" : ""}`}>
+                    <div
+                      className={`nav-link dropdown-toggle home-nav-hover ${activeDropdown === "about" ? "active" : ""}`}
+                      id="navbarDropdownAbout"
                       role="button"
-                      data-bs-toggle="dropdown"
                       aria-haspopup="true"
-                      aria-expanded={activeDropdown === 'about' ? 'true' : 'false'}
+                      aria-expanded={activeDropdown === "about" ? "true" : "false"}
+                      onClick={() => handleDropdownClick("about")}
+                      style={{ backgroundColor: activeDropdown === "about" ? "white" : "" }}
                     >
                       About Us
-                    </NavLink>
+                    </div>
                     <ul
-                      className={`dropdown-menu ${activeDropdown === 'about' ? 'show' : ''}`}
-                      aria-labelledby="navbarDropdown"
-                      ref={navDropdownRef}
+                      className={`dropdown-menu ${activeDropdown === "about" ? "show" : ""}`}
+                      aria-labelledby="navbarDropdownAbout"
+                      ref={aboutDropdownRef}
                     >
                       <li>
-                        <NavLink exact className="dropdown-item home-nav-hover" to="/about">
+                        <NavLink exact={true} className="dropdown-item home-nav-hover" to="/about">
                           About Us
                         </NavLink>
                       </li>
                       <li>
-                        <NavLink exact className="dropdown-item home-nav-hover" to="chatbox">
-                          Chat Box
+                        <NavLink exact={true} className="dropdown-item home-nav-hover" to="/predict">
+                          Predict
                         </NavLink>
                       </li>
                       <li>
-                        <NavLink exact className="dropdown-item home-nav-hover" to="/ourTeam">
-                          Welcome
+                        <NavLink exact={true} className="dropdown-item home-nav-hover" to="/faq">
+                          FAQ
                         </NavLink>
                       </li>
                     </ul>
                   </li>
-                  <li className="nav-item ">
-                    <NavLink exact className="nav-link home-nav-hover" to="/ourTeam">
+                  <li className="nav-item">
+                    <NavLink exact={true} className="nav-link home-nav-hover" to="/ourTeam">
                       Doctors
                     </NavLink>
                   </li>
                   <li className="nav-item">
-                    <NavLink exact className="nav-link home-nav-hover" to="/department">
+                    <NavLink exact={true} className="nav-link home-nav-hover" to="/department">
                       Department
                     </NavLink>
                   </li>
                   <li className="nav-item">
-                    <NavLink exact className="nav-link home-nav-hover" to="/packages">
+                    <NavLink exact={true} className="nav-link home-nav-hover" to="/packages">
                       Packages
                     </NavLink>
                   </li>
                   <li className="nav-item">
-                    <NavLink exact className="nav-link home-nav-hover" activeClassName="active" to="/faq">
-                      FAQ
-                    </NavLink>
-                  </li>
-                  <li className="nav-item">
-                    <NavLink exact className="nav-link home-nav-hover" activeClassName="active" to="/blog">
+                    <NavLink exact={true} className="nav-link home-nav-hover" activeClassName="active" to="/blog">
                       Blog
                     </NavLink>
                   </li>
                   <li className="nav-item">
-                    <NavLink exact className="nav-link home-nav-hover" activeClassName="active" to="/contact">
+                    <NavLink exact={true} className="nav-link home-nav-hover" activeClassName="active" to="/contact">
                       Contact
                     </NavLink>
                   </li>
-                  <li
-                    className={`nav-item dropdown ${activeDropdown === 'profile' ? 'show' : ''}`}
-                    onClick={() => handleDropdownClick('profile')}
-                  >
+                  <li className={`nav-item dropdown ${activeDropdown === "profile" ? "show" : ""}`}>
                     {isLoggedIn ? (
-                      <NavLink exact
-                      className="nav-link dropdown-toggle d-flex align-items-start home-nav-hover"
-                      to="/profile"
-                      id="profileDropdown"
-                      role="button"
-                      data-bs-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded={activeDropdown === 'profile' ? 'true' : 'false'}
-                    >
-                      <span>Profile</span>
-                      <img
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
-                        alt="Profile"
-                        className="img-fluid rounded-circle ms-2"
-                        style={{ width: "60px", height: "60px" }}
-                      />
-                    </NavLink>
-                    ) : (
                       <NavLink
-                      exact
-                        className="nav-link dropdown-toggle home-nav-hover"
-                        to="/login"
-                        id="loginRegisterDropdown"
+                        exact={true}
+                        className="nav-link dropdown-toggle d-flex align-items-start home-nav-hover"
+                        to="#"
+                        id="profileDropdown"
                         role="button"
-                        data-bs-toggle="dropdown"
+                        onClick={() => handleDropdownClick("profile")}
                         aria-haspopup="true"
-                        aria-expanded={activeDropdown === 'profile' ? 'true' : 'false'}
+                        aria-expanded={activeDropdown === "profile" ? "true" : "false"}
+                      >
+                        <img
+                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
+                          alt="Profile"
+                          className="img-fluid rounded-circle ms-2"
+                          style={{ width: "60px", height: "60px" }}
+                        />
+                      </NavLink>
+                    ) : (
+                      <div
+                        className={`nav-link dropdown-toggle home-nav-hover ${activeDropdown === "profile" ? "active" : ""}`}
+                        id="navbarDropdownProfile"
+                        role="button"
+                        aria-haspopup="true"
+                        aria-expanded={activeDropdown === "profile" ? "true" : "false"}
+                        onClick={() => handleDropdownClick("profile")}
+                        style={{ backgroundColor: activeDropdown === "profile" ? "white" : "" }}
                       >
                         Login/Register
-                      </NavLink>
+                      </div>
                     )}
                     <ul
-                      className={`dropdown-menu ${activeDropdown === 'profile' ? 'show' : ''}`}
-                      aria-labelledby="profileDropdown"
-                      ref={navDropdownRef}
+                      className={`dropdown-menu ${activeDropdown === "profile" ? "show" : ""}`}
+                      aria-labelledby="navbarDropdownProfile"
+                      ref={profileDropdownRef}
                     >
                       {isLoggedIn ? (
                         <>
@@ -218,12 +196,12 @@ const HomeHeader = () => {
                       ) : (
                         <>
                           <li>
-                            <NavLink className="dropdown-item home-nav-hover" to="/login">
+                            <NavLink className="dropdown-item" to="/login">
                               Login
                             </NavLink>
                           </li>
                           <li>
-                            <NavLink className="dropdown-item home-nav-hover" to="/register">
+                            <NavLink className="dropdown-item" to="/register">
                               Register
                             </NavLink>
                           </li>
@@ -233,23 +211,6 @@ const HomeHeader = () => {
                   </li>
                 </ul>
               </div>
-              {/* {isLoggedIn && (
-  
-//   <div className="outer-box">
-//   <ul className="social-box">
-//     <li>
-//         <div className="profile-icon">
-//           <img
-//             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
-//             alt="Profile"
-//             className="img-fluid"
-//           />
-//         </div>
-//     </li>
-//   </ul>
-// </div>
-  
-)} */}
             </nav>
           </div>
         </div>
@@ -269,13 +230,10 @@ const HomeHeader = () => {
                         for your ideas, 100% delivery guaranteed.
                       </div>
                       <div className="btn-box">
-                        <Link
-                          to="/contact"
-                          className="theme-btn appointment-btn home-nav-hover"
-                        >
+                        <Link to="/contact" className="theme-btn appointment-btn">
                           <span className="txt">Appointment</span>
                         </Link>
-                        <Link to="/services" className="theme-btn services-btn home-nav-hover">
+                        <Link to="/services" className="theme-btn services-btn">
                           Services
                         </Link>
                       </div>
@@ -285,11 +243,7 @@ const HomeHeader = () => {
                   <div className="image-column col-lg-6 col-md-12 col-sm-12">
                     <div className="inner-column">
                       <div className="image">
-                        <img
-                          src="images/doc1.png"
-                          alt="Main Slider"
-                          className="bg-body"
-                        />
+                        <img src="images/doc1.png" alt="Main Slider" className="bg-body" />
                       </div>
                     </div>
                   </div>
@@ -307,13 +261,10 @@ const HomeHeader = () => {
                         for your ideas, 100% delivery guaranteed.
                       </div>
                       <div className="btn-box">
-                        <Link
-                          to="/contact"
-                          className="theme-btn appointment-btn home-nav-hover"
-                        >
+                        <Link to="/contact" className="theme-btn appointment-btn">
                           <span className="txt">Appointment</span>
                         </Link>
-                        <Link to="/services" className="theme-btn services-btn home-nav-hover">
+                        <Link to="/services" className="theme-btn services-btn">
                           Services
                         </Link>
                       </div>
