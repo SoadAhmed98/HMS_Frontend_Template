@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import Swiper from "swiper";
+import "swiper/swiper-bundle.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-const CustomNavbar = () => {
+const HomeHeader = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const navDropdownRef = useRef(null);
-
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -13,7 +15,10 @@ const CustomNavbar = () => {
     setIsLoggedIn(loginStatus);
 
     const handleOutsideClick = (event) => {
-      if (navDropdownRef.current && !navDropdownRef.current.contains(event.target)) {
+      if (
+        navDropdownRef.current &&
+        !navDropdownRef.current.contains(event.target)
+      ) {
         setActiveDropdown(null);
       }
     };
@@ -25,6 +30,10 @@ const CustomNavbar = () => {
     };
   }, []);
 
+  const handleDropdownClick = (dropdownName) => {
+    setActiveDropdown(activeDropdown === dropdownName ? null : dropdownName);
+  };
+
   const handleLogout = () => {
     // Clear login status and redirect to home page or login page
     localStorage.setItem("login", "false");
@@ -33,12 +42,10 @@ const CustomNavbar = () => {
     window.location.href = "/";
   };
 
-  const handleDropdownClick = (dropdownName) => {
-    setActiveDropdown(activeDropdown === dropdownName ? null : dropdownName);
-  };
 
   return (
-    <header className="main-header">
+    <>
+      <header className="main-header">
       <div className="header-upper">
         <div className="auto-container  clearfix">
           <nav className="navbar navbar-expand-md navbar-light main-menu">
@@ -50,109 +57,123 @@ const CustomNavbar = () => {
                 style={{ width: "16rem", height: "10.5rem" }}
                 className="pb-2"
               />
-            </Link>
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon"></span>
-            </button>
+              </Link>
+              <button
+                className="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded={activeDropdown ? "true" : "false"}
+                aria-label="Toggle navigation"
+              >
+                <span className="navbar-toggler-icon"></span>
+              </button>
 
-            <div className="collapse navbar-collapse navigation clearfix" id="navbarSupportedContent">
-              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                <li className="nav-item">
-                  <NavLink exact className="nav-link" activeClassName="active" to="/">
-                    Home
-                  </NavLink>
-                </li>
-                <li className={`nav-item dropdown ${activeDropdown === 'about' ? 'show' : ''}`}>
-                  <NavLink
-                    exact
-                    className="nav-link dropdown-toggle"
-                    to="/about"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded={activeDropdown === 'about' ? 'true' : 'false'}
+              <div
+                className="collapse navbar-collapse navigation clearfix"
+                id="navbarSupportedContent"
+              >
+                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li className="nav-item">
+                    <NavLink exact className="nav-link allNav" activeClassName="active" to="/" style={{ backgroundColor: 'white' }}>
+                      Home
+                    </NavLink>
+                  </li>
+                  <li
+                    className={`nav-item dropdown ${activeDropdown === 'about' ? 'show' : ''}`}
                     onClick={() => handleDropdownClick('about')}
                   >
-                    About Us
-                  </NavLink>
-                  <ul
-                    className={`dropdown-menu ${activeDropdown === 'about' ? 'show' : ''}`}
-                    ref={navDropdownRef}
-                  >
-                    <li className="nav-item">
-                      <NavLink exact className="dropdown-item" to="/about" onClick={() => setActiveDropdown(null)}>
-                        About Us
-                      </NavLink>
-                    </li>
-                    <li className="nav-item">
-                      <NavLink exact className="dropdown-item" to="/chatbox" onClick={() => setActiveDropdown(null)}>
-                        Chat Box
-                      </NavLink>
-                    </li>
-                    <li className="nav-item">
-                      <NavLink exact className="dropdown-item" to="/ourTeam" onClick={() => setActiveDropdown(null)}>
-                        Welcome
-                      </NavLink>
-                    </li>
-                  </ul>
-                </li>
-                <li className="nav-item">
-                  <NavLink exact className="nav-link" activeClassName="active" to="/ourTeam">
-                    Doctors
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink exact className="nav-link" activeClassName="active" to="/department">
-                    Department
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink exact className="nav-link" activeClassName="active" to="/packages">
-                    Packages
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink exact className="nav-link" activeClassName="active" to="/faq">
-                    FAQ
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink exact className="nav-link" activeClassName="active" to="/blog">
-                    Blog
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink exact className="nav-link" activeClassName="active" to="/contact">
-                    Contact
-                  </NavLink>
-                </li>
-                <li
+                    <NavLink
+                      exact
+                      className="nav-link dropdown-toggle allNav"
+                      to="/about"
+                      id="navbarDropdown"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded={activeDropdown === 'about' ? 'true' : 'false'}
+                    >
+                      About Us
+                    </NavLink>
+                    <ul
+                      className={`dropdown-menu ${activeDropdown === 'about' ? 'show' : ''}`}
+                      aria-labelledby="navbarDropdown"
+                      ref={navDropdownRef}
+                    >
+                      <li>
+                        <NavLink exact className="dropdown-item allNav" to="/about">
+                          About Us
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink exact className="dropdown-item allNav" to="chatbox">
+                          Chat Box
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink exact className="dropdown-item allNav" to="/ourTeam">
+                          Welcome
+                        </NavLink>
+                      </li>
+                    </ul>
+                  </li>
+                  <li className="nav-item ">
+                    <NavLink exact className="nav-link allNav" to="/ourTeam">
+                      Doctors
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink exact className="nav-link allNav" to="/department">
+                      Department
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink exact className="nav-link allNav" to="/packages">
+                      Packages
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink exact className="nav-link allNav" activeClassName="active" to="/faq">
+                      FAQ
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink exact className="nav-link allNav" activeClassName="active" to="/blog">
+                      Blog
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink exact className="nav-link allNav" activeClassName="active" to="/contact">
+                      Contact
+                    </NavLink>
+                  </li>
+                  <li
                     className={`nav-item dropdown ${activeDropdown === 'profile' ? 'show' : ''}`}
                     onClick={() => handleDropdownClick('profile')}
                   >
                     {isLoggedIn ? (
                       <NavLink exact
-                        className="nav-link dropdown-toggle"
-                        to="/profile"
-                        id="profileDropdown"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded={activeDropdown === 'profile' ? 'true' : 'false'}
-                      >
-                      Hi gehad
-                      </NavLink>
+                      className="nav-link dropdown-toggle d-flex align-items-start allNav"
+                      to="/profile"
+                      id="profileDropdown"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded={activeDropdown === 'profile' ? 'true' : 'false'}
+                    >
+                      <span>Profile</span>
+                      <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
+                        alt="Profile"
+                        className="img-fluid rounded-circle ms-2"
+                        style={{ width: "60px", height: "60px" }}
+                      />
+                    </NavLink>
                     ) : (
                       <NavLink
                       exact
-                        className="nav-link dropdown-toggle "
+                        className="nav-link dropdown-toggle allNav"
                         to="/login"
                         id="loginRegisterDropdown"
                         role="button"
@@ -171,12 +192,12 @@ const CustomNavbar = () => {
                       {isLoggedIn ? (
                         <>
                           <li>
-                            <NavLink className="dropdown-item" to="/profile" onClick={() => setActiveDropdown(null)}>
+                            <NavLink className="dropdown-item allNav" to="/profile">
                               Profile
                             </NavLink>
                           </li>
                           <li>
-                            <button className="dropdown-item" onClick={handleLogout}>
+                            <button className="dropdown-item allNav" onClick={handleLogout}>
                               Logout
                             </button>
                           </li>
@@ -184,12 +205,12 @@ const CustomNavbar = () => {
                       ) : (
                         <>
                           <li>
-                            <NavLink className="dropdown-item" to="/login" onClick={() => setActiveDropdown(null)}>
+                            <NavLink className="dropdown-item allNav" to="/login">
                               Login
                             </NavLink>
                           </li>
                           <li>
-                            <NavLink className="dropdown-item" to="/register" onClick={() => setActiveDropdown(null)}>
+                            <NavLink className="dropdown-item allNav" to="/register">
                               Register
                             </NavLink>
                           </li>
@@ -197,28 +218,15 @@ const CustomNavbar = () => {
                       )}
                     </ul>
                   </li>
-              </ul>
-              {isLoggedIn && (
-                <div className="outer-box">
-                  <ul className="social-box">
-                    <li>
-                      <div className="profile-icon">
-                        <img
-                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
-                          alt="Profile"
-                          className="img-fluid"
-                        />
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              )}
-            </div>
-          </nav>
+                </ul>
+              </div>
+            </nav>
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+
+    </>
   );
 };
 
-export default CustomNavbar;
+export default HomeHeader;
