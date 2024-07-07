@@ -34,8 +34,6 @@ const CheckEmail = (props) => {
       }
     } catch (error) {
       setErrors({ ...errors, CheckEmail: error.response?.data?.message || 'An error occurred. Please try again later.' });
-    } finally {
-      setLoading(false);
     }
   };
 
