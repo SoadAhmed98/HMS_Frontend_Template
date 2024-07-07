@@ -45,6 +45,7 @@ const HomeHeader = () => {
 
   return (
     <>
+    
       <header className="main-header">
       <div className="header-upper">
         <div className="auto-container  clearfix">
@@ -102,17 +103,17 @@ const HomeHeader = () => {
                       ref={navDropdownRef}
                     >
                       <li>
-                        <NavLink exact className="dropdown-item allNav" to="/about">
+                        <NavLink exact className="dropdown-item home-nav-hover" to="/about">
                           About Us
                         </NavLink>
                       </li>
                       <li>
-                        <NavLink exact className="dropdown-item allNav" to="chatbox">
+                        <NavLink exact className="dropdown-item home-nav-hover" to="chatbox">
                           Chat Box
                         </NavLink>
                       </li>
                       <li>
-                        <NavLink exact className="dropdown-item allNav" to="/ourTeam">
+                        <NavLink exact className="dropdown-item home-nav-hover" to="/ourTeam">
                           Welcome
                         </NavLink>
                       </li>
@@ -192,12 +193,12 @@ const HomeHeader = () => {
                       {isLoggedIn ? (
                         <>
                           <li>
-                            <NavLink className="dropdown-item allNav" to="/profile">
+                            <NavLink className="dropdown-item  home-nav-hover" to="/profile">
                               Profile
                             </NavLink>
                           </li>
                           <li>
-                            <button className="dropdown-item allNav" onClick={handleLogout}>
+                            <button className="dropdown-item  home-nav-hover" onClick={handleLogout}>
                               Logout
                             </button>
                           </li>
@@ -205,12 +206,12 @@ const HomeHeader = () => {
                       ) : (
                         <>
                           <li>
-                            <NavLink className="dropdown-item allNav" to="/login">
+                            <NavLink className="dropdown-item  home-nav-hover" to="/login">
                               Login
                             </NavLink>
                           </li>
                           <li>
-                            <NavLink className="dropdown-item allNav" to="/register">
+                            <NavLink className="dropdown-item  home-nav-hover" to="/register">
                               Register
                             </NavLink>
                           </li>
