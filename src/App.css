@@ -106,7 +106,6 @@ a{
 .allNav:hover::before {
   width: 100%;
 }
-
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -115,5 +114,3 @@ a{
     transform: rotate(360deg);
   }
 }
-
-
