@@ -82,11 +82,9 @@ const Price = () => {
         e.preventDefault();
         const isLoggedIn = localStorage.getItem('login');
         if (isLoggedIn === "false" || !isLoggedIn) {
-            history.push('/login'); // Redirect to the login page
+            history.push('/login'); 
         } else {
-            // Proceed with the appointment process
             console.log('Proceeding with appointment booking...');
-            // Add your logic here for booking an appointment
         }
     };
 
