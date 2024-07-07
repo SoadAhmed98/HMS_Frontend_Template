@@ -37,6 +37,8 @@ const HomeHeader = () => {
   const handleLogout = () => {
     // Clear login status and redirect to home page or login page
     localStorage.setItem("login", "false");
+    localStorage.setItem("data", "");
+    localStorage.setItem("token", "");
     setIsLoggedIn(false);
     // Redirect to home or login page
     window.location.href = "/";
