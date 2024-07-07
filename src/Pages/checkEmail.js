@@ -86,7 +86,7 @@ const CheckEmail = (props) => {
                     )}
                     <div className="d-flex justify-content-center align-items-center">
                       <button
-                        disabled={Object.values(errors).some((error) => error !== "") || loading}
+                        disabled={Object.values(errors).some((error) => error !== "")}
                         type="submit"
                         className="theme-btn btn-style-two w-100 mb-2"
                       >
