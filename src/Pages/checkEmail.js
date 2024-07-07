@@ -12,7 +12,7 @@ const CheckEmail = (props) => {
     email: "",
     CheckEmail: "",
   });
-  const [loading, setLoading] = useState(false);
+
 
   const submit = async (e) => {
     e.preventDefault();
