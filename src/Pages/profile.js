@@ -5,6 +5,7 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import PatientAccountTable from '../Components/accountSatatment.js'
 import Navbar from "../Components/navbar.js";
+import InvoiceReview from "../Components/review.js";
 
 
 const Profile = () => {
@@ -123,12 +124,12 @@ const Profile = () => {
                             <div className="profile-head mt-4">
                                 <h4>{profileData.name}</h4>
                             </div>
-                            <input
+                            {/* <input
                                 type="submit"
                                 className="btn btn-lg btn-danger mt-3"
                                 name="btnAddMore"
                                 value="Logout"
-                            />
+                            /> */}
                         </div>
 
                         <div className="col-md-8">
@@ -227,6 +228,10 @@ const Profile = () => {
                                             </tbody>
                                         </table>
                                     </div>
+                               
+                                </Tab>
+                                <Tab eventKey="review" title="Review">
+                                    <InvoiceReview/>
                                 </Tab>
                                 <Tab eventKey="payments" title="Payments">
                                     <div className="table-responsive">
