@@ -324,15 +324,18 @@ const Login = (props) => {
         withCredentials: true,
       });
 
-      if (response.status === 200) {
-        const content = response.data;
-        props.setName(content.name);
+      if (response.status == 200) {
+        console.log(response)
+        // const content = response.data;
+        // props.setName(content.name);
+        localStorage.setItem("data",JSON.stringify(response.data.data.patient) )
         localStorage.setItem("login", true);
         setRedirectToHome(true);
       } else {
         setErrors({ ...errors, login: 'Login failed' });
       }
     } catch (error) {
+      console.log(error)
       setErrors({ ...errors, login: error.response?.data?.message || 'Login failed' });
     }
   };

@@ -601,7 +601,7 @@ const Register = () => {
         setErrors({ ...errors, registration: "Registration failed. Please try again." });
       }
     } catch (error) {
-      console.error('Error response:', error.response.data);
+      console.error('Error response:', error);
       setErrors({ ...errors, registration: "Registration failed. Please try again." });
     }
     // console.log("User Data Updated:", userData);
