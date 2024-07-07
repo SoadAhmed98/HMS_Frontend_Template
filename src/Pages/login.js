@@ -324,7 +324,7 @@ const Login = (props) => {
         withCredentials: true,
       });
 
-      if (response.status == 200) {
+      if (response.status === 200) {
         console.log(response)
         // const content = response.data;
         // props.setName(content.name);
