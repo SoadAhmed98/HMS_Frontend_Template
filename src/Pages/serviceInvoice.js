@@ -15,13 +15,16 @@ function ServiceInvoice() {
 
   const location = useLocation();
   const { serviceId, servicePrice, serviceName } = location.state || {};
-  console.log(serviceId,servicePrice,serviceName)
+  // console.log(serviceId,servicePrice,serviceName)
 
 
 
   const [Doctors, setDoctors] = useState([]);
   const [departments, setDepartments] = useState([]);
   const [doctorDepartment, setDoctorDepartment] = useState('');
+  const [patienData, setPatientData] = useState(JSON.parse(localStorage.getItem('data')))
+  // console.log(patienData.token)
+  
 
 
   useEffect(() => {
@@ -50,13 +53,14 @@ function ServiceInvoice() {
 
   // State management
   const [formData, setFormData] = useState({
-    patient_id: 1,
-    doctor_id: 1,
-    Service_id: serviceId,
+    CustomerName: patienData.name,
+    CustomerEmail: patienData.email,
+    InvoiceValue : Number(servicePrice),
+    doctor_id: Number(1),
     discount_value:10.00,
     tax_rate:17, 
     type: 1,
-    updateMode:false,
+    single_id: serviceId,
     single_invoice:1
   });
 
@@ -89,14 +93,28 @@ function ServiceInvoice() {
         withCredentials: true,
       });
     
-     await axios.put('http://127.0.0.1:80/api/single-invoices/update', formData, {
+     const response = await axios.post('http://localhost:80/api/patient/invoice-payment', formData, {
        
         headers: {
           'Accept': 'application/json',
-          'X-XSRF-TOKEN': Cookies.get('XSRF-TOKEN'),
+          // 'X-XSRF-TOKEN': Cookies.get('XSRF-TOKEN'),
+          Authorization: patienData.token,
         },
         withCredentials: true
       });
+
+      if(response.status === 200)
+        {
+          console.log(response.data.Message);
+          console.log("process success");
+          window.location.href = response.data.Data.InvoiceURL;
+
+        }
+        else
+        {
+          console.log("process failed")
+        }
+
     } catch (error) {
       console.error('Error:', error);
     }
@@ -115,10 +133,50 @@ function ServiceInvoice() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     console.log("Name:", name, "Value:", value);
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
+
+    if(name === "type")
+      {
+        console.log(value)
+        setFormData(prevState => ({
+          ...prevState,
+          [name]: Number(value)
+        }));
+        // console.log(formData)
+
+        if (Number(value) === 2) {
+          // console.log(value)
+          // formData.InvoiceValue = Number(servicePrice) * 0.50; 
+          // console.log(formData)
+          setFormData(prevState => ({
+            ...prevState,
+            [Object.keys(formData)[2]]: Number(servicePrice) * 0.50
+          }));
+      }
+      }
+      else if(name === "doctor_id")
+        {
+          console.log(value)
+        setFormData(prevState => ({
+          ...prevState,
+          [name]: Number(value)
+        }));
+
+        }
+      else
+      {
+        setFormData(prevState => ({
+          ...prevState,
+          [name]: value
+        }));
+
+      }
+
+        
+console.log(formData)
+        
+
+      
+    
   };
 
   return (
@@ -143,7 +201,7 @@ function ServiceInvoice() {
           className="form-control"
           id="patientName"
           name="patientName"
-          value={'Yomna'}
+          value={patienData.name}
           readOnly
         />
       </div>
@@ -154,7 +212,7 @@ function ServiceInvoice() {
           className="form-select"
           id="doctor_id"
           name="doctor_id"
-          value={formData.doctor_id}
+          value={Number(formData.doctor_id)}
           onChange={handleChange}
         >
           <option value="">Select Doctor</option>
@@ -213,8 +271,8 @@ function ServiceInvoice() {
           required
         >
           {/* <option value="">Select Invoice Type</option>  */}
-          <option value="1">Cash</option> 
-          <option value="2">Credit Card</option> 
+          <option value={1}>Cash</option> 
+          <option value={2}>Credit Card</option> 
           {/* {invoiceTypes.map((type, index) => (
             <option key={index} value={type}>
               {type}
