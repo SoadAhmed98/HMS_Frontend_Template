@@ -99,6 +99,7 @@ function ServiceInvoice() {
           'Accept': 'application/json',
           // 'X-XSRF-TOKEN': Cookies.get('XSRF-TOKEN'),
           Authorization: patienData.token,
+          
         },
         withCredentials: true
       });
@@ -169,13 +170,7 @@ function ServiceInvoice() {
           [name]: value
         }));
 
-      }
-
-        
-console.log(formData)
-        
-
-      
+      } 
     
   };
 
@@ -271,8 +266,8 @@ console.log(formData)
           required
         >
           {/* <option value="">Select Invoice Type</option>  */}
-          <option value={1}>Cash</option> 
-          <option value={2}>Credit Card</option> 
+          <option value={1}>Full Price</option> 
+          <option value={2}>Half Price</option> 
           {/* {invoiceTypes.map((type, index) => (
             <option key={index} value={type}>
               {type}

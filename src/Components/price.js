@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 const Price = () => {
     const [plans, setPlans] = useState([]);
@@ -24,8 +25,8 @@ const Price = () => {
                     </div>
                     <div className="row clearfix">
                         {plans.map((plan, index) => (
-                            <div key={plan.id} className={`price-block col-lg-4 col-md-6 col-sm-12 wow ${index === 0 ? 'fadeInLeft' : index === 1 ? 'fadeInUp' : 'fadeInRight'}`} data-wow-delay="0ms" data-wow-duration="1500ms">
-                                <div className="inner-box">
+                            <div key={plan.id} className={`price-block col-lg-4 col-md-6 col-sm-12 wow ${index === 0 ? 'fadeInLeft' : index === 1 ? 'fadeInUp' : 'fadeInRight'}`} data-wow-delay="0ms" data-wow-duration="1500ms" style={{height:"100rem"}}>
+                                <div className="inner-box" >
                                     <div className="upper-box">
                                         <div className={`icon ${plan.id === 1 ? 'flaticon-doctor-stethoscope' : plan.id === 2 ? 'flaticon-pharmacy' : 'flaticon-operating-room'}`}></div>
                                         <div className="title">{plan.name}</div>
@@ -36,7 +37,7 @@ const Price = () => {
                                     <div className="plan-outer clearfix">
                                         <div className="plan">{plan.name}</div>
                                     </div>
-                                    <div className="middle-content">
+                                    <div className="middle-content " style={{height:"15rem"}}>
                                         <ul >
                                             {plan.service_group.map(service => (
                                                 <li key={service.id}>
@@ -48,7 +49,14 @@ const Price = () => {
                                             ))}
                                         </ul>
                                     </div>
-                                    <a href="#" className="appointment">get appointment</a>
+                                    <Link  className="appointment fw-bold fs-5" to={{
+                                            pathname: `package-invoice`,
+                                            state: { 
+                                              'serviceId': plan.id, 
+                                              servicePrice: plan.Total_after_discount, 
+                                              serviceName: plan.name 
+                                            }
+                                        }}>Buy Now</Link>
                                 </div>
                             </div>
                         ))}
