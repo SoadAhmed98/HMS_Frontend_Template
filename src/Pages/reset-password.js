@@ -76,10 +76,13 @@ const ResetPassword = () => {
         }
     };
 
-    if (redirect) {
-        return <Redirect to="/login" />;
-    }
-
+    useEffect(() => {
+        const isLoggedIn = localStorage.getItem('login');
+        console.log(isLoggedIn)
+        if (isLoggedIn==="true") {
+          history.push('/login'); 
+        }
+      }, [history]);
     return (
         <div className="container mt-5 mb-5">
             <div className="row justify-content-center">

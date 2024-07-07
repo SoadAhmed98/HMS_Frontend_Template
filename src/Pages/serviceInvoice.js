@@ -5,10 +5,10 @@ import WOW from 'wowjs';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min.js';
 import Cookies from 'js-cookie';
-
+import { useHistory } from 'react-router-dom';
 
 function ServiceInvoice() {
-
+  const history = useHistory(); 
   useEffect(() => {
     new WOW.WOW().init();
   }, []);
@@ -173,7 +173,13 @@ function ServiceInvoice() {
       } 
     
   };
-
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem('login');
+    console.log(isLoggedIn)
+    if (isLoggedIn==="false") {
+      history.push('/'); 
+    }
+  }, [history]);
   return (
 
     <>
