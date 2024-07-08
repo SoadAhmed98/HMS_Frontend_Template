@@ -63,6 +63,7 @@ const ContactForm = () => {
                     placeholder="Department"
                       placeholder={t("phone")}
                       value={phone}
+                       required
                       onChange={(e) => setMessage(e.target.value)}
                   />
                 </div>
