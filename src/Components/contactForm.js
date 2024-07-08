@@ -3,20 +3,22 @@ import emailjs from "emailjs-com";
 import toast, { Toaster } from 'react-hot-toast';
 
 const ContactForm = () => {
-  const sendEmail = (e) => {
-    e.preventDefault();
+  const [email, setEmail] = useState('');
+  const [department, setDepartment] = useState('');
+  const [message, setMessage] = useState('');
+  const [name, setName] = useState('');
+  const [phone, setPhoneNu] = useState('');
 
-    emailjs.sendForm('service_kxt5chq', 'template_cguqjep', e.target, 'TUnrOrk0bQ3fXdMgC')
-      .then((result) => {
-          console.log(result.text);
-          toast.success("Message sent successfully!");
-      }, (error) => {
-          console.log(error.text);
-          toast.error("Failed to send message, please try again.");
-      });
-    e.target.reset();
-  };
-
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post('http://localhost:5000/send', { email, department, message, name, phone_nu });
+      toast.success('Email sent successfully');
+    } catch (error) {
+      toast.error('Error sending email');
+    }
+  };
+      
   return (
     <>
       {/* Contact Page Section */}
@@ -30,13 +32,15 @@ const ContactForm = () => {
           {/* Contact Form */}
           <div className="contact-form wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
             {/*Contact Form*/}
-            <form onSubmit={sendEmail} id="contact-form">
+            <form onSubmit={handleSubmit} id="contact-form">
               <div className="row clearfix">
                 <div className="col-lg-6 col-md-6 col-sm-12 form-group">
                   <input
                     type="text"
-                    name="username"
-                    placeholder="Name"
+                    name="name"
+                    placeholder={t("name")}
+                      value={name}
+                      onChange={(e) => setMessage(e.target.value)}
                     required
                   />
                 </div>
@@ -45,7 +49,9 @@ const ContactForm = () => {
                   <input
                     type="email"
                     name="email"
-                    placeholder="Email"
+                    placeholder={t("email")}
+                      value={email}
+                      onChange={(e) => setMessage(e.target.value)}
                     required
                   />
                 </div>
@@ -54,8 +60,10 @@ const ContactForm = () => {
                   <input
                     type="text"
                     name="phone"
-                    placeholder="Phone"
-                    required
+                    placeholder="Department"
+                      placeholder={t("phone")}
+                      value={phone}
+                      onChange={(e) => setMessage(e.target.value)}
                   />
                 </div>
 
@@ -63,15 +71,20 @@ const ContactForm = () => {
                   <input
                     type="text"
                     name="department"
-                    placeholder="Department"
+                      placeholder={t("department")}
+                      value={department}
+                      onChange={(e) => setMessage(e.target.value)}
                     required
                   />
                 </div>
 
                 <div className="col-lg-12 col-md-12 col-sm-12 form-group">
                   <textarea
-                    name="message"
-                    placeholder="Your Question"
+                      name="message"
+                      placeholder={t("message")}
+                      value={message}
+                      required
+                      onChange={(e) => setMessage(e.target.value)}
                   ></textarea>
                 </div>
 
