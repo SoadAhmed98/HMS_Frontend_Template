@@ -349,7 +349,7 @@ const HomeHeader = () => {
                   <div className="image-column col-lg-6 col-md-12 col-sm-12">
                     <div className="inner-column">
                       <div className="image">
-                        <img src="images/main-slider/3.jpg" alt="Main Slider" />
+                   <img src="images/doc3.png" alt="Main Slider" />
                       </div>
                     </div>
                   </div>
