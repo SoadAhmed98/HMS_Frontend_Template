@@ -6,17 +6,21 @@ const PatientAccountTable = () => {
     const [invoices, setInvoices] = useState([]);
     const [receiptAccounts, setReceiptAccounts] = useState([]);
     const [descriptions, setDescriptions] = useState({});
+    const [patienData, setPatientData] = useState(JSON.parse(localStorage.getItem('data')))
+
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("https://b43c1a73-82c8-4103-8569-c1e7e6a160cd.mock.pstmn.io/patient-account/1");
+                const response = await axios.get(`http://localhost/api/patient-accounts/${patienData.id}`);
+                console.log(response.data)
                 const data = response.data;
                 // console.log("Fetched patient account data:", data);
                 if (data) {
-                    setPatientAccounts(data[0].patient_accounts || []);
-                    setInvoices(data[0].invoices || []);
-                    setReceiptAccounts(data[0].receipt_accounts || []);
+                    // console.log(data.invoices)
+                    setPatientAccounts(data.patient_accounts || []);
+                    setInvoices(data.invoices || []);
+                    setReceiptAccounts(data.receipt_accounts || []);
                 }
             } catch (error) {
                 console.error("Error fetching data:", error);
