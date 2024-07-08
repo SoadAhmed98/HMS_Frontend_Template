@@ -3,10 +3,12 @@ import Header from "../Components/header.js";
 import Navbar from "../Components/navbar.js";
 import WOW from 'wowjs';
 import axios from 'axios';
-import { useLocation } from 'react-router-dom/cjs/react-router-dom.min.js';
+import { useHistory, useLocation } from 'react-router-dom/cjs/react-router-dom.min.js';
 import Cookies from 'js-cookie';
 
 function PackageInvoice() {
+  const history = useHistory();
+
   useEffect(() => {
     new WOW.WOW().init();
   }, []);
@@ -23,7 +25,13 @@ function PackageInvoice() {
   const [patienData, setPatientData] = useState(JSON.parse(localStorage.getItem('data')))
   // console.log(patienData.token)
   
-
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem('login');
+    console.log(isLoggedIn)
+    if (isLoggedIn==="false") {
+      history.push('/'); 
+    }
+  }, [history]);
 
   useEffect(() => {
     const fetchDoctor = async () => {
@@ -106,7 +114,7 @@ function PackageInvoice() {
         {
           console.log(response.data.Message);
           console.log("process success");
-          // window.location.href = response.data.Data.InvoiceURL;
+          window.location.href = response.data.Data.InvoiceURL;
 
         }
         else
