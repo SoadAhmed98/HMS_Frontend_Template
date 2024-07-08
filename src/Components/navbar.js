@@ -275,12 +275,12 @@ const CustomNavbar = () => {
                     ) : (
                       <>
                         <li>
-                          <NavLink className="dropdown-item allNav" to="/login">
+                          <NavLink className="dropdown-item home-nav-hover" to="/login">
                             Login
                           </NavLink>
                         </li>
                         <li>
-                          <NavLink className="dropdown-item allNav" to="/register">
+                          <NavLink className="dropdown-item home-nav-hover" to="/register">
                             Register
                           </NavLink>
                         </li>
