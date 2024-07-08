@@ -476,7 +476,7 @@ import { validEmail, validPassword } from "../Components/rejex.js";
 import { useHistory } from 'react-router-dom';
 
 import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer, toast } from 'react-toastify';
+import toast, { Toaster } from 'react-hot-toast';
 import "react-toastify/dist/ReactToastify.css";
 
 
@@ -516,6 +516,10 @@ const Login = (props) => {
         localStorage.setItem("data",JSON.stringify(response.data.data.patient) )
         localStorage.setItem("login", true);
         toast.success('Successfully Login!');
+        
+        // setTimeout(() => {
+        //   setRedirectToHome(true);
+        // }, 2000);
         
         setRedirectToHome(true);
       } else {
@@ -642,6 +646,7 @@ const Login = (props) => {
                       >
                         <span className="txt">Login</span>
                       </button>
+                      <Toaster />
                       <div className="text-center mt-4">
                         <h5 className="text-dark">New User?</h5>
                         <Link to="/register">Register now to create an account</Link>
