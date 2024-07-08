@@ -33,7 +33,7 @@ const HomeHeader = () => {
   const handleLogout = () => {
     // Clear login status and redirect to home page or login page
     localStorage.setItem("login", "false");
-    localStorage.setItem("data", "");
+    localStorage.setItem("data", JSON.stringify({}));
     // localStorage.setItem("token", "");
 
     setIsLoggedIn(false);
@@ -72,7 +72,7 @@ const HomeHeader = () => {
                 className="collapse navbar-collapse navigation clearfix"
                 id="navbarSupportedContent"
               >
-                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul className="navbar-nav me-auto mb-2 mb-lg-0 px-5">
                   <li className="nav-item">
                     <NavLink
                       exact={true}
@@ -143,7 +143,7 @@ const HomeHeader = () => {
                       Contact
                     </NavLink>
                   </li>
-                  <li className={`nav-item dropdown ${activeDropdown === "profile" ? "show" : ""}`}>
+                  {/* <li className={`nav-item dropdown ${activeDropdown === "profile" ? "show" : ""}`}>
                     {isLoggedIn ? (
                       <NavLink
                         exact={true}
@@ -208,9 +208,84 @@ const HomeHeader = () => {
                         </>
                       )}
                     </ul>
-                  </li>
+                  </li> */}
                 </ul>
+
+                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li
+                  className={`nav-item dropdown ${activeDropdown === 'profile' ? 'show' : ''}`}
+                  onClick={() => handleDropdownClick('profile')}
+                >
+                  {isLoggedIn ? (
+                    <NavLink
+                      exact={true}
+                      className="nav-link  d-flex align-items-start"
+                      to="/profile"
+                      id="profileDropdown"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded={activeDropdown === 'profile' ? 'true' : 'false'}
+                    >
+                      <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
+                        alt="Profile"
+                        className="img-fluid rounded-circle ms-2"
+                        style={{ width: "60px", height: "60px" }}
+                      />
+                    </NavLink>
+                  ) : (
+                      <NavLink
+                        exact={true}
+                        className="btn btn-light btn-lg rounded-pill text-primary fw-bold"
+                        to="/login"
+                        id="loginRegisterDropdown"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded={activeDropdown === 'profile' ? 'true' : 'false'}
+                      >
+                        Sign In
+                      </NavLink>
+                  )}
+                  <ul
+                    className={`dropdown-menu ${activeDropdown === 'profile' ? 'show' : ''}`}
+                    aria-labelledby="profileDropdown"
+                    ref={profileDropdownRef}
+                  >
+                    {isLoggedIn ? (
+                      <>
+                        <li>
+                          <NavLink className="dropdown-item home-nav-hover" to="/profile">
+                            Profile
+                          </NavLink>
+                        </li>
+                        <li>
+                          <button className="dropdown-item home-nav-hover" onClick={handleLogout}>
+                            Logout
+                          </button>
+                        </li>
+                      </>
+                    ) : (
+                      <>
+                        <li>
+                          <NavLink className="dropdown-item allNav" to="/login">
+                            Login
+                          </NavLink>
+                        </li>
+                        <li>
+                          <NavLink className="dropdown-item allNav" to="/register">
+                            Register
+                          </NavLink>
+                        </li>
+                      </>
+                    )}
+                  </ul>
+                </li>
+
+              </ul>
               </div>
+
             </nav>
           </div>
         </div>
