@@ -292,76 +292,77 @@ const HomeHeader = () => {
       </header>
 
       <section className="main-slider-three">
-        <div className="banner-carousel swiper-container">
-          <div className="swiper-wrapper">
-            <div className="swiper-slide slide">
-              <div className="container">
-                <div className="row clearfix">
-                  <div className="content-column col-lg-6 col-md-12 col-sm-12">
-                    <div className="inner-column">
-                      <h2>Your Most Trusted Health Partner For Life.</h2>
-                      <div className="text">
-                        We offer free consulting and the best project management
-                        for your ideas, 100% delivery guaranteed.
-                      </div>
-                      <div className="btn-box">
-                        <Link to="/contact" className="theme-btn appointment-btn">
-                          <span className="txt">Appointment</span>
-                        </Link>
-                        <Link to="/services" className="theme-btn services-btn">
-                          Services
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="image-column col-lg-6 col-md-12 col-sm-12">
-                    <div className="inner-column">
-                      <div className="image">
-                        <img src="images/doc1.png" alt="Main Slider" className="bg-body" />
-                      </div>
-                    </div>
-                  </div>
+  <div className="banner-carousel swiper-container">
+    <div className="swiper-wrapper">
+      <div className="swiper-slide slide">
+        <div className="container">
+          <div className="row clearfix">
+            <div className="content-column col-lg-6 col-md-12 col-sm-12">
+              <div className="inner-column">
+                <h2>Your Reliable Partner in Health Care.</h2>
+                <div className="text">
+                  We provide expert guidance and effective project management
+                  for your health needs, ensuring quality outcomes every time.
+                </div>
+                <div className="btn-box">
+                  <Link to="/contact" className="theme-btn appointment-btn">
+                    <span className="txt">Contact Us</span>
+                  </Link>
+                  <Link to="/services" className="theme-btn services-btn">
+                    Services
+                  </Link>
                 </div>
               </div>
             </div>
-            <div className="swiper-slide slide">
-              <div className="container">
-                <div className="row clearfix">
-                  <div className="content-column col-lg-6 col-md-12 col-sm-12">
-                    <div className="inner-column">
-                      <h2>Your Most Trusted Health Partner For Life.</h2>
-                      <div className="text">
-                        We offer free consulting and the best project management
-                        for your ideas, 100% delivery guaranteed.
-                      </div>
-                      <div className="btn-box">
-                        <Link to="/contact" className="theme-btn appointment-btn">
-                          <span className="txt">Appointment</span>
-                        </Link>
-                        <Link to="/services" className="theme-btn services-btn">
-                          Services
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
 
-                  <div className="image-column col-lg-6 col-md-12 col-sm-12">
-                    <div className="inner-column">
-                      <div className="image">
-                   <img src="images/doc3.png" alt="Main Slider" />
-                      </div>
-                    </div>
-                  </div>
+            <div className="image-column col-lg-6 col-md-12 col-sm-12">
+              <div className="inner-column">
+                <div className="image">
+                  <img src="images/doc1.png" alt="Healthcare Slider" className="bg-body" />
                 </div>
               </div>
             </div>
           </div>
-
-          <div className="swiper-button-next"></div>
-          <div className="swiper-button-prev"></div>
         </div>
-      </section>
+      </div>
+      <div className="swiper-slide slide">
+        <div className="container">
+          <div className="row clearfix">
+            <div className="content-column col-lg-6 col-md-12 col-sm-12">
+              <div className="inner-column">
+                <h2>Your Trusted Health Partner For Life.</h2>
+                <div className="text">
+                  Experience comprehensive care and reliable management
+                  for your health projects, ensuring successful delivery every time.
+                </div>
+                <div className="btn-box">
+                  <Link to="/contact" className="theme-btn appointment-btn">
+                    <span className="txt">Contact Us</span>
+                  </Link>
+                  <Link to="/services" className="theme-btn services-btn">
+                    Services
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            <div className="image-column col-lg-6 col-md-12 col-sm-12">
+              <div className="inner-column">
+                <div className="image">
+                  <img src="images/doc3.png" alt="Healthcare Slider" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div className="swiper-button-next"></div>
+    <div className="swiper-button-prev"></div>
+  </div>
+</section>
+
     </>
   );
 };
