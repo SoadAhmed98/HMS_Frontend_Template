@@ -5,15 +5,19 @@ const InvoiceReview = () => {
   const [invoices, setInvoices] = useState([]);
   const [services, setServices] = useState({});
 
+  const [patienData, setPatientData] = useState(JSON.parse(localStorage.getItem('data')))
+
+
   useEffect(() => {
     const fetchInvoices = async () => {
       try {
-        const response = await axios.get('https://b43c1a73-82c8-4103-8569-c1e7e6a160cd.mock.pstmn.io/patients/1/invoices/review');
+        const response = await axios.get(`http://localhost/api/patients/${patienData.id}/invoices/review`);
+        console.log(response.data)
         setInvoices(response.data);
 
         // Fetch service details for each invoice
         const servicePromises = response.data.map(invoice =>
-          axios.get(`https://b43c1a73-82c8-4103-8569-c1e7e6a160cd.mock.pstmn.io/services/${invoice.Service_id}`)
+          axios.get(`http://localhost/api/services/${invoice.Service_id}`)
         );
 
         const serviceResponses = await Promise.all(servicePromises);
