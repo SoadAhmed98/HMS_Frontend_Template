@@ -17,7 +17,7 @@ function Faq () {
       <Navbar/>
        <Header head="Faq’s For MediTech" content="What We Actually Do?" place="Faq’s"/>
        <Question/>
-       <AskYourQuestion/>
+       {/* <AskYourQuestion/> */}
       </>
     );
   };
