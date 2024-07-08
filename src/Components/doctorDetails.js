@@ -338,16 +338,18 @@ const DoctorDetails = (props) => {
   useEffect(() => {
     const fetchDoctor = async () => {
       try {
-        const response = await axios.get(`https://b43c1a73-82c8-4103-8569-c1e7e6a160cd.mock.pstmn.io/doctors/${props.id}`);
-        setDoctorDetails(response.data);
+        const response = await axios.get(`http://localhost/api/doctors/${props.id}`);
+        // console.log(response)
+        setDoctorDetails(response.data.data);
       } catch (error) {
         console.error('Error fetching doctor details:', error);
       }
     };
 
+
     const fetchDepartments = async () => {
       try {
-        const response = await axios.get(`https://b43c1a73-82c8-4103-8569-c1e7e6a160cd.mock.pstmn.io/departments`);
+        const response = await axios.get(`http://localhost/api/departments`);
         setDepartments(response.data);
       } catch (error) {
         console.error('Error fetching departments:', error);
@@ -411,24 +413,32 @@ const DoctorDetails = (props) => {
                 <div className="info-header">
                   <p>Provide Comprehensive Quality Care</p>
                   <h3>I'm Dr. {doctorDetails.name}</h3>
-                  <span className="designation">{doctorDetails.department}</span>
+                  <span className="designation">{doctorDetails.department_name}</span>
                 </div>
                 <ul className="info-list">
                   <li>
                     <strong>Expertise</strong>
-                    <p>{doctorDetails.expertise}</p>
+                    <p>Heart Specialist</p>
+                    {/* <p>{doctorDetails.expertise}</p> */}
+
                   </li>
                   <li>
                     <strong>Education</strong>
-                    <p>{doctorDetails.education}</p>
+                    <p>Doctor of Medicine, University of Texas, USA (1990) Medical Orientation Program, St. Louis University (St. Louis, Missouri 1996)</p>
+                    {/* <p>{doctorDetails.education}</p> */}
+
                   </li>
                   <li>
                     <strong>Experience</strong>
-                    <p>{doctorDetails.experience}</p>
+                    <p>15 years of Experience in Medicine</p>
+                    {/* <p>{doctorDetails.experience}</p> */}
+
                   </li>
                   <li>
                     <strong>Profession</strong>
-                    <p>{doctorDetails.profession}</p>
+                    <p>MD Dean and Executive Vice President for Medical Affairs School of Medicine and Graduate School of Biomedical Sciences University of Texas Health Science Center at San Antonio</p>
+                    {/* <p>{doctorDetails.profession}</p> */}
+
                   </li>
                   <li><strong>Email</strong><p> {doctorDetails.email}</p></li>
                   <li><strong>Fees</strong> <p>{doctorDetails.fees}</p></li> 
@@ -487,7 +497,7 @@ const DoctorDetails = (props) => {
 
                       <div className="col-md-6 col-sm-12 col-xs-12 form-group">
                         <select className="custom-select-box" disabled>
-                          <option>{doctorDetails.department} Department</option>
+                          <option>{doctorDetails.department_name} Department</option>
                         </select>
                       </div>
 
@@ -515,7 +525,7 @@ const DoctorDetails = (props) => {
                   <p>Suspendisse potenti. Maecenas dapibus ac tellus sed pulvinar. Vestibulum bib volutpat accumsan non laoreet nulla luctus...</p>
                 <ul>
                       {doctorDetails.works_day && doctorDetails.works_day.map(day => (
-                        <li key={day.day}>{day.day}<span> {day.slots.join(', ')}</span></li>
+                        <li key={day.day}>{day.day}</li>
                       ))}
                     </ul>
                 </div>

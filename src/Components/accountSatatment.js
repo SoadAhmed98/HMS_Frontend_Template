@@ -12,7 +12,17 @@ const PatientAccountTable = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost/api/patient-accounts/${patienData.id}`);
+                const response = await axios.get(`http://localhost/api/patient-accounts/${patienData.id}`,
+                    {
+                        headers: {
+                            'Accept': 'application/json',
+                            // 'X-XSRF-TOKEN': Cookies.get('XSRF-TOKEN'),
+                            Authorization: patienData.token,
+                            
+                          },
+                          withCredentials: true
+                    }
+                );
                 console.log(response.data)
                 const data = response.data;
                 // console.log("Fetched patient account data:", data);
@@ -33,7 +43,7 @@ const PatientAccountTable = () => {
     useEffect(() => {
         const fetchServiceName = async (serviceId) => {
             try {
-                const response = await axios.get(`https://b43c1a73-82c8-4103-8569-c1e7e6a160cd.mock.pstmn.io/services/${serviceId}`);
+                const response = await axios.get(`http://localhost/api/services/${serviceId}`);
                 // console.log("Service name response for ID", serviceId, ":", response.data.name);
                 return response.data.name;
             } catch (error) {

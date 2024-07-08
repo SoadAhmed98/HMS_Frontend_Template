@@ -11,7 +11,17 @@ const InvoiceReview = () => {
   useEffect(() => {
     const fetchInvoices = async () => {
       try {
-        const response = await axios.get(`http://localhost/api/patients/${patienData.id}/invoices/review`);
+        const response = await axios.get(`http://localhost/api/patients/${patienData.id}/invoices/review`,
+          {
+            headers: {
+              'Accept': 'application/json',
+              // 'X-XSRF-TOKEN': Cookies.get('XSRF-TOKEN'),
+              Authorization: patienData.token,
+              
+            },
+            withCredentials: true
+          }
+        );
         console.log(response.data)
         setInvoices(response.data);
 

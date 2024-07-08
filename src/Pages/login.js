@@ -475,6 +475,11 @@ import { validEmail, validPassword } from "../Components/rejex.js";
 
 import { useHistory } from 'react-router-dom';
 
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+
+
 const Login = (props) => {
   const history = useHistory();
 
@@ -510,12 +515,16 @@ const Login = (props) => {
         // props.setName(content.name);
         localStorage.setItem("data",JSON.stringify(response.data.data.patient) )
         localStorage.setItem("login", true);
+        toast.success('Successfully Login!');
+        
         setRedirectToHome(true);
       } else {
         setErrors({ ...errors, login: 'Login failed' });
       }
     } catch (error) {
       console.log(error)
+      
+      toast.error(`This is an error! ${error.response.data.message}`);
       setErrors({ ...errors, login: error.response?.data?.message || 'Login failed' });
     }
   };

@@ -9,10 +9,10 @@ const DoctorSec = () => {
   const [activeDoctor, setActiveDoctor] = useState(0);
 
   useEffect(() => {
-    axios.get("https://b43c1a73-82c8-4103-8569-c1e7e6a160cd.mock.pstmn.io/doctors")
+    axios.get("http://localhost/api/doctors")
       .then(res => {
         console.log("API Response:", res.data);
-        setDoctors(res.data);
+        setDoctors(res.data.data);
       })
       .catch(err => {
         console.error("Error fetching data:", err);
@@ -74,7 +74,7 @@ const DoctorSec = () => {
                             <i className="flaticon-alarm-clock"></i> 
                             {doctor.works_day.map((workDay, index) => (
                               <div key={index}>
-                                <strong>{workDay.day}:</strong> {workDay.slots.join(", ")}
+                                <strong>{workDay.day}:</strong> 
                               </div>
                             ))}
                           </span>

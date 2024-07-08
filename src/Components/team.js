@@ -7,10 +7,10 @@ const TeamSection = () => {
     const [activeDoctor, setActiveDoctor] = useState(0);
   
     useEffect(() => {
-      axios.get("https://b43c1a73-82c8-4103-8569-c1e7e6a160cd.mock.pstmn.io/doctors")
+      axios.get("http://localhost/api/doctors")
         .then(res => {
-          console.log("API Response:", res.data);
-          setDoctors(res.data);
+        //   console.log("API Response:", res.data);
+          setDoctors(res.data.data);
         })
         .catch(err => {
           console.error("Error fetching data:", err);
@@ -25,7 +25,10 @@ const TeamSection = () => {
                     <div className="separator"></div>
                 </div>
                 <div className="row">
-                    {doctors.map((doctor, index) => (
+                    {doctors.length === 0 ? (
+                  <h1></h1>
+                ) : (
+                    doctors.map((doctor, index) => (
                         
                         <div key={index} className="team-block col-lg-3 col-md-6 col-sm-12 mb-4">
                             <div className={`inner-box wow fadeInLeft`} data-wow-delay="1ms" data-wow-duration="1500ms">
@@ -48,7 +51,7 @@ const TeamSection = () => {
                                 </div>
                             </div>
                         </div>
-                    ))}
+                    )))}
                 </div>
             </div>
         </section>

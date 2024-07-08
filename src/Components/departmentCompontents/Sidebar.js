@@ -11,8 +11,8 @@ const Sidebar = (props) => {
   useEffect(()=>{
     //call Api with axios method
     
-    // axios.get(`http://localhost/api/departments`)
-    axios.get(`https://b43c1a73-82c8-4103-8569-c1e7e6a160cd.mock.pstmn.io/departments`)
+    axios.get(`http://localhost/api/departments`)
+    // axios.get(`https://b43c1a73-82c8-4103-8569-c1e7e6a160cd.mock.pstmn.io/departments`)
 
     .then(res =>{ 
       console.log(res.data)
@@ -29,7 +29,7 @@ const Sidebar = (props) => {
         <div className="sidebar-widget sidebar-blog-category">
           <ul className="blog-cat">
           {departments.length === 0 ? (
-                  <h1>There are no departments in the database</h1>
+                  <h1></h1>
                 ) : (
                   departments.map((department) => (
                     <li 

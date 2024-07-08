@@ -144,7 +144,11 @@ function PredictDisease () {
                     readOnly
                     value={
                         predictions
-                            ? `Your Disease is ${predictions.NaiveBayes}`
+                            ? 
+                            `Your Disease is ${predictions.NaiveBayes}`
+                            // `Your Disease is ${predictions.DecisionTree}`
+                            // `Your Disease is ${predictions.RandomForest}`
+
                             // (<p>Your Disease is <span className="fw-bold">{predictions.NaiveBayes}</span></p>)
                             : error404
                                 ? `${error404}`

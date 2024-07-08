@@ -44,7 +44,17 @@ const Profile = () => {
     useEffect(() => {
         const fetchPayments = async () => {
             try {
-                const response = await axios.get('http://localhost/api/receipts');
+                const response = await axios.get('http://localhost/api/receipts',
+                    {
+                        headers: {
+                            'Accept': 'application/json',
+                            // 'X-XSRF-TOKEN': Cookies.get('XSRF-TOKEN'),
+                            Authorization: patienData.token,
+                            
+                          },
+                          withCredentials: true
+                    }
+                );
                 setPayments(response.data);
             } catch (error) {
                 console.error('Error fetching payments:', error);
@@ -57,7 +67,17 @@ const Profile = () => {
     useEffect(() => {
         const fetchInvoices = async () => {
             try {
-                const response = await axios.get(`http://localhost/api/patients/${patienData.id}/invoices`);
+                const response = await axios.get(`http://localhost/api/patients/${patienData.id}/invoices`,
+                    {
+                        headers: {
+                            'Accept': 'application/json',
+                            // 'X-XSRF-TOKEN': Cookies.get('XSRF-TOKEN'),
+                            Authorization: patienData.token,
+                            
+                          },
+                          withCredentials: true
+                    }
+                );
                 const invoices = response.data;
                 setInvoices(invoices);
                 calculateTotal(invoices);
@@ -79,7 +99,17 @@ const Profile = () => {
     useEffect(() => {
         const fetchLaboratoryData = async () => {
             try {
-                const response = await axios.get(`http://localhost/api/patient-details/${patienData.id}`);
+                const response = await axios.get(`http://localhost/api/patient-details/${patienData.id}`,
+                    {
+                        headers: {
+                            'Accept': 'application/json',
+                            // 'X-XSRF-TOKEN': Cookies.get('XSRF-TOKEN'),
+                            Authorization: patienData.token,
+                            
+                          },
+                          withCredentials: true
+                    }
+                );
                 // console.log(response)
                 setLaboratoryData(response.data.data.patient_laboratories);
             } catch (error) {

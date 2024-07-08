@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 
 function HomeNews () {
@@ -17,7 +18,7 @@ function HomeNews () {
 					<div className="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
 						<div className="image">
 							<div className="category">Artical</div>
-							<a href="blog-detail.html"><img src="images/article1.jpg" alt="" style={{height:"17rem"}}/></a>
+							<Link to="/blog"><img src="images/article1.jpg" alt="" style={{height:"17rem"}}/></Link>
 						</div>
 						<div className="lower-content">
 							<ul className="post-meta">
@@ -27,7 +28,9 @@ function HomeNews () {
 							</ul>
 							<h3><a href="blog-detail.html">Diagnostic Services for Efficient Results Picking Right </a></h3>
 							<div className="text">There are a lot of women that are unaware of the numerous risks associated with their health and eventually ignore the ...</div>
-							<a href="blog-detail.html" className="read-more">Read More</a>
+							{/* <a href="blog-detail.html" className="read-more">Read More</a> */}
+							<Link to="/blog" className="read-more">Read More</Link>
+
 						</div>
 					</div>
 				</div>
@@ -37,7 +40,7 @@ function HomeNews () {
 					<div className="inner-box wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="1500ms">
 						<div className="image">
 							<div className="category">Artical</div>
-							<a href="blog-detail.html"><img src="images/article2.jpg" alt="" style={{height:"17rem"}}/></a>
+							<Link to="/blog"><img src="images/article2.jpg" alt="" style={{height:"17rem"}}/></Link>
 						</div>
 						<div className="lower-content">
 							<ul className="post-meta">
@@ -47,7 +50,10 @@ function HomeNews () {
 							</ul>
 							<h3><a href="blog-detail.html">Reasons to Visit for Heart Specialist Us</a></h3>
 							<div className="text">There are a lot of women that are unaware of the numerous risks associated with their health and eventually ignore the ...</div>
-							<a href="blog-detail.html" className="read-more">Read More</a>
+							{/* <a href="blog-detail.html" className="read-more">Read More</a>
+							 */}
+							<Link to="/blog" className="read-more">Read More</Link>
+
 						</div>
 					</div>
 				</div>
@@ -57,7 +63,7 @@ function HomeNews () {
 					<div className="inner-box wow fadeInLeft" data-wow-delay="600ms" data-wow-duration="1500ms">
 						<div className="image">
 							<div className="category">Artical</div>
-							<a href="blog-detail.html"><img src="images/article3.jpg" alt="" style={{height:"17rem"}}/></a>
+							<Link to="/blog"><img src="images/article3.jpg" alt="" style={{height:"17rem"}}/></Link>
 						</div>
 						<div className="lower-content">
 							<ul className="post-meta">
@@ -67,7 +73,7 @@ function HomeNews () {
 							</ul>
 							<h3><a href="blog-detail.html">Preparing for an ECG Tips From Our Diagnosticians</a></h3>
 							<div className="text">There are a lot of women that are unaware of the numerous risks associated with their health and eventually ignore the ...</div>
-							<a href="blog-detail.html" className="read-more">Read More</a>
+							<Link to="/blog" className="read-more">Read More</Link>
 						</div>
 					</div>
 				</div>

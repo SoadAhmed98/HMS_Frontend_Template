@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 // import function to register Swiper custom elements
 import { register } from 'swiper/element/bundle';
 // import axios from 'axios';
+// import 'react-toastify/dist/ReactToastify.css';
 
 // axios.defaults.baseURL = 'http://localhost/api'
 // axios.defaults.baseURL = 'https://b43c1a73-82c8-4103-8569-c1e7e6a160cd.mock.pstmn.io'

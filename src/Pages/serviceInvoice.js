@@ -30,8 +30,8 @@ function ServiceInvoice() {
   useEffect(() => {
     const fetchDoctor = async () => {
       try {
-        const response = await axios.get(`https://b43c1a73-82c8-4103-8569-c1e7e6a160cd.mock.pstmn.io/doctors`);
-        setDoctors(response.data);
+        const response = await axios.get(`http://localhost/api/doctors`);
+        setDoctors(response.data.data);
       } catch (error) {
         console.error('Error fetching doctor details:', error);
       }
@@ -39,7 +39,7 @@ function ServiceInvoice() {
 
     const fetchDepartments = async () => {
       try {
-        const response = await axios.get(`https://b43c1a73-82c8-4103-8569-c1e7e6a160cd.mock.pstmn.io/departments`);
+        const response = await axios.get(`http://localhost/api/departments`);
         setDepartments(response.data);
       } catch (error) {
         console.error('Error fetching departments:', error);
