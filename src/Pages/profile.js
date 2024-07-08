@@ -11,28 +11,40 @@ import { useHistory } from 'react-router-dom';
 const Profile = () => {
     const history = useHistory();
 
+    
+
     const [invoices, setInvoices] = useState([]);
     const [totalWithTax, setTotalWithTax] = useState(0);
     const [activeTab, setActiveTab] = useState("profile");
-    const [profileData, setProfileData] = useState(null);
+    // const [patienData, setPatienData] = useState(null);
     const [profileImage, setProfileImage] = useState(
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
     );
     const [services, setServices] = useState({});
     const [payments, setPayments] = useState([]);
     const [laboratoryData, setLaboratoryData] = useState([]);
-    
+    const [patienData, setPatientData] = useState(JSON.parse(localStorage.getItem('data')))
+
     useEffect(() => {
         const isLoggedIn = localStorage.getItem('login');
+        // console.log(isLoggedIn)
         if (isLoggedIn === "false") {
             history.push('/'); 
         }
+        else
+        {
+            // setPatientData(JSON.parse(localStorage.getItem('data')))
+            // const [patienData, setPatientData] = useState(JSON.parse(localStorage.getItem('data')))
+
+        }
     }, [history]);
+    
+    
 
     useEffect(() => {
         const fetchPayments = async () => {
             try {
-                const response = await axios.get('https://b43c1a73-82c8-4103-8569-c1e7e6a160cd.mock.pstmn.io/receipts');
+                const response = await axios.get('http://localhost/api/receipts');
                 setPayments(response.data);
             } catch (error) {
                 console.error('Error fetching payments:', error);
@@ -45,11 +57,11 @@ const Profile = () => {
     useEffect(() => {
         const fetchInvoices = async () => {
             try {
-                const response = await axios.get('https://b43c1a73-82c8-4103-8569-c1e7e6a160cd.mock.pstmn.io/patients/1/invoices');
+                const response = await axios.get(`http://localhost/api/patients/${patienData.id}/invoices`);
                 const invoices = response.data;
                 setInvoices(invoices);
                 calculateTotal(invoices);
-                fetchServiceNames(invoices);
+                // fetchServiceNames(invoices);
             } catch (error) {
                 console.error("Error fetching invoices:", error);
             }
@@ -58,17 +70,18 @@ const Profile = () => {
         fetchInvoices();
     }, []);
 
-    useEffect(() => {
-        axios.get("https://b43c1a73-82c8-4103-8569-c1e7e6a160cd.mock.pstmn.io/patients/1")
-            .then(response => setProfileData(response.data))
-            .catch(error => console.error('Error fetching profile data:', error));
-    }, []);
+    // useEffect(() => {
+    //     axios.get("http://localhost/api/patients/1")
+    //         .then(response => setPatienData(response.data))
+    //         .catch(error => console.error('Error fetching profile data:', error));
+    // }, []);
 
     useEffect(() => {
         const fetchLaboratoryData = async () => {
             try {
-                const response = await axios.get(`https://b43c1a73-82c8-4103-8569-c1e7e6a160cd.mock.pstmn.io/patient-details/1`);
-                setLaboratoryData(response.data);
+                const response = await axios.get(`http://localhost/api/patient-details/${patienData.id}`);
+                // console.log(response)
+                setLaboratoryData(response.data.data.patient_laboratories);
             } catch (error) {
                 console.error("Error fetching laboratory data:", error);
             }
@@ -80,9 +93,11 @@ const Profile = () => {
     const fetchServiceNames = async (invoices) => {
         const serviceNames = {};
         await Promise.all(invoices.map(async (invoice) => {
+            // console.log(invoice)
             try {
-                const response = await axios.get(`https://b43c1a73-82c8-4103-8569-c1e7e6a160cd.mock.pstmn.io/services/${invoice.Service_id}`);
-                serviceNames[invoice.Service_id] = response.data.name;
+                const response = await axios.get(`http://localhost/api/services/${invoice.Service_id ? invoice.Service_id : invoice.Group_id}`);
+                console.log(response)
+                serviceNames[invoice.Service_id ? invoice.Service_id : invoice.Group_id] = response.data.name;
             } catch (error) {
                 console.error(`Error fetching service name for Service_id ${invoice.Service_id}:`, error);
             }
@@ -109,10 +124,12 @@ const Profile = () => {
         }
     };
 
-    if (!profileData) {
+    if (!patienData) {
         return <div>Loading...</div>;
     }
-    const filteredPayments = payments.filter(payment => payment.patient_id === 4);
+    const filteredPayments = payments.filter(payment => payment.patient_id === patienData.id);
+
+    // console.log(filteredPayments)
 
     return (
         <>
@@ -129,7 +146,7 @@ const Profile = () => {
                                 </div>
                             </div>
                             <div className="profile-head mt-4">
-                                <h4>{profileData.name}</h4>
+                                <h4>{patienData.name}</h4>
                             </div>
                             {/* <input
                                 type="submit"
@@ -148,20 +165,20 @@ const Profile = () => {
                                 fill
                             >
                                 <Tab eventKey="profile" title="Profile">
-                                    <div className="row ">
+                                    {/* <div className="row ">
                                         <div className="col-md-6">
                                             <label className="h6 ">Patient Id</label>
                                         </div>
                                         <div className="col-md-6 ">
                                             <p>{profileData.id}</p>
                                         </div>
-                                    </div>
+                                    </div> */}
                                     <div className="row">
                                         <div className="col-md-6">
                                             <label className="h6 ">Patient Name</label>
                                         </div>
                                         <div className="col-md-6">
-                                            <p>{profileData.name}</p>
+                                            <p>{patienData.name}</p>
                                         </div>
                                     </div>
 
@@ -170,7 +187,7 @@ const Profile = () => {
                                             <label className="h6">Phone Number</label>
                                         </div>
                                         <div className="col-md-6">
-                                            <p>{profileData.phone}</p>
+                                            <p>{patienData.phone}</p>
                                         </div>
                                     </div>
                                     <div className="row">
@@ -178,7 +195,7 @@ const Profile = () => {
                                             <label className="h6">Email</label>
                                         </div>
                                         <div className="col-md-6 ">
-                                            <p>{profileData.email}</p>
+                                            <p>{patienData.email}</p>
                                         </div>
                                     </div>
                                     <div className="row">
@@ -186,7 +203,7 @@ const Profile = () => {
                                             <label className="h6">Date Of Birth</label>
                                         </div>
                                         <div className="col-md-6">
-                                            <p>{profileData.birth_date}</p>
+                                            <p>{patienData.birth_date}</p>
                                         </div>
                                     </div>
                                     <div className="row">
@@ -194,7 +211,7 @@ const Profile = () => {
                                             <label className="h6">Gender</label>
                                         </div>
                                         <div className="col-md-6">
-                                            <p>{profileData.gender}</p>
+                                            <p>{patienData.gender}</p>
                                         </div>
                                     </div>
                                     <div className="row">
@@ -202,10 +219,12 @@ const Profile = () => {
                                             <label className="h6">Blood Group</label>
                                         </div>
                                         <div className="col-md-6">
-                                            <p>{profileData.blood_group}</p>
+                                            <p>{patienData.blood_group}</p>
                                         </div>
                                     </div>
                                 </Tab>
+
+
                                 <Tab eventKey="invoices" title="Invoices" className="text-center">
                                     <div className="table-responsive">
                                         <table className="table w-100">
@@ -222,7 +241,7 @@ const Profile = () => {
                                                 {invoices.map((invoice, index) => (
                                                     <tr key={invoice.id}>
                                                         <th scope="row">{index + 1}</th>
-                                                        <td>{services[invoice.Service_id]}</td>
+                                                        <td>{services[invoice.Service_id ? invoice.Service_id : invoice.Group_id]}</td>
                                                         <td>{invoice.invoice_date}</td>
                                                         <td>{invoice.total_with_tax}</td>
                                                         <td>{invoice.invoice_type === 1 ? 'Cash' : 'Credit'}</td>
@@ -237,9 +256,11 @@ const Profile = () => {
                                     </div>
                                
                                 </Tab>
+
                                 <Tab eventKey="review" title="Review">
                                     <InvoiceReview/>
                                 </Tab>
+
                                 <Tab eventKey="payments" title="Payments">
                                     <div className="table-responsive">
                                         <table className="table w-100">
@@ -252,7 +273,8 @@ const Profile = () => {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {filteredPayments.map((payment) => (
+                                                {
+                                                filteredPayments.map((payment) => (
                                                     <tr key={payment.id}>
                                                         <th scope="row">{payment.id}</th>
                                                         <td>{payment.date}</td>
@@ -269,6 +291,8 @@ const Profile = () => {
                                <Tab eventKey="accountStatment" title="Account Statment">
                                <PatientAccountTable></PatientAccountTable>
                                 </Tab>
+
+
                                 <Tab eventKey="laboratory" title="Laboratory">
                                     <div className="text-wrapper">
                                         {laboratoryData.map((data, index) => (
